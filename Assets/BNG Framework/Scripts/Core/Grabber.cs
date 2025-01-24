@@ -178,10 +178,6 @@ namespace BNG {
         void Start() {
             rb = GetComponent<Rigidbody>();
             grabsInTrigger = GetComponent<GrabbablesInTrigger>();
-            if(grabsInTrigger) {
-                grabsInTrigger.CheckRemoteGrabbables = true;
-            }
-
             joint = GetComponent<ConfigurableJoint>();
             input = InputBridge.Instance;
 
@@ -231,7 +227,7 @@ namespace BNG {
                 velocityTracker.controllerHand = HandSide;
             }
         }
-
+        
         void Update() {
 
             // Keep track of how long an object has been trying to fly to our hand
@@ -466,11 +462,6 @@ namespace BNG {
             // Check Hold Controls
             HoldType closestHoldType = getHoldType(grabbingGrabbable);
             GrabButton closestGrabButton = GetGrabButton(grabbingGrabbable);
-
-            // Remote grabs have a special property 'CanDropMidGrab' to determine if they can be dropped mid-flight or not
-            if (RemoteGrabbingItem && flyingGrabbable != null && !flyingGrabbable.CanDropMidGrab) {
-                return false;
-            }
 
             if (closestHoldType == HoldType.HoldDown) {
                 return getGrabInput(closestGrabButton) <= ReleaseGripAmount;

@@ -27,7 +27,6 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 0
@@ -49,13 +48,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -63,8 +55,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &87248366
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +82,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 2
@@ -114,13 +103,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -128,8 +110,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &116508168
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +137,6 @@ Transform:
   m_LocalRotation: {x: -0.38268343, y: -0, z: 0.92387956, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 5
@@ -179,13 +158,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -193,8 +165,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &142013152
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +192,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 7
@@ -244,13 +213,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -258,8 +220,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &147941828
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +247,6 @@ Transform:
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 3
@@ -309,13 +268,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -323,8 +275,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &194621659
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +302,6 @@ Transform:
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0.92387956, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 6
@@ -374,13 +323,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -388,8 +330,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &416005984
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +356,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 67508636}
   - {fileID: 1199869818}
@@ -456,7 +395,6 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 5
@@ -478,13 +416,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -492,8 +423,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &644821764
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +450,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 6
@@ -543,13 +471,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -557,8 +478,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &680140716
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +505,6 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 4
@@ -608,13 +526,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -622,8 +533,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &807489132
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +560,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 2
@@ -673,13 +581,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -687,8 +588,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &1199869817
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +615,6 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 1
@@ -738,13 +636,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -752,8 +643,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &1306899504
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +670,6 @@ Transform:
   m_LocalRotation: {x: -0.92387956, y: -0, z: 0.38268343, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 4
@@ -803,13 +691,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -817,8 +698,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &1419151286
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +725,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 3
@@ -868,13 +746,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -882,8 +753,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &1542256492
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +780,6 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 0
@@ -933,13 +801,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -947,8 +808,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &1786721989
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +835,6 @@ Transform:
   m_LocalRotation: {x: 0.92387956, y: 0, z: 0.38268343, w: 0}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065000057}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416005985}
   m_RootOrder: 7
@@ -998,13 +856,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -1012,8 +863,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1 &1930668955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +890,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.0387, z: 0.0065}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3814001877098034070}
   m_RootOrder: 1
@@ -1063,13 +911,6 @@ MonoBehaviour:
   HandPose: 0
   LeftHandIsValid: 1
   RightHandIsValid: 1
-  InvertLeftHand: 0
-  InvertLeftPositionX: 1
-  InvertLeftPositionY: 0
-  InvertLeftPositionZ: 0
-  InvertLeftEulerX: 0
-  InvertLeftEulerY: 1
-  InvertLeftEulerZ: 1
   HandPosition: {fileID: 0}
   MaxDegreeDifferenceAllowed: 45
   IndexBlendMin: 0
@@ -1077,8 +918,6 @@ MonoBehaviour:
   ThumbBlendMin: 0
   ThumbBlendMax: 0
   ShowAngleGizmo: 1
-  LeftHandPreviewPrefab: {fileID: 0}
-  RightHandPreviewPrefab: {fileID: 0}
 --- !u!1001 &364087112427420522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1113,29 +952,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: GrabPhysics
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: GrabMechanic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
       propertyPath: GrabPoints.Array.size
       value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: CanBeSnappedToSnapZone
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: GrabPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1542256493}
+    - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: GrabMechanic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: GrabPoints.Array.data[1]
@@ -1151,6 +980,11 @@ PrefabInstance:
       propertyPath: GrabPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1419151287}
+    - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: CanBeSnappedToSnapZone
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: GrabPoints.Array.data[4]
@@ -1211,6 +1045,11 @@ PrefabInstance:
       propertyPath: GrabPoints.Array.data[15]
       value: 
       objectReference: {fileID: 1786721990}
+    - target: {fileID: 3594841392680093891, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: GrabPhysics
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093948, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -1228,18 +1067,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093951, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: m_Size.y
-      value: 0.10385099
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392680093951, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
       propertyPath: m_Size.z
       value: 0.038172286
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392680093951, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.0013920666
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392680093951, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
@@ -1251,45 +1080,30 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.0070863534
       objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154752, guid: c11d1066dc09d494d8acd9ca504d4de2,
+    - target: {fileID: 3594841392680093951, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: ReloadMethod
-      value: 3
+      propertyPath: m_Size.y
+      value: 0.10385099
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392680093951, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.0013920666
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154752, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: RecoilDuration
-      value: 0.5
+      propertyPath: ReloadMethod
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154752, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: SecondHandLookSpeed
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
+    - target: {fileID: 3594841392878154752, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: TwoHandedPosition
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: TwoHandedRotation
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: SecondaryGrabbable
-      value: 
-      objectReference: {fileID: 3814001877098034089}
-    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: SecondaryGrabBehavior
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: SecondaryLookOffset.x
-      value: 90
+      propertyPath: RecoilDuration
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
@@ -1306,25 +1120,45 @@ PrefabInstance:
       propertyPath: SecondaryGrabLookDirection.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: SecondaryLookOffset.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: SecondaryGrabbable
+      value: 
+      objectReference: {fileID: 3814001877098034089}
+    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: SecondaryGrabBehavior
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: TwoHandedPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154754, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: TwoHandedRotation
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154755, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154755, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: m_Mass
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154755, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154760, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: m_Name
       value: RifleWithGrip Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
@@ -1343,11 +1177,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1359,6 +1188,16 @@ PrefabInstance:
     - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392878154813, guid: c11d1066dc09d494d8acd9ca504d4de2,
@@ -1378,18 +1217,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
+      propertyPath: m_Center.z
+      value: 0.15230261
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
       propertyPath: m_Size.x
       value: 0.022663355
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.023832977
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.014462441
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
@@ -1398,13 +1232,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.023832977
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
+        type: 3}
       propertyPath: m_Center.y
       value: 0.071658134
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392909505730, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}
-      propertyPath: m_Center.z
-      value: 0.15230261
+      propertyPath: m_Size.z
+      value: 0.014462441
       objectReference: {fileID: 0}
     - target: {fileID: 3594841392909505731, guid: c11d1066dc09d494d8acd9ca504d4de2,
         type: 3}

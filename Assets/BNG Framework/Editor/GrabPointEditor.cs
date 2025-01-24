@@ -31,14 +31,6 @@ namespace BNG {
         SerializedProperty SelectedHandPose;
         SerializedProperty HandPose;
         SerializedProperty LeftHandIsValid;
-        SerializedProperty InvertLeftHand;
-        SerializedProperty InvertLeftPositionX;
-        SerializedProperty InvertLeftPositionY;
-        SerializedProperty InvertLeftPositionZ;
-        SerializedProperty InvertLeftEulerX;
-        SerializedProperty InvertLeftEulerY;
-        SerializedProperty InvertLeftEulerZ;
-
         SerializedProperty RightHandIsValid;
         SerializedProperty HandPosition;
         SerializedProperty MaxDegreeDifferenceAllowed;
@@ -46,31 +38,13 @@ namespace BNG {
         SerializedProperty IndexBlendMax;
         SerializedProperty ThumbBlendMin;
         SerializedProperty ThumbBlendMax;
-
-        SerializedProperty LeftHandPreviewPrefab;
-        SerializedProperty RightHandPreviewPrefab;
-
         SerializedProperty ShowAngleGizmo;
-
-        // Default GameObject to use Resources.Load on
-        static string _defaultRightModelPreviewName = "RightHandModelsEditorPreview";
-        static string _defaultLeftModelPreviewName = "LeftHandModelsEditorPreview";
 
         void OnEnable() {
             handPoseType = serializedObject.FindProperty("handPoseType");
             SelectedHandPose = serializedObject.FindProperty("SelectedHandPose");
             HandPose = serializedObject.FindProperty("HandPose");
             LeftHandIsValid = serializedObject.FindProperty("LeftHandIsValid");
-            InvertLeftHand = serializedObject.FindProperty("InvertLeftHand");
-
-            InvertLeftPositionX = serializedObject.FindProperty("InvertLeftPositionX");
-            InvertLeftPositionY = serializedObject.FindProperty("InvertLeftPositionY");
-            InvertLeftPositionZ = serializedObject.FindProperty("InvertLeftPositionZ");
-
-            InvertLeftEulerX = serializedObject.FindProperty("InvertLeftEulerX");
-            InvertLeftEulerY = serializedObject.FindProperty("InvertLeftEulerY");
-            InvertLeftEulerZ = serializedObject.FindProperty("InvertLeftEulerZ");
-
             RightHandIsValid = serializedObject.FindProperty("RightHandIsValid");
             HandPosition = serializedObject.FindProperty("HandPosition");
             MaxDegreeDifferenceAllowed = serializedObject.FindProperty("MaxDegreeDifferenceAllowed");
@@ -78,17 +52,12 @@ namespace BNG {
             IndexBlendMax = serializedObject.FindProperty("IndexBlendMax");
             ThumbBlendMin = serializedObject.FindProperty("ThumbBlendMin");
             ThumbBlendMax = serializedObject.FindProperty("ThumbBlendMax");
-
-            LeftHandPreviewPrefab = serializedObject.FindProperty("LeftHandPreviewPrefab");
-            RightHandPreviewPrefab = serializedObject.FindProperty("RightHandPreviewPrefab");
-
             ShowAngleGizmo = serializedObject.FindProperty("ShowAngleGizmo");
         }
 
         HandPoseType previousType;
 
-        static GameObject lastPreviewRight;
-        static GameObject lastPreviewLeft;
+        
 
         public override void OnInspectorGUI() {
 
@@ -114,6 +83,7 @@ namespace BNG {
                 buttonRightTextureSelected = (Texture)Resources.Load("handIconSelectedRight", typeof(Texture));
             }
 
+
             GUILayout.Label("Toggle Hand Preview : ", EditorStyles.boldLabel);
 
             if(inPrefabMode) {
@@ -122,29 +92,24 @@ namespace BNG {
 
             GUILayout.BeginHorizontal();
 
-            // Take the right hand and invert it's values to get a left hand transform. Requires both left and right to valid since it is acting as both
-            bool doLeftHandInvert = grabPoint.LeftHandIsValid && grabPoint.RightHandIsValid && grabPoint.InvertLeftHand;
-
             // Show / Hide Left Hand
             if (showingLeftHand) {
 
                 // Define a GUIContent which uses the texture
                 buttonLeftContent = new GUIContent(buttonLeftTextureSelected);
 
-                if (!grabPoint.LeftHandIsValid || doLeftHandInvert || GUILayout.Button(buttonLeftContent)) {
-                    if(LeftHandPreview != null) {
-                        GameObject.DestroyImmediate(LeftHandPreview);
-                    }
-                    
+                if (!grabPoint.LeftHandIsValid || GUILayout.Button(buttonLeftContent)) {
+                    GameObject.DestroyImmediate(LeftHandPreview);
                     showingLeftHand = false;
                 }
             }
             else {
                 buttonLeftContent = new GUIContent(buttonLeftTexture);
 
-                if (grabPoint.LeftHandIsValid && !doLeftHandInvert && GUILayout.Button(buttonLeftContent)) {
+                if (grabPoint.LeftHandIsValid && GUILayout.Button(buttonLeftContent)) {
                     // Create and add the Editor preview
                     CreateLeftHandPreview();
+                    
                 }
             }
 
@@ -172,22 +137,7 @@ namespace BNG {
             updateEditorAnimation();
 
             EditorGUILayout.PropertyField(LeftHandIsValid);
-
             EditorGUILayout.PropertyField(RightHandIsValid);
-
-            if(grabPoint.LeftHandIsValid && grabPoint.RightHandIsValid) {
-                EditorGUILayout.PropertyField(InvertLeftHand);
-
-                if(grabPoint.InvertLeftHand) {
-                    EditorGUILayout.PropertyField(InvertLeftPositionX);
-                    EditorGUILayout.PropertyField(InvertLeftPositionY);
-                    EditorGUILayout.PropertyField(InvertLeftPositionZ);
-
-                    EditorGUILayout.PropertyField(InvertLeftEulerX);
-                    EditorGUILayout.PropertyField(InvertLeftEulerY);
-                    EditorGUILayout.PropertyField(InvertLeftEulerZ);
-                }
-            }
 
             EditorGUILayout.PropertyField(handPoseType);
 
@@ -215,36 +165,7 @@ namespace BNG {
             EditorGUILayout.PropertyField(IndexBlendMax);
             EditorGUILayout.PropertyField(ThumbBlendMin);
             EditorGUILayout.PropertyField(ThumbBlendMax);
-
             EditorGUILayout.PropertyField(ShowAngleGizmo);
-
-            // Preview name option
-            EditorGUILayout.PropertyField(LeftHandPreviewPrefab);
-
-
-            if (grabPoint.LeftHandPreviewPrefab == null && lastPreviewLeft != null) {
-                if (GUILayout.Button("Set to " + lastPreviewLeft.name)) {
-                    grabPoint.LeftHandPreviewPrefab = lastPreviewLeft;
-                }
-            }
-
-            // Update any successful previews
-            if (grabPoint.LeftHandPreviewPrefab != null) {
-                lastPreviewLeft = grabPoint.LeftHandPreviewPrefab;
-            }
-
-            EditorGUILayout.PropertyField(RightHandPreviewPrefab);
-
-            if (grabPoint.RightHandPreviewPrefab == null && lastPreviewRight != null) {
-                if (GUILayout.Button("Set to " + lastPreviewRight.name)) {
-                    grabPoint.RightHandPreviewPrefab = lastPreviewRight;
-                }
-            }
-
-
-            if (grabPoint.RightHandPreviewPrefab != null) {
-                lastPreviewRight = grabPoint.RightHandPreviewPrefab;
-            }
 
             serializedObject.ApplyModifiedProperties();
             // base.OnInspectorGUI();
@@ -259,14 +180,8 @@ namespace BNG {
 
         public void CreateRightHandPreview() {
             // Create and add the Editor preview
-            if(grabPoint.RightHandPreviewPrefab != null) {
-                RightHandPreview = Instantiate(grabPoint.RightHandPreviewPrefab);
-            } 
-            else {
-                RightHandPreview = Instantiate(Resources.Load(_defaultRightModelPreviewName, typeof(GameObject))) as GameObject;
-            }
-
-            RightHandPreview.transform.name = RightHandPreview.transform.name.Replace("(Clone)", "");
+            RightHandPreview = Instantiate(Resources.Load("RightHandModelsEditorPreview", typeof(GameObject))) as GameObject;
+            RightHandPreview.transform.name = "RightHandModelsEditorPreview";
             RightHandPreview.transform.parent = grabPoint.transform;
             RightHandPreview.transform.localPosition = Vector3.zero;
             RightHandPreview.transform.localEulerAngles = Vector3.zero;
@@ -282,17 +197,8 @@ namespace BNG {
         }
 
         public void CreateLeftHandPreview() {
-
-            if (grabPoint.LeftHandPreviewPrefab != null) {
-                Debug.Log("Creating Left Hand Preview Prefab");
-                LeftHandPreview = Instantiate(grabPoint.LeftHandPreviewPrefab);
-
-            } 
-            else {
-                LeftHandPreview = Instantiate(Resources.Load(_defaultLeftModelPreviewName, typeof(GameObject))) as GameObject;
-            }
-
-            LeftHandPreview.transform.name = LeftHandPreview.transform.name.Replace("(Clone)", "");
+            LeftHandPreview = Instantiate(Resources.Load("LeftHandModelsEditorPreview", typeof(GameObject))) as GameObject;
+            LeftHandPreview.transform.name = "LeftHandModelsEditorPreview";
             LeftHandPreview.transform.parent = grabPoint.transform;
             LeftHandPreview.transform.localPosition = Vector3.zero;
             LeftHandPreview.transform.localEulerAngles = Vector3.zero;
@@ -412,7 +318,7 @@ namespace BNG {
 #endif
         void checkForExistingPreview() {
             if (LeftHandPreview == null && !showingLeftHand) {
-                Transform lt = grabPoint.FindLeftHandPreview();
+                Transform lt = grabPoint.transform.Find("LeftHandModelsEditorPreview");
                 if (lt) {
                     LeftHandPreview = lt.gameObject;
                     showingLeftHand = true;
@@ -420,7 +326,7 @@ namespace BNG {
             }
 
             if (RightHandPreview == null && !showingRightHand) {
-                Transform rt = grabPoint.FindRightHandPreview();
+                Transform rt = grabPoint.transform.Find("RightHandModelsEditorPreview");
                 if (rt) {
                     RightHandPreview = rt.gameObject;
                     showingRightHand = true;

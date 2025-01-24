@@ -5,38 +5,41 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/BNG Framework/Scenes/Weapons.unity
-    guid: 2626939ed08e1ec41bee0433a7f068d9
-  - enabled: 1
+  - enabled: 0
     path: Assets/BNG Framework/Scenes/XR Demo.unity
     guid: a1360534006d3f845bc79b46b93cfec5
-  - enabled: 1
+  - enabled: 0
     path: Assets/BNG Framework/Scenes/Scene Transitioning.unity
     guid: 9d7c9629abf9c99449e358b0938b47d0
-  - enabled: 1
+  - enabled: 0
     path: Assets/BNG Framework/Scenes/Physics Hands.unity
     guid: 34a4579517c578e4080d0a6ef2c96294
-  - enabled: 1
+  - enabled: 0
     path: Assets/BNG Framework/Scenes/Rigidbody Player.unity
     guid: 57fc97c5771a777449aa8bd02514df22
-  - enabled: 1
+  - enabled: 0
     path: Assets/BNG Framework/Scenes/Vehicle Example.unity
     guid: d96233ee44d985d4fb8dc23a907c06eb
-  - enabled: 1
+  - enabled: 0
     path: Assets/BNG Framework/Scenes/Quest Demo.unity
-    guid: 20abffae0ea5004438fe0e95b6627841
+    guid: eac0312c32df12949a47d07747a9d1cd
+  - enabled: 1
+    path: Assets/001 Dev/BreathingVR Demo/BreathingVR HeartRate Demo.unity
+    guid: 85ab24ebde4cc264b97a87fc25d51fbe
+  - enabled: 1
+    path: Assets/001 Dev/BreathingVR Demo/Game.unity
+    guid: 79b0e7ad3bfb4f44f93e9174a543d0c5
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1d72a524d86b1564f9b304ced417df36,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfb9ff8a9a71cfa4fb65d64159109fb7,
       type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 2ec24d39f7b5ac84aad7e5df7b4fd3ea,
       type: 2}
     WebXR.Settings: {fileID: 11400000, guid: fe9659bb224bb054bb1dbca065d1d318, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 7c0d65f8139523c47a3ac0b1587ccdf6,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bc87842975b39e54c9a8257bb65aef55,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 79959e38101bc294d90cb8acd8e9f340,
       type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4143957480af01743ac109d1fa56dcaf,
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 98f1611818f16bf44a44fd6ae6d4f6ff,
       type: 2}
     xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 2ae0a4a226e8d9e4aba56d1e2eb3977b,
       type: 2}

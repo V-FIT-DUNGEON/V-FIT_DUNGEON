@@ -316,12 +316,6 @@ namespace BNG {
                 return false;
             }
 
-            // Ignore if this is our parent auto poser (don't pose on own hand
-            AutoPoser parentPoser = col.gameObject.GetComponentInParent<AutoPoser>();
-            if(parentPoser == this) {
-                return false;
-            }
-
             // Default to a valid collisions
             return true;
         }

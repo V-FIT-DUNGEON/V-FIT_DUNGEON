@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace BNG {
 
     [ExecuteInEditMode]
@@ -45,13 +46,10 @@ namespace BNG {
         public List<Transform> OtherJoints;
 
         HandPose previousPose;
-        public bool doSingleAnimation;
+        bool doSingleAnimation;
 
         // Continuously update pose state
         public bool ContinuousUpdate = false;
-
-        // Did something animate recently?
-        private float _lastAnimTime;
 
         void Start() {
             // Trigger a pose change to start the animation
@@ -65,49 +63,13 @@ namespace BNG {
             CheckForPoseChange();
 
             // Lerp to Hand Pose
-            if (ContinuousUpdate) {
+            if (ContinuousUpdate || doSingleAnimation) {
                 DoPoseUpdate();
             }
-            else if(doSingleAnimation) {
-                DoPoseUpdate();
-
-                // Can bail a little early if we haven't updated a transform recently
-                if(Time.time - _lastAnimTime >= 0.1f) {
-                    doSingleAnimation = false;
-                }
-            }
-        }
-
-        // How long to check for animations while in the editor mode
-        float editorAnimationTime = 0f;
-        float maxEditorAnimationTime = 2f;
-
-        public virtual void DoPoseUpdate() {
-
-            if (CurrentPose != null) {
-                UpdateHandPose(CurrentPose.Joints, true);
-            }
-
-            // Check to stop animating if we haven't moved anything recently
-            if (doSingleAnimation) {
-                editorAnimationTime += Time.deltaTime;
-
-                // Reset
-                if (editorAnimationTime >= maxEditorAnimationTime) {
-                    editorAnimationTime = 0;
-                    doSingleAnimation = false;
-                    // Debug.Log("Anim Timer Expired");
-                }
-            }
-        }
-
-        public void ResetAnimationState() {
-            editorAnimationTime = 0;
-            doSingleAnimation = false;
         }
 
         public void CheckForPoseChange() {
-            if (previousPose == null && CurrentPose != null || (CurrentPose != null && previousPose != null && previousPose.name != CurrentPose.name && CurrentPose != null)) {
+            if (previousPose == null || (CurrentPose != null && previousPose != null && previousPose.name != CurrentPose.name && CurrentPose != null)) {
                 OnPoseChanged();
                 previousPose = CurrentPose;
             }
@@ -117,7 +79,6 @@ namespace BNG {
 
             // Allow pose to change animation
             editorAnimationTime = 0;
-            
             doSingleAnimation = true;
         }
 
@@ -251,34 +212,11 @@ namespace BNG {
 
             // Lerp
             if (lerpAmount != 1) {
-                bool positionReached = true;
-                bool rotationReached = true;
-
-                if (updatePosition) {
+                if(updatePosition) {
                     toTransform.localPosition = Vector3.Lerp(toTransform.localPosition, fromJoint.LocalPosition, lerpAmount);
-                    positionReached = Vector3.Distance(toTransform.localPosition, fromJoint.LocalPosition) <= 0.0001f;
-                    if(!positionReached) {
-                        _lastAnimTime = Time.time;
-                    }
                 }
-                if (UpdateJointRotations) {
+                if(UpdateJointRotations) {
                     toTransform.localRotation = Quaternion.Lerp(toTransform.localRotation, fromJoint.LocalRotation, lerpAmount);
-                    rotationReached = Quaternion.Angle(toTransform.localRotation, fromJoint.LocalRotation) <= 0.01f;
-                    if (!rotationReached) {
-                        _lastAnimTime = Time.time;
-                    }
-                }
-
-                // If both position and rotation have been reached, consider the joint completed
-                if (positionReached && rotationReached) {
-
-                    // Lock to precise rotation on end
-                    if (updatePosition) {
-                        toTransform.localPosition = fromJoint.LocalPosition;
-                    }
-                    if(UpdateJointRotations) {
-                        toTransform.localRotation = fromJoint.LocalRotation;
-                    }
                 }
             }
             // Instantaneous can directly set the local position and rotation
@@ -431,7 +369,30 @@ namespace BNG {
 #else
     return null;
 #endif
-        }       
+        }
+
+
+        // How long to check for animations while in the editor mode
+        float editorAnimationTime = 0f;
+        float maxEditorAnimationTime = 2f;
+
+        public virtual void DoPoseUpdate() {
+
+            if (CurrentPose != null) {
+                UpdateHandPose(CurrentPose.Joints, true);
+            }
+
+            // Are we done requesting a single animation?
+            if (doSingleAnimation) {
+                editorAnimationTime += Time.deltaTime;
+
+                // Reset
+                if (editorAnimationTime >= maxEditorAnimationTime) {
+                    editorAnimationTime = 0;
+                    doSingleAnimation = false;
+                }
+            }
+        }
 
         public virtual void ResetEditorHandles() {
             EditorHandle[] handles = GetComponentsInChildren<EditorHandle>();

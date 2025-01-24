@@ -547,9 +547,10 @@ namespace BNG {
         }
 
         public virtual void AfterTeleport() {
-
-
-            AfterTeleportFade();
+            
+            if (FadeScreenOnTeleport && fader) {
+                fader.DoFadeOut();
+            }
 
             // Call any After Teleport Events
             OnAfterTeleport?.Invoke();
@@ -557,12 +558,6 @@ namespace BNG {
             // Call Event on Teleport Destination if available
             if(DestinationObject) {
                 DestinationObject.OnPlayerTeleported?.Invoke();
-            }
-        }
-
-        public virtual void AfterTeleportFade() {
-            if (FadeScreenOnTeleport && fader) {
-                fader.DoFadeOut();
             }
         }
 

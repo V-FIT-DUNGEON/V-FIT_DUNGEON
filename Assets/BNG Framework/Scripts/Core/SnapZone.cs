@@ -9,18 +9,12 @@ namespace BNG {
 
         [Header("Starting / Held Item")]
         [Tooltip("The currently held item. Set this in the editor to equip on Start().")]
-        public Grabbable HeldItem;        
+        public Grabbable HeldItem;
 
         [Tooltip("TSet this in the editor to equip on Start().")]
         public Grabbable StartingItem;
 
         [Header("Options")]
-        /// <summary>
-        /// If true, Item will automatically snap into the snapzone OnTriggerEnter
-        /// </summary>
-        [Tooltip("If true, Item will automatically snap into the snapzone OnTriggerEnter")]
-        public bool AutoSnapItem = false;
-
         /// <summary>
         /// If false, Item will Move back to inventory space if player drops it.
         /// </summary>
@@ -30,8 +24,8 @@ namespace BNG {
         /// <summary>
         /// If false the snap zone cannot have it's content replaced.
         /// </summary>
-        // [Tooltip("If false the snap zone cannot have it's content replaced.")]
-        // public bool CanSwapItem = true;
+        [Tooltip("If false the snap zone cannot have it's content replaced.")]
+        public bool CanSwapItem = true;
 
         /// <summary>
         /// If false the item inside the snap zone may not be removed
@@ -49,13 +43,6 @@ namespace BNG {
         public bool DisableColliders = true;
         List<Collider> disabledColliders = new List<Collider>();
 
-        /// <summary>
-        /// If true the Grabbable object will be parented to this transform. Leave false to move object in Update
-        /// </summary>
-        [Tooltip("If true the Grabbable object will be parented to this transform. Leave false to move object in Update")]
-        public bool ParentObjectToSnapZone = true;
-        
-
         [Tooltip("If true the item inside the SnapZone will be duplicated, instead of removed, from the SnapZone.")]
         public bool DuplicateItemOnGrab = false;
 
@@ -70,7 +57,6 @@ namespace BNG {
         /// </summary>
         [HideInInspector]
         public float LastSnapTime;
-        public float LastUnsnapTime;
 
         [Header("Filtering")]
         /// <summary>
@@ -103,7 +89,6 @@ namespace BNG {
 
         GrabbablesInTrigger gZone;
 
-
         Rigidbody heldItemRigid;
         bool heldItemWasKinematic;
         Grabbable trackedItem; // If we can't drop the item, track it separately
@@ -114,17 +99,8 @@ namespace BNG {
 
         SnapZoneOffset offset;
 
-        float UpdateCheckFrequency = 0.1f;
-
         void Start() {
             gZone = GetComponent<GrabbablesInTrigger>();
-            
-            // Don't need to check remote grabbables here
-            gZone.CheckRemoteGrabbables = false;
-            gZone.RaycastRemoteGrabbables = false;
-            // Can potentially update this area  bit less frequent than someething like the Grabber
-            gZone.UpdateGrabbableFrequency = UpdateCheckFrequency;
-
             _scaleTo = ScaleItem;
 
             // Auto Equip item by moving it into place and grabbing it
@@ -146,14 +122,7 @@ namespace BNG {
             // Can we grab something
             if (HeldItem == null && ClosestGrabbable != null) {
                 float secondsSinceDrop = Time.time - ClosestGrabbable.LastDropTime;
-
-                // Check auto snap if we didn't just grab this
-                if(AutoSnapItem && Time.time - LastUnsnapTime >= 0.5f) {
-                    // Drop this item first
-                    ClosestGrabbable.DropItem(false, false);
-                    GrabGrabbable(ClosestGrabbable);
-                }
-                else if (secondsSinceDrop < MaxDropTime) {
+                if (secondsSinceDrop < MaxDropTime) {
                     GrabGrabbable(ClosestGrabbable);
                 }
             }
@@ -162,22 +131,17 @@ namespace BNG {
             if (HeldItem != null) {
 
                 // Something picked this up or changed transform parent
-                if (HeldItem.BeingHeld || (HeldItem.transform.parent != transform && ParentObjectToSnapZone)) {
+                if (HeldItem.BeingHeld || HeldItem.transform.parent != transform) {
                     ReleaseAll();
                 }
                 else {
-                    // Scale Item while parented inside snap zone
-                    if(ParentObjectToSnapZone) {
-                        HeldItem.transform.localScale = Vector3.Lerp(HeldItem.transform.localScale, HeldItem.OriginalScale * _scaleTo, Time.deltaTime * 30f);
-                    }
+                    // Scale Item while inside zone.                                            
+                    HeldItem.transform.localScale = Vector3.Lerp(HeldItem.transform.localScale, HeldItem.OriginalScale * _scaleTo, Time.deltaTime * 30f);
 
                     // Make sure this can't be grabbed from the snap zone
                     if (HeldItem.enabled || (disabledColliders != null && disabledColliders.Count > 0 && disabledColliders[0] != null && disabledColliders[0].enabled)) {
                         disableGrabbable(HeldItem);
                     }
-
-                    // Move object manually if we didn't parent it
-                    MoveGrabbableInZone();
                 }
             }
 
@@ -189,37 +153,9 @@ namespace BNG {
             }
         }
 
-        void FixedUpdate() {
-            // Update Grabbable position if not parented and attached
-            if(heldItemRigid) {
-                MoveGrabbableInZone();
-            }
-        }
-
-        public virtual void MoveGrabbableInZone() {
-            // Item not parented, so we need to move it every frame to match position
-            if (!ParentObjectToSnapZone && HeldItem != null && !HeldItem.BeingHeld) {
-
-                // Move via physics
-                if(heldItemRigid) {
-                    heldItemRigid.MovePosition(transform.TransformPoint(offset.LocalPositionOffset));
-                    heldItemRigid.MoveRotation(transform.rotation * Quaternion.Euler(offset.LocalRotationOffset));
-                }
-                else {
-                    // Move via transform
-                    HeldItem.transform.position = transform.TransformPoint(offset.LocalPositionOffset);
-                    HeldItem.transform.rotation = transform.rotation * Quaternion.Euler(offset.LocalRotationOffset);
-                }
-            }
-        }
-
-        Grabbable closest = null;
-
         Grabbable getClosestGrabbable() {
 
-            // Reset closest grabbable
-            closest = null;
-
+            Grabbable closest = null;
             float lastDistance = 9999f;
 
             if (gZone == null || gZone.NearbyGrabbables == null) {
@@ -318,6 +254,9 @@ namespace BNG {
                 heldItemWasKinematic = false;
             }
 
+            // Set the parent of the object 
+            grab.transform.parent = transform;
+
             // Set scale factor            
             // Use SnapZoneScale if specified
             if (grab.GetComponent<SnapZoneScale>()) {
@@ -338,26 +277,14 @@ namespace BNG {
                 offset.LocalRotationOffset = Vector3.zero;
             }
 
-            // Set the parent of the object 
-            if (ParentObjectToSnapZone) {
-                grab.transform.parent = transform;
+            // Lock into place
+            if (offset) {
+                HeldItem.transform.localPosition = offset.LocalPositionOffset;
+                HeldItem.transform.localEulerAngles = offset.LocalRotationOffset;
             }
-
-            // Lock into place if parenting to this transform
-            if (ParentObjectToSnapZone) {
-                if (offset) {
-                    HeldItem.transform.localPosition = offset.LocalPositionOffset;
-                    HeldItem.transform.localEulerAngles = offset.LocalRotationOffset;
-                } 
-                else {
-                    HeldItem.transform.localPosition = Vector3.zero;
-                    HeldItem.transform.localEulerAngles = Vector3.zero;
-                }
-            }
-            // If not parenting, we'll move in world space
             else {
-                grab.transform.position = transform.position;
-                grab.transform.rotation = transform.rotation;
+                HeldItem.transform.localPosition = Vector3.zero;
+                HeldItem.transform.localEulerAngles = Vector3.zero;
             }
 
             // Disable the grabbable. This is picked up through a Grab Action
@@ -494,12 +421,8 @@ namespace BNG {
             }
 
             HeldItem.enabled = true;
+            HeldItem.transform.parent = null;
 
-            // Reset Held Item Parent if we previously modified it
-            if(ParentObjectToSnapZone) {
-                HeldItem.transform.parent = null;
-            }
-            
             // Play Unsnap sound
             if (HeldItem != null) {
                 if (SoundOnUnsnap) {
@@ -523,9 +446,6 @@ namespace BNG {
             }
 
             HeldItem = null;
-            heldItemRigid = null;
-
-            LastUnsnapTime = Time.time;
         }
     }
 }

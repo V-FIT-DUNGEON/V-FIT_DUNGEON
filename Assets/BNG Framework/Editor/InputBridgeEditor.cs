@@ -15,8 +15,6 @@ namespace BNG {
         SerializedProperty trackingOrigin;
         SerializedProperty ThumbstickDeadzoneX;
         SerializedProperty ThumbstickDeadzoneY;
-        SerializedProperty ForceStartXRInEditor;
-
 
         bool steamVRSupport = false;
         bool ovrSupport = false;
@@ -27,7 +25,6 @@ namespace BNG {
             trackingOrigin = serializedObject.FindProperty("TrackingOrigin");
             ThumbstickDeadzoneX = serializedObject.FindProperty("ThumbstickDeadzoneX");
             ThumbstickDeadzoneY = serializedObject.FindProperty("ThumbstickDeadzoneY");
-            ForceStartXRInEditor = serializedObject.FindProperty("ForceStartXRInEditor");
         }
 
         public override void OnInspectorGUI() {
@@ -40,7 +37,7 @@ namespace BNG {
 
             // Show Action Set if using Unity Input
             // if (inputBridge.InputSource == XRInputSource.UnityInput) {
-            EditorGUILayout.PropertyField(actionSet);
+                EditorGUILayout.PropertyField(actionSet);
             // }
 
 #if STEAM_VR_SDK
@@ -75,11 +72,8 @@ namespace BNG {
 
             EditorGUILayout.Separator();
 
-            EditorGUILayout.LabelField("Editor Tools : ", bold);
-
-
             // Currently showing all
-            if (inputBridge.ShowInputDebugger) {
+            if(inputBridge.ShowInputDebugger) {
 
                 // Button to Hide all
                 if (GUILayout.Button("Hide Input Debugger")) {
@@ -97,7 +91,7 @@ namespace BNG {
                 DrawLabel("Y Button", inputBridge.YButton);
                 DrawLabel("Start Button", inputBridge.StartButton);
                 DrawLabel("Back Button", inputBridge.BackButton);
-
+                
                 DrawLabelFloat("Left Trigger", inputBridge.LeftTrigger);
                 DrawLabelFloat("Right Trigger", inputBridge.RightTrigger);
 
@@ -128,14 +122,16 @@ namespace BNG {
                 string deviceName = inputBridge.GetHMDName();
                 if (!string.IsNullOrEmpty(deviceName)) {
                     EditorGUILayout.LabelField("Device Name : <color=green><b>" + deviceName + "</b></color>", rt);
-                } else {
+                }
+                else {
                     EditorGUILayout.LabelField("Device Name : <color=gray><b>(Undetected)</b></color>", rt);
                 }
 
                 string controllerName = inputBridge.GetControllerName();
-                if (!string.IsNullOrEmpty(controllerName)) {
+                if(!string.IsNullOrEmpty(controllerName)) {
                     EditorGUILayout.LabelField("Controller Name : <color=green><b>" + controllerName + "</b></color>", rt);
-                } else {
+                }
+                else {
                     EditorGUILayout.LabelField("Controller Name : <color=gray><b>(Undetected)</b></color>", rt);
                 }
             }
@@ -145,14 +141,7 @@ namespace BNG {
                     inputBridge.ShowInputDebugger = true;
                 }
             }
-
-            // Editor options
-            if (inputBridge.InputSource == XRInputSource.XRInput) {
-                EditorGUILayout.Separator();
-
-                EditorGUILayout.PropertyField(ForceStartXRInEditor);
-            }
-
+            
             // Apply any changes
             serializedObject.ApplyModifiedProperties();
         }

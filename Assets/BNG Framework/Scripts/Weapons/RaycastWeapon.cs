@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -92,18 +91,12 @@ namespace BNG {
         [Tooltip("If specified the projectile will try to turn towards this object in world space. Otherwise will use a point from the muzzle of the raycast object")]
         public Transform LaserPoint;
 
-        [Tooltip(" Set to true if you want to disallow firingt")]
-        public bool SafetyOn = false;
-
         [Header("Recoil : ")]
         /// <summary>
         /// How much force to apply to the tip of the barrel
         /// </summary>
         [Tooltip("How much force to apply to the tip of the barrel")]
         public Vector3 RecoilForce = Vector3.zero;
-
-        [Tooltip("How much force to apply to the tip of the barrel when two handing. The joint is looser when 2Handing a weapon, so this may actually need to be lower than RecoilForce")]
-        public Vector3 RecoilForceTwoHanded = Vector3.zero;
 
 
         [Tooltip("Time in seconds to allow the gun to be springy")]
@@ -121,9 +114,6 @@ namespace BNG {
         [Tooltip("Transform of trigger to animate rotation of")]
         public Transform TriggerTransform;
 
-        [Tooltip("How quickly to lerp TriggerTransform when trigger is pressed")]
-        public float TriggerRotateSpeed = 15f;
-
         /// <summary>
         /// Move this back on fire
         /// </summary>
@@ -135,12 +125,6 @@ namespace BNG {
         /// </summary>
         [Tooltip("Where our raycast or projectile will start from.")]
         public Transform MuzzlePointTransform;
-
-        /// <summary>
-        /// Where our raycast or projectile will spawn from
-        /// </summary>
-        [Tooltip("Where our raycast or projectile will start from if IsSilenced is true.")]
-        public Transform MuzzlePointSilencedTransform;
 
         /// <summary>
         /// Where to eject a bullet casing (optional)
@@ -159,12 +143,6 @@ namespace BNG {
         /// </summary>
         [Tooltip("Make this active on fire. Randomize scale / rotation")]
         public GameObject MuzzleFlashObject;
-
-        /// <summary>
-        /// Make this active on fire if IsSilenced = true. Randomize scale / rotation
-        /// </summary>
-        [Tooltip("Make this active on fire if IsSilenced = true. Randomize scale / rotation")]
-        public GameObject MuzzleFlashSilencedObject;
 
         /// <summary>
         /// Eject this at EjectPointTransform (optional)
@@ -194,19 +172,6 @@ namespace BNG {
         [Range(0.0f, 1f)]
         public float GunShotVolume = 0.75f;
 
-        [Tooltip("If True use GunShotSilencedSound sound clip. Could also be used to lower damage, accuracy, range, etc.")]
-        public bool IsSilenced = false;
-
-        /// <summary>
-        /// Play this sound on shoot  if IsSilenced is True
-        /// </summary>
-        [Tooltip("Play this sound on shoot if IsSilenced is True")]
-        public AudioClip GunShotSilencedSound;
-
-        [Tooltip("Volume to play the GunShotSilencedSound clip at. Range 0-1")]
-        [Range(0.0f, 1f)]
-        public float GunShotSilencedVolume = 0.75f;
-
         /// <summary>
         /// Play this sound if no ammo and user presses trigger
         /// </summary>
@@ -232,6 +197,11 @@ namespace BNG {
 
         [Tooltip("How fast to move back the slide on fire. Default : 1")]
         public float slideSpeed = 1;
+
+        /// <summary>
+        /// How close to the origin is considered valid.
+        /// </summary>
+        float minSlideDistance = 0.001f;
 
         [Header("Inputs : ")]
         [Tooltip("Controller Input used to eject clip")]
@@ -276,12 +246,6 @@ namespace BNG {
         [Tooltip("Passes along Raycast Hit info whenever a Raycast hit is successfully detected. Use this to display fx, add force, etc.")]
         public RaycastHitEvent onRaycastHitEvent;
 
-        [Tooltip("Unity Event called when PlayEmptyShotSound() method is called")]
-        public UnityEvent onPlayedEmptyShotEvent;
-
-        [Tooltip("Unity Event called when EjectMagazine() method is called")]
-        public UnityEvent onEjectMagazineEvent;
-
         /// <summary>
         /// Is the slide / receiver forced back due to last shot
         /// </summary>
@@ -291,48 +255,27 @@ namespace BNG {
 
         protected bool readyToShoot = true;
 
-        // Magainze currently equipped
-        protected Magazine heldMagazine;
-
-
-        protected MagazineSlide magazineSlide {
-            get {
-                if(_ms) {
-                    return _ms;
-                }
-                return _ms = GetComponentInChildren<MagazineSlide>();
-            }
-        }
-        private MagazineSlide _ms;
-
         void Start() {
             weaponRigid = GetComponent<Rigidbody>();
 
             if (MuzzleFlashObject) {
                 MuzzleFlashObject.SetActive(false);
             }
-            if (MuzzleFlashSilencedObject) {
-                MuzzleFlashSilencedObject.SetActive(false);
-            }
 
-            ws = GetComponentInChildren<WeaponSlide>();
+            ws = GetComponentInChildren<WeaponSlide>();            
 
             updateChamberedBullet();
-        }        
+        }
 
         public override void OnTrigger(float triggerValue) {
+
 
             // Sanitize for angles 
             triggerValue = Mathf.Clamp01(triggerValue);
 
             // Update trigger graphics
             if (TriggerTransform) {
-
-                // Lerp current position to value between 0-15 degrees
-                float updateAngle = Mathf.Lerp(TriggerTransform.localEulerAngles.x, triggerValue * 15, Time.deltaTime * TriggerRotateSpeed); // 10f is the speed factor
-
-                // Apply the updated rotation to the transform
-                TriggerTransform.localEulerAngles = new Vector3(updateAngle, 0, 0);
+                TriggerTransform.localEulerAngles = new Vector3(triggerValue * 15, 0, 0);
             }
 
             // Trigger up, reset values
@@ -397,14 +340,10 @@ namespace BNG {
             }
         }
 
-
         public virtual void EjectMagazine() {
-            if (magazineSlide != null) {
-                magazineSlide.EjectMagazine();
-            }
-
-            if (onEjectMagazineEvent != null) {
-                onEjectMagazineEvent.Invoke();
+            MagazineSlide ms = GetComponentInChildren<MagazineSlide>();
+            if (ms != null) {
+                ms.EjectMagazine();
             }
         }
 
@@ -412,10 +351,6 @@ namespace BNG {
         
         public virtual void Shoot() {
 
-            if (SafetyOn) {
-                return;
-            }
-            
             // Has enough time passed between shots
             float shotInterval = Time.timeScale < 1 ? SlowMoRateOfFire : FiringRate;
             if (Time.time - lastShotTime < shotInterval) {
@@ -426,19 +361,10 @@ namespace BNG {
             if(!BulletInChamber && MustChamberRounds) {
                 // Only play empty sound once per trigger down
                 if(!playedEmptySound) {
-                    PlayEmptyShotSound();
+                    VRUtils.Instance.PlaySpatialClipAt(EmptySound, transform.position, EmptySoundVolume, 0.5f);
                     playedEmptySound = true;
                 }
                 
-                return;
-            }
-            // Weapon doesn't require chamber, but has no bullets
-            else if(!MustChamberRounds && GetBulletCount() == 0 && ReloadMethod != ReloadType.InfiniteAmmo) {
-
-                if (!playedEmptySound) {
-                    PlayEmptyShotSound();
-                    playedEmptySound = true;
-                }
                 return;
             }
 
@@ -449,29 +375,19 @@ namespace BNG {
             }
 
             // Create our own spatial clip
-            // Silenced vs. Unsilenced clip
-            if(IsSilenced && GunShotSilencedSound) {
-                VRUtils.Instance.PlaySpatialClipAt(GunShotSilencedSound, transform.position, GunShotSilencedVolume);
-            }
-            else {
-                VRUtils.Instance.PlaySpatialClipAt(GunShotSound, transform.position, GunShotVolume);
-            }
+            VRUtils.Instance.PlaySpatialClipAt(GunShotSound, transform.position, GunShotVolume);
 
             // Haptics
             if (thisGrabber != null) {
                 input.VibrateController(0.1f, 0.2f, 0.1f, thisGrabber.HandSide);
             }
 
-            Transform muzzleTransform = GetMuzzlePointTransform();
-
             // Use projectile if Time has been slowed
             bool useProjectile = AlwaysFireProjectile || (FireProjectileInSlowMo && Time.timeScale < 1);
             if (useProjectile) {
-                
-
-                GameObject projectile = Instantiate(ProjectilePrefab, muzzleTransform.position, muzzleTransform.rotation) as GameObject;
+                GameObject projectile = Instantiate(ProjectilePrefab, MuzzlePointTransform.position, MuzzlePointTransform.rotation) as GameObject;
                 Rigidbody projectileRigid = projectile.GetComponentInChildren<Rigidbody>();
-                projectileRigid.AddForce(muzzleTransform.forward * ShotForce, ForceMode.VelocityChange);
+                projectileRigid.AddForce(MuzzlePointTransform.forward * ShotForce, ForceMode.VelocityChange);
                 
                 Projectile proj = projectile.GetComponent<Projectile>();
                 // Convert back to raycast if Time reverts
@@ -481,10 +397,10 @@ namespace BNG {
 
                 if(proj && LaserGuided) {
                     if(LaserPoint == null) {
-                        LaserPoint = muzzleTransform;
+                        LaserPoint = MuzzlePointTransform;
                     }
 
-                    proj.MarkAsLaserGuided(muzzleTransform);
+                    proj.MarkAsLaserGuided(MuzzlePointTransform);
                 }
 
                 // Make sure we clean up this projectile
@@ -493,13 +409,13 @@ namespace BNG {
             else {
                 // Raycast to hit
                 RaycastHit hit;
-                if (Physics.Raycast(muzzleTransform.position, muzzleTransform.forward, out hit, MaxRange, ValidLayers, QueryTriggerInteraction.Ignore)) {
+                if (Physics.Raycast(MuzzlePointTransform.position, MuzzlePointTransform.forward, out hit, MaxRange, ValidLayers, QueryTriggerInteraction.Ignore)) {
                     OnRaycastHit(hit);
                 }
             }
 
             // Apply recoil
-            ApplyRecoil();
+            ApplyRecoil();            
 
             // We just fired this bullet
             BulletInChamber = false;
@@ -530,81 +446,31 @@ namespace BNG {
             // Store our last shot time to be used for rate of fire
             lastShotTime = Time.time;
 
-            DoMuzzleFlash();
+            // Stop previous routine
+            if (shotRoutine != null) {
+                MuzzleFlashObject.SetActive(false);
+                StopCoroutine(shotRoutine);
+            }
 
             if (AutoChamberRounds) {
-                // Animate Slide, Eject Shell, Muzzle Flash
-                if (ws) {
-                    ws.BlowbackSlide(0.1f);
-                }
-
-                // Eject Shell Slightly after slide is back
-                Invoke("EjectShell", 0.05f);
+                shotRoutine = animateSlideAndEject();
+                StartCoroutine(shotRoutine);
             }
-        }
-
-        public Transform GetMuzzlePointTransform() {
-            if(IsSilenced && MuzzlePointSilencedTransform != null) {
-                return MuzzlePointSilencedTransform;
-            }
-
-            return MuzzlePointTransform;
-        }
-
-        public void DoMuzzleFlash() {
-
-            // Bail early
-            if (MuzzleFlashObject == null && MuzzleFlashSilencedObject == null) {
-                return;
-            }
-
-            // Stop previous routine
-            if (muzzleFlashRoutine != null) {
-                GetMuzzleFlashObject().SetActive(false);
-                StopCoroutine(muzzleFlashRoutine);
-            }
-
-            // Start the routine again to show a new muzzle flash
-            muzzleFlashRoutine = doMuzzleFlash();
-            StartCoroutine(muzzleFlashRoutine);
-        }
-
-        public GameObject GetMuzzleFlashObject() {
-
-            if (IsSilenced && MuzzleFlashSilencedObject != null) {
-                return MuzzleFlashSilencedObject;
-            }
-
-            return MuzzleFlashObject;
-        }
-
-        public void EjectShell() {
-            ejectCasing();
-        }
-
-        public virtual void PlayEmptyShotSound() {
-            VRUtils.Instance.PlaySpatialClipAt(EmptySound, transform.position, EmptySoundVolume, 0.5f);
-
-            // Call Shoot Event
-            if (onPlayedEmptyShotEvent != null) {
-                onPlayedEmptyShotEvent.Invoke();
+            else {
+                shotRoutine = doMuzzleFlash();
+                StartCoroutine(shotRoutine);
             }
         }
 
         // Apply recoil by requesting sprinyness and apply a local force to the muzzle point
         public virtual void ApplyRecoil() {
-
-            Vector3 recoilForce = grab.BeingHeldWithTwoHands ? RecoilForceTwoHanded : RecoilForce;
-
-            if (weaponRigid != null && recoilForce != Vector3.zero) {
+            if (weaponRigid != null && RecoilForce != Vector3.zero) {
 
                 // Make weapon springy for X seconds
                 grab.RequestSpringTime(RecoilDuration);
 
                 // Apply the Recoil Force
-                Transform muzzleTransform = GetMuzzlePointTransform();
-                
-                weaponRigid.AddForceAtPosition(muzzleTransform.TransformDirection(recoilForce), muzzleTransform.position, ForceMode.VelocityChange);
+                weaponRigid.AddForceAtPosition(MuzzlePointTransform.TransformDirection(RecoilForce), MuzzlePointTransform.position, ForceMode.VelocityChange);
             }
         }
 
@@ -616,8 +482,7 @@ namespace BNG {
             // push object if rigidbody
             Rigidbody hitRigid = hit.collider.attachedRigidbody;
             if (hitRigid != null) {
-                Transform muzzleTransform = GetMuzzlePointTransform();
-                hitRigid.AddForceAtPosition(BulletImpactForce * muzzleTransform.forward, hit.point);
+                hitRigid.AddForceAtPosition(BulletImpactForce * MuzzlePointTransform.forward, hit.point);
             }
 
             // Damage if possible
@@ -661,85 +526,29 @@ namespace BNG {
             }
         }
 
-        /// <summary>
-        /// Used for magazine type reloads
-        /// </summary>
-        /// <param name="attachMagazine"></param>
-        public virtual void OnAttachedAmmo(Magazine attachMagazine) {
-            heldMagazine = attachMagazine;
-
-            OnAttachedAmmo();
-        }
-
         // Ammo was detached from the weapon
         public virtual void OnDetachedAmmo() {
             // May have ammo loaded / unloaded
             updateChamberedBullet();
-
-            // Detached a magazine. Ready for a new one
-            if (ReloadMethod == ReloadType.Magazine) {
-                heldMagazine = null;
-            }
 
             if (onDetachedAmmoEvent != null) {
                 onDetachedAmmoEvent.Invoke();
             }
         }
 
-        public float GetLastShotTime() {
-            return lastShotTime;
-        }
-
-        /// <summary>
-        /// Is the gun ready to fire?
-        /// </summary>
-        public bool GetReadyToShoot() {
-            return readyToShoot;
-        }
-
         public virtual int GetBulletCount() {
             if (ReloadMethod == ReloadType.InfiniteAmmo) {
-                return 999;
+                return 9999;
             }
             else if (ReloadMethod == ReloadType.InternalAmmo) {
                 return (int)InternalAmmo;
             }
             else if (ReloadMethod == ReloadType.ManualClip) {
-                return GetComponentsInChildren<Bullet>(false).Length + (MustChamberRounds && BulletInChamber ? 1 : 0);
-            } 
-            else if (ReloadMethod == ReloadType.Magazine) {
-                if(heldMagazine != null) {
-                    return heldMagazine.CurrentBulletCount + (MustChamberRounds && BulletInChamber ? 1 : 0);
-                }
-                return (MustChamberRounds && BulletInChamber ? 1 : 0);
+                return GetComponentsInChildren<Bullet>(false).Length;
             }
 
             // Default to bullet count
-            return GetComponentsInChildren<Bullet>(false).Length + (MustChamberRounds && BulletInChamber ? 1 : 0);
-        }
-
-        /// <summary>
-        /// Returns number of total bullets attaches to gun, including active
-        /// </summary>
-        /// <returns></returns>
-        public virtual int GetMaxBulletCount() {
-            if (ReloadMethod == ReloadType.InfiniteAmmo) {
-                return 999;
-            } 
-            else if (ReloadMethod == ReloadType.InternalAmmo) {
-                return (int)MaxInternalAmmo;
-            } 
-            else if (ReloadMethod == ReloadType.Magazine) {
-                if (heldMagazine != null) {
-                    return heldMagazine.MaxBulletCount;
-                }
-            } 
-            else if (ReloadMethod == ReloadType.ManualClip) {
-                return GetComponentsInChildren<Bullet>(true).Length;
-            }
-
-            // Default to bullet count
-            return GetComponentsInChildren<Bullet>(true).Length;
+            return GetComponentsInChildren<Bullet>(false).Length;
         }
 
         public virtual void RemoveBullet() {
@@ -751,24 +560,19 @@ namespace BNG {
 
             else if (ReloadMethod == ReloadType.InternalAmmo) {
                 InternalAmmo--;
-            } 
-            else if (ReloadMethod == ReloadType.Magazine) {
-                if(heldMagazine) {
-                    heldMagazine.RemoveBullet();
-                }
-            } 
+            }
             else if (ReloadMethod == ReloadType.ManualClip) {
                 Bullet firstB = GetComponentInChildren<Bullet>(false);
                 // Deactivate gameobject as this bullet has been consumed
                 if (firstB != null) {
-                    firstB.gameObject.SetActive(false);
-                    //Destroy(firstB.gameObject);
+                    Destroy(firstB.gameObject);
                 }
             }
 
             // Whenever we remove a bullet is a good time to check the chamber
             updateChamberedBullet();
         }
+
 
         public virtual void Reload() {
             InternalAmmo = MaxInternalAmmo;
@@ -781,11 +585,6 @@ namespace BNG {
         }
 
         void chamberRound() {
-
-            if(BulletInChamber) {
-                Debug.Log("Already chambered!");
-                return;
-            }
 
             int currentBulletCount = GetBulletCount();
 
@@ -802,20 +601,18 @@ namespace BNG {
             }
         }
 
-        protected IEnumerator muzzleFlashRoutine;        
+        protected IEnumerator shotRoutine;        
 
         // Randomly scale / rotate to make them seem different
         void randomizeMuzzleFlashScaleRotation() {
-            Transform muzzleTransform = GetMuzzleFlashObject().transform;
-            muzzleTransform.localScale = Vector3.one * UnityEngine.Random.Range(0.75f, 1.5f);
-            muzzleTransform.localEulerAngles = new Vector3(0, 0, UnityEngine.Random.Range(0, 90f));
+            MuzzleFlashObject.transform.localScale = Vector3.one * Random.Range(0.75f, 1.5f);
+            MuzzleFlashObject.transform.localEulerAngles = new Vector3(0, 0, Random.Range(0, 90f));
         }       
 
         public virtual void OnWeaponCharged(bool allowCasingEject) {
 
             // Already bullet in chamber, eject it
-            if (BulletInChamber && allowCasingEject) {
-                BulletInChamber = false;
+            if (BulletInChamber && allowCasingEject) {                
                 ejectCasing();
             }
             else if (EmptyBulletInChamber && allowCasingEject) {
@@ -834,39 +631,106 @@ namespace BNG {
         }
         
         protected virtual void ejectCasing() {
-            if(BulletCasingPrefab) {
-                GameObject shell = Instantiate(BulletCasingPrefab, EjectPointTransform.position, EjectPointTransform.rotation) as GameObject;
+            GameObject shell = Instantiate(BulletCasingPrefab, EjectPointTransform.position, EjectPointTransform.rotation) as GameObject;
+            Rigidbody rb = shell.GetComponentInChildren<Rigidbody>();
 
-                Rigidbody rb = shell.GetComponentInChildren<Rigidbody>();
-
-                if (rb) {
-                    rb.AddRelativeForce(Vector3.right * BulletCasingForce, ForceMode.VelocityChange);
-                }
-
-                // Bit of haptics
-                if (thisGrabber != null) {
-                    input.VibrateController(0.1f, 0.1f, 0.1f, thisGrabber.HandSide);
-                }
-
-                // Clean up shells
-                GameObject.Destroy(shell, 5);
+            if (rb) {
+                rb.AddRelativeForce(Vector3.right * BulletCasingForce, ForceMode.VelocityChange);
             }
+
+            // Clean up shells
+            GameObject.Destroy(shell, 5);
         }
 
         protected virtual IEnumerator doMuzzleFlash() {
-
-            GameObject muzzle = GetMuzzleFlashObject();
-            muzzle.SetActive(true);
-            yield return new  WaitForSeconds(0.075f);
+            MuzzleFlashObject.SetActive(true);
+            yield return new  WaitForSeconds(0.05f);
 
             randomizeMuzzleFlashScaleRotation();
-            yield return new WaitForSeconds(0.075f);
+            yield return new WaitForSeconds(0.05f);
 
-            muzzle.SetActive(false);
+            MuzzleFlashObject.SetActive(false);
         }
-        
-        public void ToggleSilenced(bool isSilenced) {
-            IsSilenced = isSilenced;
+
+        // Animate the slide back, eject casing, pull slide back
+        protected virtual IEnumerator animateSlideAndEject() {
+
+            // Start Muzzle Flash
+            MuzzleFlashObject.SetActive(true);
+
+            int frames = 0;
+            bool slideEndReached = false;
+            Vector3 slideDestination = new Vector3(0, 0, SlideDistance);
+
+            if(SlideTransform) {
+                while (!slideEndReached) {
+
+
+                    SlideTransform.localPosition = Vector3.MoveTowards(SlideTransform.localPosition, slideDestination, Time.deltaTime * slideSpeed);
+                    float distance = Vector3.Distance(SlideTransform.localPosition, slideDestination);
+
+                    if (distance <= minSlideDistance) {
+                        slideEndReached = true;
+                    }
+
+                    frames++;
+
+                    // Go ahead and update muzzleflash in sync with slide
+                    if (frames < 2) {
+                        randomizeMuzzleFlashScaleRotation();
+                    }
+                    else {
+                        slideEndReached = true;
+                        MuzzleFlashObject.SetActive(false);
+                    }
+
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+            else {
+                yield return new WaitForEndOfFrame();
+                randomizeMuzzleFlashScaleRotation();
+                yield return new WaitForEndOfFrame();
+                
+                MuzzleFlashObject.SetActive(false);
+                slideEndReached = true;
+            }
+            
+            // Set Slide Position
+            if(SlideTransform) {
+                SlideTransform.localPosition = slideDestination;
+            }
+
+            yield return new WaitForEndOfFrame();
+            MuzzleFlashObject.SetActive(false);
+
+            // Eject Shell
+            ejectCasing();
+
+            // Pause for shell to eject before returning slide
+            yield return new WaitForEndOfFrame();
+
+
+            if(!slideForcedBack && SlideTransform != null) {
+                // Slide back to original position
+                frames = 0;
+                bool slideBeginningReached = false;
+                while (!slideBeginningReached) {
+
+                    SlideTransform.localPosition = Vector3.MoveTowards(SlideTransform.localPosition, Vector3.zero, Time.deltaTime * slideSpeed);
+                    float distance = Vector3.Distance(SlideTransform.localPosition, Vector3.zero);
+
+                    if (distance <= minSlideDistance) {
+                        slideBeginningReached = true;
+                    }
+
+                    if (frames > 2) {
+                        slideBeginningReached = true;
+                    }
+
+                    yield return new WaitForEndOfFrame();
+                }
+            }
         }
     }
 
@@ -877,9 +741,8 @@ namespace BNG {
 
     public enum ReloadType {
         InfiniteAmmo,
-        ManualClip, 
-        InternalAmmo,
-        Magazine
+        ManualClip,
+        InternalAmmo
     }
 }
 

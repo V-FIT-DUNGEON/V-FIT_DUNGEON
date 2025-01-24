@@ -25,12 +25,6 @@ namespace BNG {
         public Grabbable ClosestGrabbable;
 
         /// <summary>
-        /// How often we update distance. 0.1 = 10 times per second (every 0.1 seconds). Set to 0 to update every frame
-        /// </summary>
-        public float UpdateGrabbableFrequency = 0;
-        float _nextUpdateTime = 0;
-
-        /// <summary>
         /// All grabbables in trigger that are considered valid
         /// </summary>
         public Dictionary<Collider, Grabbable> ValidRemoteGrabbables = new Dictionary<Collider, Grabbable>();
@@ -49,16 +43,9 @@ namespace BNG {
         /// <summary>
         /// If true, Grabbables in the trigger will only be considered valid if no objects are in the way between it and this transform
         /// </summary>
-        [Header("Remote Grabbables")]
-        [Tooltip("If trueRemote Grabbables will be checked in addition to closer grabbables. Remote grabbables take distance into account.")]
-        public bool CheckRemoteGrabbables = false;
-
+        [Header("Collision Checks")]
         [Tooltip("If true, Grabbables in the trigger will only be considered valid if no objects are in the way between it and this transform")]
         public bool RaycastRemoteGrabbables = false;
-
-        [Tooltip("If RaycastRemoteGrabbables is true, raycasts will be performed every RaycastFrequency seconds. Set to 0 to raycast every frame.")]
-        public float RaycastRemoteFrequency = 0f;
-        private float _nextRemoteCastTime = 0; // Keep track of when we can remote raycast again
 
         /// <summary>
         /// If true, Remote Grabbables must not have any collisions between the Main Camera and the Remote Grabbable we are trying to reach. This can help prevent grabbing items through walls or around corners.
@@ -72,12 +59,13 @@ namespace BNG {
         [Tooltip("If RaycastRemoteGrabbables is true, use these layers to detect collisions between the grabber and the potential grabbable object. By Default only looking for collisions on the 'Default' layer")]
         public LayerMask RemoteCollisionLayers = 1;
 
+
         // Cache these variables for GC
         private Grabbable _closest;
         private float _lastDistance;
         private float _thisDistance;
         private Dictionary<Collider, Grabbable> _valids;
-        private Dictionary<Collider, Grabbable> _filtered = new Dictionary<Collider, Grabbable>();
+        private Dictionary<Collider, Grabbable> _filtered;
         private Transform _eyeTransform;
 
 
@@ -93,16 +81,8 @@ namespace BNG {
 
         void Update() {
             // Sort Grabbales by Distance so we can use that information later if we need it
-            if (UpdateGrabbableFrequency == 0 || Time.time >= _nextUpdateTime) {
-                _nextUpdateTime = Time.time + UpdateGrabbableFrequency;
-                updateClosestGrabbable();
-            }
-
-            // Only raycast every RaycastRemoteFrequency
-            if (RaycastRemoteFrequency == 0 || Time.time >= _nextRemoteCastTime) {
-                _nextRemoteCastTime = Time.time + RaycastRemoteFrequency;
-                updateClosestRemoteGrabbables();
-            }
+            updateClosestGrabbable();
+            updateClosestRemoteGrabbables();
         }
 
         void updateClosestGrabbable() {
@@ -205,13 +185,7 @@ namespace BNG {
         }
 
         public Dictionary<Collider, Grabbable> GetValidGrabbables(Dictionary<Collider, Grabbable> grabs) {
-
-            if (_valids == null) {
-                _valids = new Dictionary<Collider, Grabbable>();
-            } 
-            else {
-                _valids.Clear();
-            }
+            _valids = new Dictionary<Collider, Grabbable>();
 
             if (grabs == null) {
                 return _valids;
@@ -253,7 +227,6 @@ namespace BNG {
         }
 
         public virtual Dictionary<Collider, Grabbable> SanitizeGrabbables(Dictionary<Collider, Grabbable> grabs) {
-
             _filtered = new Dictionary<Collider, Grabbable>();
 
             if (grabs == null) {
@@ -288,13 +261,9 @@ namespace BNG {
         }
 
         public virtual void RemoveNearbyGrabbable(Collider col, Grabbable grabObject) {
-
-            // 3.0 added new syntax :
-            NearbyGrabbables?.Remove(col);
-
-            //if (grabObject != null && NearbyGrabbables != null && NearbyGrabbables.ContainsKey(col)) {
-            //    NearbyGrabbables.Remove(col);
-            //}
+            if (grabObject != null && NearbyGrabbables != null && NearbyGrabbables.ContainsKey(col)) {
+                NearbyGrabbables.Remove(col);
+            }
         }
 
         public virtual void RemoveNearbyGrabbable(Grabbable grabObject) {
@@ -333,7 +302,7 @@ namespace BNG {
         void OnTriggerEnter(Collider other) {
 
             // Check for standard Grabbables first
-            g = other.GetComponent<Grabbable>();
+            g= other.GetComponent<Grabbable>();
             if (g != null) {
                 AddNearbyGrabbable(other, g);
                 return;
