@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BackBodyPart_1
+      name: Head
       rect:
         serializedVersion: 2
         x: 61
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_6
+      name: Neck
       rect:
         serializedVersion: 2
         x: 319
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_7
+      name: BackTrap
       rect:
         serializedVersion: 2
         x: 508
@@ -173,12 +173,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_8
+      name: RearShoulder
       rect:
         serializedVersion: 2
         x: 790
         y: 1088
-        width: 112
+        width: 375
         height: 75
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -194,33 +194,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_9
-      rect:
-        serializedVersion: 2
-        x: 1042
-        y: 1088
-        width: 112
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c00e9f9b1ce6396439ddb8b1ddc2ba9d
-      internalID: 1583487103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_16
+      name: Lat
       rect:
         serializedVersion: 2
         x: 566
         y: 700
-        width: 116
+        width: 273
         height: 307
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -236,54 +215,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_17
-      rect:
-        serializedVersion: 2
-        x: 718
-        y: 700
-        width: 116
-        height: 307
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdf2428324f74a042b984cd11841508c
-      internalID: 1073395362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_36
-      rect:
-        serializedVersion: 2
-        x: 1414
-        y: 794
-        width: 129
-        height: 169
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9a870b4a91ad874590a0e2fbbb36fd5
-      internalID: 1373939035
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_39
+      name: Triceps_L
       rect:
         serializedVersion: 2
         x: 25
         y: 822
-        width: 100
+        width: 470
         height: 131
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -299,28 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_40
-      rect:
-        serializedVersion: 2
-        x: 387
-        y: 822
-        width: 100
-        height: 131
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9917572d2a89a7469f227cc242038bc
-      internalID: 888263463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_59
+      name: LowerBack
       rect:
         serializedVersion: 2
         x: 66
@@ -341,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_60
+      name: Hand_L
       rect:
         serializedVersion: 2
         x: 297
@@ -362,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_62
+      name: Hand_R
       rect:
         serializedVersion: 2
         x: 904
@@ -383,12 +299,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_63
+      name: Glute
       rect:
         serializedVersion: 2
         x: 1083
         y: 507
-        width: 98
+        width: 205
         height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -404,33 +320,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_64
-      rect:
-        serializedVersion: 2
-        x: 1183
-        y: 506
-        width: 104
-        height: 140
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b3e949967e247546aeca44569a0cbd1
-      internalID: -367623413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_78
+      name: Hamstrings
       rect:
         serializedVersion: 2
         x: 153
         y: 62
-        width: 128
+        width: 269
         height: 344
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -441,48 +336,6 @@ TextureImporter:
       bones: []
       spriteID: afab52b9114fe4b49a3651e1695918dc
       internalID: -1069868800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_80
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 62
-        width: 136
-        height: 345
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52216c2bbbe690f429ec84afe92527e8
-      internalID: -1078762210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackBodyPart_93
-      rect:
-        serializedVersion: 2
-        x: 1032
-        y: 181
-        width: 90
-        height: 127
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: af635e91c5f54fa49b113da4778bd178
-      internalID: 430572820
       vertices: []
       indices: 
       edges: []
@@ -509,12 +362,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_97
+      name: BackCalves
       rect:
         serializedVersion: 2
         x: 826
         y: 183
-        width: 86
+        width: 306
         height: 123
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -593,7 +446,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_13
+      name: MiddleTrap
       rect:
         serializedVersion: 2
         x: 1273
@@ -614,12 +467,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackBodyPart_10
+      name: BackForeArm_L
       rect:
         serializedVersion: 2
         x: 914
         y: 795
-        width: 131
+        width: 630
         height: 167
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -646,8 +499,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       BackBodyPart_0: 731930251
-      BackBodyPart_1: 827317671
-      BackBodyPart_10: 1886285796
       BackBodyPart_100: -151214986
       BackBodyPart_101: -927796927
       BackBodyPart_102: 1543931440
@@ -680,7 +531,6 @@ TextureImporter:
       BackBodyPart_127: 202077176
       BackBodyPart_128: 1827474790
       BackBodyPart_129: 1476136657
-      BackBodyPart_13: -477994755
       BackBodyPart_130: 764219555
       BackBodyPart_131: -1838191401
       BackBodyPart_132: -823058503
@@ -693,8 +543,6 @@ TextureImporter:
       BackBodyPart_139: 112422711
       BackBodyPart_14: -1477175649
       BackBodyPart_15: 1634451247
-      BackBodyPart_16: -1336709871
-      BackBodyPart_17: 1073395362
       BackBodyPart_18: 1329449826
       BackBodyPart_19: 1339127133
       BackBodyPart_2: 1746851623
@@ -715,12 +563,9 @@ TextureImporter:
       BackBodyPart_33: 467153661
       BackBodyPart_34: -460180590
       BackBodyPart_35: -1379426995
-      BackBodyPart_36: 1373939035
       BackBodyPart_37: 1896486302
       BackBodyPart_38: -1770616427
-      BackBodyPart_39: -1126319376
       BackBodyPart_4: -1530661119
-      BackBodyPart_40: 888263463
       BackBodyPart_41: -821530876
       BackBodyPart_42: -2145994383
       BackBodyPart_43: -1951543845
@@ -740,19 +585,12 @@ TextureImporter:
       BackBodyPart_56: 1538684882
       BackBodyPart_57: 1876452393
       BackBodyPart_58: 1170584267
-      BackBodyPart_59: 2015239547
-      BackBodyPart_6: 1473913105
-      BackBodyPart_60: 1660512909
       BackBodyPart_61: -1606947494
-      BackBodyPart_62: -550284308
-      BackBodyPart_63: -447538105
-      BackBodyPart_64: -367623413
       BackBodyPart_65: 1110543204
       BackBodyPart_66: 747547894
       BackBodyPart_67: -1833156715
       BackBodyPart_68: -891976385
       BackBodyPart_69: 155210585
-      BackBodyPart_7: 91483835
       BackBodyPart_70: 1751892835
       BackBodyPart_71: -1132194448
       BackBodyPart_72: -1068243649
@@ -761,10 +599,7 @@ TextureImporter:
       BackBodyPart_75: -1536022361
       BackBodyPart_76: -102116603
       BackBodyPart_77: -291168924
-      BackBodyPart_78: -1069868800
       BackBodyPart_79: -417326246
-      BackBodyPart_8: 1039050032
-      BackBodyPart_80: -1078762210
       BackBodyPart_81: 1665048592
       BackBodyPart_82: -1469914143
       BackBodyPart_83: -1938564382
@@ -774,17 +609,35 @@ TextureImporter:
       BackBodyPart_87: 1369194526
       BackBodyPart_88: -950324322
       BackBodyPart_89: 1760051091
-      BackBodyPart_9: 1583487103
       BackBodyPart_90: 1376853771
       BackBodyPart_91: 122014622
       BackBodyPart_92: -637885410
-      BackBodyPart_93: 430572820
       BackBodyPart_94: -700690101
       BackBodyPart_95: 1289810209
       BackBodyPart_96: 903900850
-      BackBodyPart_97: 26174891
       BackBodyPart_98: -81586514
       BackBodyPart_99: 286516138
+      BackCalves: 26174891
+      BackCalves_R: 430572820
+      BackForeArm_L: 1886285796
+      BackForeArm_R: 1373939035
+      BackTrap: 91483835
+      Glute: -447538105
+      Glute_R: -367623413
+      Hamstrings: -1069868800
+      Hamstrings_R: -1078762210
+      Hand_L: 1660512909
+      Hand_R: -550284308
+      Head: 827317671
+      Lat: -1336709871
+      Lat_R: 1073395362
+      LowerBack: 2015239547
+      MiddleTrap: -477994755
+      Neck: 1473913105
+      RearShoulder: 1039050032
+      RearShoulder_R: 1583487103
+      Triceps_L: -1126319376
+      Triceps_R: 888263463
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
