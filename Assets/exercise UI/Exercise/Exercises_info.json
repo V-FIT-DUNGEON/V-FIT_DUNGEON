@@ -1,6 +1,5 @@
 {
     "Sit-Up": {
-        "name": "Sit-Up",
         "part of body": ["Abdominal", "Hip Flexors"],
         "description": "A sit-up is a strength training exercise which strengthens the hip flexors and abdominal muscles. It is performed by lying on the back with the knees bent and lifting the torso to a sitting position.",
         "How to do":{
