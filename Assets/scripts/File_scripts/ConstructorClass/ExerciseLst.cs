@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class ExerciseLst
 {
-    public List<Exercise_Pose> exercise_poses; //initialize list of exercise poses
+    public List<Pose> exercise_poses_Lst; //initialize list of exercise poses
 
     public ExerciseLst()
     {
-        exercise_poses = new List<Exercise_Pose>();
-    }
-
-    public List<Exercise_Pose> GetExercisePoses()
-    {
-        return exercise_poses;
+        exercise_poses_Lst = new List<Pose>();
     }
 
 }
