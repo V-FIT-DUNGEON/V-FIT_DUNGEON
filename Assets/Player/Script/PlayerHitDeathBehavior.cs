@@ -25,10 +25,7 @@ public class PlayerHitDeathBehavior : MonoBehaviour
 
     public void ScreenFadeDamage()
     {
-        ///if (health.CurrentHealth > 0)
-        ///{
         StartCoroutine(GotHit());
-        ///}
     }
 
     public void OnDeath()
