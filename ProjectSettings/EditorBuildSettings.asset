@@ -5,30 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/BNG Framework/Scenes/XR Demo.unity
-    guid: a1360534006d3f845bc79b46b93cfec5
-  - enabled: 0
-    path: Assets/BNG Framework/Scenes/Scene Transitioning.unity
-    guid: 9d7c9629abf9c99449e358b0938b47d0
-  - enabled: 0
-    path: Assets/BNG Framework/Scenes/Physics Hands.unity
-    guid: 34a4579517c578e4080d0a6ef2c96294
-  - enabled: 0
-    path: Assets/BNG Framework/Scenes/Rigidbody Player.unity
-    guid: 57fc97c5771a777449aa8bd02514df22
-  - enabled: 0
-    path: Assets/BNG Framework/Scenes/Vehicle Example.unity
-    guid: d96233ee44d985d4fb8dc23a907c06eb
-  - enabled: 0
-    path: Assets/BNG Framework/Scenes/Quest Demo.unity
-    guid: eac0312c32df12949a47d07747a9d1cd
   - enabled: 1
-    path: Assets/001 Dev/BreathingVR Demo/BreathingVR HeartRate Demo.unity
-    guid: 85ab24ebde4cc264b97a87fc25d51fbe
+    path: Assets/Scenes/Demo/Demo Interaction scene.unity
+    guid: 1f630cac2627bf04e9fcc16939beefdd
   - enabled: 1
-    path: Assets/001 Dev/BreathingVR Demo/Game.unity
-    guid: 79b0e7ad3bfb4f44f93e9174a543d0c5
+    path: Assets/Scenes/Demo/Exercise UI Demo Scene.unity
+    guid: 76cb4b956860fda428ee40ac0d8fcf7d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfb9ff8a9a71cfa4fb65d64159109fb7,
       type: 2}
