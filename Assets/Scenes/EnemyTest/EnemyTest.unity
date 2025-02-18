@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &32574644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4358456124408300725, guid: eb666d8405823f047a1f5bfb60801676,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457995013790504909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &32574645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32574644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99a54faedf5b114db644cefb40803c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &61197810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7561735844013006471, guid: c2ba382097f06114c8ca184c7f00afaf,
@@ -12137,15 +12155,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2096927905934629507, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: CurrentHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096927905934629507, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: StartingHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4358456124408300725, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: AlignmentFoldout
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4358456124408300725, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 32574645}
   m_SourcePrefab: {fileID: 100100000, guid: eb666d8405823f047a1f5bfb60801676, type: 3}
 --- !u!1 &1459919963760317479
 GameObject:

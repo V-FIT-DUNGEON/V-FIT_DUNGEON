@@ -1,43 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using EmeraldAI.Utility;
+using EmeraldAI;
 
-namespace EmeraldAI
+public class RespawnEnemy : MonoBehaviour
 {
-    public class RespawnEnemy : MonoBehaviour
+    EmeraldSystem EmeraldComponent;
+
+    //Cache the EmeraldSystem component
+    void Start ()
     {
-
-        //The seconds needed before respawning
-        public int RespawnSeconds = 10;
-
-        //The reference to the Emerald AI system
-        EmeraldSystem EmeraldAIReference;
-
-        //The respawn timer that will track the seconds passed
-        float RespawnTimer;
-
-        void Start()
+        EmeraldComponent = GetComponent<EmeraldSystem>();
+    }
+    
+    //Instantly kill the AI this script is assigned to after pressing the H key
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            //Get the reference to the Emerald AI system
-            EmeraldAIReference = GetComponent<EmeraldSystem>();
-        }
-
-        void Update()
-        {
-            //Increase the RespawnTimer, but only when the AI has been killed
-            if (EmeraldAIReference.HealthComponent.CurrentHealth <= 0)
-            {
-                RespawnTimer += Time.deltaTime;
-
-                if (RespawnTimer >= RespawnSeconds)
-                {
-                    //Reset the AI and set the timer back to 0 to be used again.
-                    EmeraldAIReference.ResetAI();
-                    RespawnTimer = 0;
-                }
-            }
+            EmeraldAPI.Combat.ResetAI(EmeraldComponent);
         }
     }
 }
