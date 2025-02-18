@@ -15,4 +15,20 @@ public class ScenesManager : MonoBehaviour
     {
         
     }
+
+    public void LoadSceneinteraction()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    public void LoadSceneUITesting()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    public void LoadSceneEnemyTest()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+
 }

@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demo/Exercise UI Demo Scene.unity
     guid: 76cb4b956860fda428ee40ac0d8fcf7d
+  - enabled: 1
+    path: Assets/Scenes/Demo/EnemyTest Demo.unity
+    guid: 21e0099c44b384e4093c939cdaee0d19
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfb9ff8a9a71cfa4fb65d64159109fb7,
       type: 2}
