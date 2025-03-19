@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using EmeraldAI.Utility;
+using Kryz.CharacterStats.Examples;
 
 namespace EmeraldAI
 {
@@ -25,10 +26,12 @@ namespace EmeraldAI
 
         TargetPositionModifier m_TargetPositionModifier;
         Collider m_Collider;
+        private Character character;
 
         void Start()
         {
-            Health = StartingHealth;
+            character = GetComponent<Character>();
+            Health = StartingHealth + (int)character.Vitality.Value;
             m_TargetPositionModifier = GetComponent<TargetPositionModifier>();
             m_Collider = GetComponent<Collider>();
         }
