@@ -16738,6 +16738,7 @@ GameObject:
   - component: {fileID: 8449739407927645521}
   - component: {fileID: 8449739407927645520}
   - component: {fileID: 8449739407927645523}
+  - component: {fileID: 8449739407927645524}
   m_Layer: 9
   m_Name: PlayerController
   m_TagString: Player
@@ -68333,6 +68334,29 @@ MonoBehaviour:
   VibrateFrequency: 0.3
   VibrateAmplitude: 0.1
   VibrateDuration: 0.1
+--- !u!114 &8449739407927645524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093207350942282300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Strength:
+    BaseValue: 0
+  Agility:
+    BaseValue: 0
+  Intelligence:
+    BaseValue: 0
+  Vitality:
+    BaseValue: 0
+  inventory: {fileID: 0}
+  equipmentPanel: {fileID: 0}
+  statPanel: {fileID: 0}
 --- !u!1 &8450016797597412024
 GameObject:
   m_ObjectHideFlags: 0
