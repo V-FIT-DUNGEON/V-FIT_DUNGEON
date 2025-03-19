@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsTrigger: 0
-  DamageAmount: 30
+  BaseDamage: 10
   RagdollForceAmount: 50
 --- !u!136 &235830380
 CapsuleCollider:
@@ -68270,7 +68270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 20000000
+  StartingHealth: 200
   Immortal: 0
   OnTakeDamage:
     m_PersistentCalls:
@@ -68281,7 +68281,7 @@ MonoBehaviour:
   DebugLogDeath: 1
   HideSettingsFoldout: 0
   HealthSettingsFoldout: 1
-  <Health>k__BackingField: 20000000
+  <Health>k__BackingField: 200
   <ActiveEffects>k__BackingField: []
 --- !u!114 &8449739407927645521
 MonoBehaviour:
@@ -68347,13 +68347,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Strength:
-    BaseValue: 0
+    BaseValue: 50
   Agility:
     BaseValue: 0
-  Intelligence:
+  Endurance:
     BaseValue: 0
   Vitality:
-    BaseValue: 0
+    BaseValue: 50
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
