@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Kryz.CharacterStats.Examples; // Import the Character Stats system
+using Kryz.CharacterStats.Examples;
 
 namespace EmeraldAI.Example
 {
-    /// <summary>
-    /// A script that damages AI based on collisions. Can be used for dynamic damaging objects such as rocks, logs, 
-    /// and other falling objects or collision-based weapons.
-    /// </summary>
     public class DamageAIByCollision : MonoBehaviour
     {
         public bool IsTrigger = false;
-        public int BaseDamage = 10; // Base damage before Strength multiplier
+        public int BaseDamage = 10;
         public int RagdollForceAmount = 50;
-        public GameObject PlayerObject; // Reference to the Player Object
+        public GameObject PlayerObject;
 
-        private Character playerCharacter; // Store Player's Character Component
+        private Character playerCharacter;
+        private HashSet<GameObject> damagedTargets = new HashSet<GameObject>(); // Store already damaged targets
+        private float damageCooldown = 1.5f; // Cooldown time in seconds
+        private Coroutine resetCooldownCoroutine;
 
         private void Start()
         {
@@ -37,35 +36,54 @@ namespace EmeraldAI.Example
         private void OnTriggerEnter(Collider collision)
         {
             if (!IsTrigger) return;
-            ApplyDamage(collision.gameObject);
+            TryApplyDamage(collision.gameObject);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             if (IsTrigger) return;
-            ApplyDamage(collision.gameObject);
+            TryApplyDamage(collision.gameObject);
+        }
+
+        private void TryApplyDamage(GameObject target)
+        {
+            if (playerCharacter == null) return; 
+
+            if (!damagedTargets.Contains(target)) // Check if this target was already damaged
+            {
+                damagedTargets.Add(target);
+                ApplyDamage(target);
+
+                // Start cooldown reset coroutine if not already running
+                if (resetCooldownCoroutine == null)
+                {
+                    resetCooldownCoroutine = StartCoroutine(ResetCooldown());
+                }
+            }
         }
 
         private void ApplyDamage(GameObject target)
         {
-            if (playerCharacter == null) return; // Ensure playerCharacter is valid
-
-            int StrengthBonus = (int)playerCharacter.Strength.Value; // Get Strength from Player
-            int TotalDamage = BaseDamage + StrengthBonus; // Apply Strength to Damage
+            int StrengthBonus = (int)playerCharacter.Strength.Value;
+            int TotalDamage = BaseDamage + StrengthBonus;
 
             Debug.Log("Total Damage Dealt: " + TotalDamage);
 
-            // Damages an AI to the collided object
             if (target.GetComponent<IDamageable>() != null)
             {
                 target.GetComponent<IDamageable>().Damage(TotalDamage, transform, RagdollForceAmount);
             }
-            // Damages an AI's location-based damage component
             else if (target.GetComponent<LocationBasedDamageArea>() != null)
             {
-                LocationBasedDamageArea LBDArea = target.GetComponent<LocationBasedDamageArea>();
-                LBDArea.DamageArea(TotalDamage, transform, RagdollForceAmount);
+                target.GetComponent<LocationBasedDamageArea>().DamageArea(TotalDamage, transform, RagdollForceAmount);
             }
+        }
+
+        private IEnumerator ResetCooldown()
+        {
+            yield return new WaitForSeconds(damageCooldown);
+            damagedTargets.Clear(); // Allow new collisions after cooldown
+            resetCooldownCoroutine = null;
         }
     }
 }

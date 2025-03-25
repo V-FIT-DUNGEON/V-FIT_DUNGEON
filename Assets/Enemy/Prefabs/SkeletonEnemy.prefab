@@ -905,6 +905,7 @@ GameObject:
   - component: {fileID: 4094848912794850435}
   - component: {fileID: 859247529880037540}
   - component: {fileID: 6255250461288019825}
+  - component: {fileID: 1432701144018728638}
   m_Layer: 11
   m_Name: SkeletonEnemy
   m_TagString: Enemy
@@ -1101,14 +1102,14 @@ MonoBehaviour:
     AttackListIndex: 0
     AttackPickType: 0
     AttackDataList:
-    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+    - AbilityObject: {fileID: 11400000, guid: 35fff2d9e25da9e429966f4da8dc9195, type: 2}
       AttackAnimation: 0
       AttackOdds: 90
       AttackDistance: 2
       TooCloseDistance: 0.5
       CooldownIgnored: 0
       CooldownTimeStamp: 0
-    - AbilityObject: {fileID: 11400000, guid: cf1f106c1794ae949a01004e175cbed9, type: 2}
+    - AbilityObject: {fileID: 11400000, guid: 03183e9245801f545b5abf567482e3ae, type: 2}
       AttackAnimation: 1
       AttackOdds: 10
       AttackDistance: 3
@@ -1153,11 +1154,11 @@ MonoBehaviour:
     CooldownIgnored: 0
     CooldownTimeStamp: 0
   LastAttacker: {fileID: 0}
-  HideSettingsFoldout: 1
+  HideSettingsFoldout: 0
   DamageSettingsFoldout: 0
   CombatActionSettingsFoldout: 0
   SwitchWeaponSettingsFoldout: 0
-  WeaponType1SettingsFoldout: 0
+  WeaponType1SettingsFoldout: 1
   WeaponType2SettingsFoldout: 0
 --- !u!114 &8213079882993996585
 MonoBehaviour:
@@ -1493,6 +1494,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1432701144018728638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4358456124408300725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99a54faedf5b114db644cefb40803c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4459786970562640936
 GameObject:
   m_ObjectHideFlags: 0
