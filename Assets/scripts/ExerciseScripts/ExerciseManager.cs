@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ExerciseManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class ExerciseManager : MonoBehaviour
     [Header("Set up device")]  
     [SerializeField] public Transform headset; // Assign the VR headset GameObject
 
-    private enum ExerciseSelected { None, Squat, PushUp, SideLunge, Plank }
+    private enum ExerciseSelected { None, Squat, PushUp, Plank }
     private enum ExerciseState { idle, up, down, left, right }
     [SerializeField] private ExerciseSelected currentExercise = ExerciseSelected.None;
     [SerializeField] private ExerciseState currentExerciseState = ExerciseState.idle;
@@ -17,7 +18,27 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private float standingHeight;
     [SerializeField] private Vector3 lastPosition;
 
-    void Start()
+    [SerializeField] private int repsLimit = 12;
+    [SerializeField] private int repsCount = 0;
+
+    [SerializeField] private UnityEvent<int> OnEventSquatRepsCount; // Event to send reps count to UI
+    [SerializeField] private UnityEvent<int> OnEventPushUpRepsCount; // Event to send reps count to UI
+    [SerializeField] private UnityEvent<int> OnEventplankCount; // Event to send reps count to UI
+
+    public static ExerciseManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnEnable()
     {
         // Initialize player height and movement tracking
         standingHeight = headset.position.y;
@@ -38,9 +59,6 @@ public class ExerciseManager : MonoBehaviour
             case ExerciseSelected.PushUp:
                 DetectPushUp(headY);
                 break;
-            case ExerciseSelected.SideLunge:
-                DetectSideLunge(headX, headZ);
-                break;
             case ExerciseSelected.Plank:
                 DetectPlank(headY);
                 break;
@@ -51,7 +69,7 @@ public class ExerciseManager : MonoBehaviour
 
     private void DetectSquat(float headY)
     {
-        if (isExerciseActive)
+        if (isExerciseActive && repsCount < repsLimit)
         {
             switch (currentExerciseState)
             {
@@ -67,6 +85,8 @@ public class ExerciseManager : MonoBehaviour
                     {
                         currentExerciseState = ExerciseState.down;
                         Debug.Log("Squat up");
+                        repsCount++;
+                        OnEventSquatRepsCount.Invoke(repsCount);
                     }
                     break;
                 case ExerciseState.down:
@@ -79,6 +99,12 @@ public class ExerciseManager : MonoBehaviour
 
             }
             
+        }
+        else{
+            Debug.Log("Exercise Finished");
+            repsCount = 0;
+            OnEventSquatRepsCount.Invoke(repsCount);
+            isExerciseActive = false;
         }
     }
 
@@ -117,9 +143,15 @@ public class ExerciseManager : MonoBehaviour
     // ---- Exercise Selection Methods ----
     public void SelectSquat() => currentExercise = ExerciseSelected.Squat;
     public void SelectPushUp() => currentExercise = ExerciseSelected.PushUp;
-    public void SelectSideLunge() => currentExercise = ExerciseSelected.SideLunge;
     public void SelectPlank() => currentExercise = ExerciseSelected.Plank;
     public void DeselectExercise() => currentExercise = ExerciseSelected.None;
-    public void ChangeExerciseState() => isExerciseActive = !isExerciseActive;
+    public void StartExercise() => isExerciseActive = true;
+    public void FinishExercise() => isExerciseActive = false;
+
+    // ---- Set reps ----
+    public void SetReps(int reps)
+    {
+        repsLimit = reps;
+    }
 }
 
