@@ -9,13 +9,14 @@ public class StaminaSystem : MonoBehaviour
 
     public float BaseStamina = 100;
     public float CurrentStamina;
-    public float StaminaRegenRate = 5f; // Stamina regen per second
+    public float StaminaRegenRate = 5f; // Base stamina regen per second
     public float SprintStaminaDrain = 10f; // Stamina drain per second while sprinting
     public float JumpStaminaCost = 15f; // Stamina cost per jump
     public float MaxStamina;
 
     private bool isSprinting;
     private bool isJumping;
+    private bool forceStoppedSprint; // Prevents stamina usage after forced stop
 
     void Start()
     {
@@ -37,13 +38,18 @@ public class StaminaSystem : MonoBehaviour
     {
         if (isSprinting)
         {
-            CurrentStamina -= SprintStaminaDrain * Time.deltaTime;
+            // Only drain stamina if it wasn't forcefully stopped
+            if (!forceStoppedSprint)
+            {
+                CurrentStamina -= SprintStaminaDrain * Time.deltaTime;
+            }
 
             // Stop sprinting if stamina is depleted
             if (CurrentStamina <= 0)
             {
                 CurrentStamina = 0;
                 isSprinting = false; // Force stop sprinting
+                forceStoppedSprint = true; // Prevent additional stamina drain
             }
         }
 
@@ -56,10 +62,12 @@ public class StaminaSystem : MonoBehaviour
         // Prevent stamina from going below 0
         CurrentStamina = Mathf.Clamp(CurrentStamina, 0, MaxStamina);
 
-        // **Only regenerate stamina when NOT sprinting or jumping**
+        // **Regenerate stamina only when NOT sprinting or jumping**
         if (!isSprinting && !isJumping)
         {
-            CurrentStamina += StaminaRegenRate * Time.deltaTime;
+            float regenBoost = (character != null) ? (0.01f * character.Endurance.Value) : 0f;
+            CurrentStamina += (StaminaRegenRate + regenBoost) * Time.deltaTime;
+            forceStoppedSprint = false; // Reset sprinting restriction after regen
         }
 
         // Clamp to max stamina
@@ -68,7 +76,7 @@ public class StaminaSystem : MonoBehaviour
 
     public bool CanSprint()
     {
-        return CurrentStamina > 0;
+        return CurrentStamina > SprintStaminaDrain * Time.deltaTime; // Prevents instant stop when reaching zero
     }
 
     public bool CanJump()
@@ -78,14 +86,10 @@ public class StaminaSystem : MonoBehaviour
 
     public void StartSprint()
     {
-        // Only start sprinting if there is enough stamina to sustain at least one frame
-        if (CanSprint() && CurrentStamina > SprintStaminaDrain * Time.deltaTime)
+        if (CanSprint())
         {
             isSprinting = true;
-        }
-        else
-        {
-            isSprinting = false;
+            forceStoppedSprint = false; // Reset forced stop flag when player can sprint again
         }
     }
 
@@ -97,7 +101,8 @@ public class StaminaSystem : MonoBehaviour
     public void Jump()
     {
         if (CanJump())
+        {
             isJumping = true;
+        }
     }
 }
-
