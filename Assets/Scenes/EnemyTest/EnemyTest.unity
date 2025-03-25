@@ -450,6 +450,7 @@ MonoBehaviour:
   IsTrigger: 0
   BaseDamage: 10
   RagdollForceAmount: 50
+  PlayerObject: {fileID: 2093207350942282300}
 --- !u!136 &235830380
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -67896,7 +67897,7 @@ MonoBehaviour:
   CenterEyeAnchor: {fileID: 2683195717671450935}
   GroundedLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 0
   DistanceFromGround: 0
   DistanceFromGroundOffset: 0
   MinimumCapsuleHeight: 0.4
@@ -67904,10 +67905,10 @@ MonoBehaviour:
   LastTeleportTime: 0
   CharacterControllerYOffset: -0.025
   CameraHeight: 0
-  ElevateCameraIfNoHMDPresent: 0
+  ElevateCameraIfNoHMDPresent: 1
   ElevateCameraHeight: 1.65
-  MinElevation: -100
-  MaxElevation: 5000
+  MinElevation: -6000
+  MaxElevation: 6000
   LastPlayerMoveTime: 0
   SphereColliderRadius: 0.08
 --- !u!1 &8419555373310730420
@@ -68349,9 +68350,9 @@ MonoBehaviour:
   Strength:
     BaseValue: 50
   Agility:
-    BaseValue: 0
+    BaseValue: 20
   Endurance:
-    BaseValue: 0
+    BaseValue: 50
   Vitality:
     BaseValue: 50
   inventory: {fileID: 0}

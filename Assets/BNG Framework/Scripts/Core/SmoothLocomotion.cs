@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Kryz.CharacterStats.Examples;
 
 namespace BNG {
 
@@ -129,6 +130,18 @@ namespace BNG {
         public static event OnAfterMoveAction OnAfterMove;
         #endregion
 
+        private Character character;
+
+        void Start() {
+            // Get the Character component to access Agility
+            character = GetComponent<Character>();
+        }
+
+        // Calculate Agility-Based Speed Multiplier
+        private float GetAgilityMultiplier() {
+            return character ? 1f + (character.Agility.Value * 0.1f) : 1f;
+        }
+
         public virtual void Update() {
             CheckControllerReferences();
             UpdateInputs();
@@ -179,32 +192,29 @@ namespace BNG {
 
 
         public virtual void UpdateInputs() {
-
             // Start by resetting our previous frame's inputs
             movementX = 0;
             movementY = 0;
             movementZ = 0;
 
-            // Keep values zeroed out if not allowing input
-            if(AllowInput == false) {
+            if (AllowInput == false) {
                 return;
             }
 
-            // Start with VR Controller Input
             Vector2 primaryAxis = GetMovementAxis();
+            float agilityMultiplier = GetAgilityMultiplier();
+
             if (IsGrounded()) {
                 movementX = primaryAxis.x;
                 movementZ = primaryAxis.y;
             }
-            else if(AirControl) {
+            else if (AirControl) {
                 movementX = primaryAxis.x * AirControlSpeed;
                 movementZ = primaryAxis.y * AirControlSpeed;
             }
 
-            // Add Jump Force
             if (CheckJump()) {
-                // Add movement directly to CC type
-                if(ControllerType == PlayerControllerType.CharacterController) {
+                if (ControllerType == PlayerControllerType.CharacterController) {
                     movementY += JumpForce;
                 }
                 else if (ControllerType == PlayerControllerType.Rigidbody) {
@@ -212,15 +222,14 @@ namespace BNG {
                 }
             }
 
-            // Attach any additional speed
-            if(CheckSprint()) {
-                movementX *= StrafeSprintSpeed;
-                movementZ *= SprintSpeed;
+            if (CheckSprint()) {
+                movementX *= StrafeSprintSpeed * agilityMultiplier;
+                movementZ *= SprintSpeed * agilityMultiplier;
             }
             else {
-                movementX *= StrafeSpeed;
-                movementZ *= MovementSpeed;
-            }            
+                movementX *= StrafeSpeed * agilityMultiplier;
+                movementZ *= MovementSpeed * agilityMultiplier;
+            }
         }
 
         float lastJumpTime;

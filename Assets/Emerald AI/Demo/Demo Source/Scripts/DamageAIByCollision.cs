@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Kryz.CharacterStats.Examples; // Ensure this matches your Character's namespace
+using Kryz.CharacterStats.Examples; // Import the Character Stats system
 
 namespace EmeraldAI.Example
 {
@@ -12,48 +12,59 @@ namespace EmeraldAI.Example
     public class DamageAIByCollision : MonoBehaviour
     {
         public bool IsTrigger = false;
-        public int BaseDamage = 10;
+        public int BaseDamage = 10; // Base damage before Strength multiplier
         public int RagdollForceAmount = 50;
+        public GameObject PlayerObject; // Reference to the Player Object
 
-        private int CalculateDamage(Collider collider)
+        private Character playerCharacter; // Store Player's Character Component
+
+        private void Start()
         {
-            Character character = collider.GetComponent<Character>(); // Get the Character component from the colliding object
-
-            int strengthBonus = (character != null) ? (int)character.Strength.Value : 0; // Explicitly cast float to int
-            return BaseDamage + strengthBonus;
+            if (PlayerObject != null)
+            {
+                playerCharacter = PlayerObject.GetComponent<Character>();
+                if (playerCharacter == null)
+                {
+                    Debug.LogError("Character component missing on PlayerObject!");
+                }
+            }
+            else
+            {
+                Debug.LogError("PlayerObject is not assigned!");
+            }
         }
 
         private void OnTriggerEnter(Collider collision)
         {
             if (!IsTrigger) return;
-
-            int totalDamage = CalculateDamage(collision);
-
-            if (collision.gameObject.GetComponent<IDamageable>() != null)
-            {
-                collision.gameObject.GetComponent<IDamageable>().Damage(totalDamage, transform, RagdollForceAmount);
-            }
-            else if (collision.gameObject.GetComponent<LocationBasedDamageArea>() != null)
-            {
-                LocationBasedDamageArea LBDArea = collision.gameObject.GetComponent<LocationBasedDamageArea>();
-                LBDArea.DamageArea(totalDamage, transform, RagdollForceAmount);
-            }
+            ApplyDamage(collision.gameObject);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             if (IsTrigger) return;
+            ApplyDamage(collision.gameObject);
+        }
 
-            int totalDamage = CalculateDamage(collision.collider);
+        private void ApplyDamage(GameObject target)
+        {
+            if (playerCharacter == null) return; // Ensure playerCharacter is valid
 
-            if (collision.gameObject.GetComponent<IDamageable>() != null)
+            int StrengthBonus = (int)playerCharacter.Strength.Value; // Get Strength from Player
+            int TotalDamage = BaseDamage + StrengthBonus; // Apply Strength to Damage
+
+            Debug.Log("Total Damage Dealt: " + TotalDamage);
+
+            // Damages an AI to the collided object
+            if (target.GetComponent<IDamageable>() != null)
             {
-                collision.gameObject.GetComponent<IDamageable>().Damage(totalDamage, transform, RagdollForceAmount);
+                target.GetComponent<IDamageable>().Damage(TotalDamage, transform, RagdollForceAmount);
             }
-            else if (collision.gameObject.GetComponent<LocationBasedDamageArea>() != null)
+            // Damages an AI's location-based damage component
+            else if (target.GetComponent<LocationBasedDamageArea>() != null)
             {
-                LocationBasedDamageArea LBDArea = collision.gameObject.GetComponent<LocationBasedDamageArea>();
-                LBDArea.DamageArea(totalDamage, transform, RagdollForceAmount);
+                LocationBasedDamageArea LBDArea = target.GetComponent<LocationBasedDamageArea>();
+                LBDArea.DamageArea(TotalDamage, transform, RagdollForceAmount);
             }
         }
     }
