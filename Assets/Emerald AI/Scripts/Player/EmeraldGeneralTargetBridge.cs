@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using EmeraldAI.Utility;
@@ -24,14 +25,20 @@ namespace EmeraldAI
         [field: SerializeField] public int Health { get; set; }
         [field: SerializeField] public List<string> ActiveEffects { get; set; }
 
+        private Character character;
+        private float healRate;
+        private Coroutine regenCoroutine;
+        private float lastDamageTime;
+
         TargetPositionModifier m_TargetPositionModifier;
         Collider m_Collider;
-        private Character character;
 
         void Start()
         {
             character = GetComponent<Character>();
             Health = StartingHealth + (int)character.Vitality.Value;
+            healRate = 1 + (0.01f * character.Vitality.Value); // Heal rate formula
+
             m_TargetPositionModifier = GetComponent<TargetPositionModifier>();
             m_Collider = GetComponent<Collider>();
         }
@@ -40,24 +47,8 @@ namespace EmeraldAI
         {
             DefaultDamage(DamageAmount, AttackerTransform);
 
-            //Creates damage text on the target's position, if enabled.
-            if (CombatTextSystem.Instance != null) CombatTextSystem.Instance.CreateCombatText(DamageAmount, DamagePosition(), CriticalHit, false, false);
-        }
-
-        void OnEnable ()
-        {
-            if (Health <= 0) ResetTarget();
-        }
-
-        /// <summary>
-        /// Used for referencing the damage position for this object when an AI takes damage from external sources.
-        /// </summary>
-        public Vector3 DamagePosition()
-        {
-            if (m_TargetPositionModifier != null)
-                return new Vector3(m_TargetPositionModifier.TransformSource.position.x, m_TargetPositionModifier.TransformSource.position.y + m_TargetPositionModifier.PositionModifier, m_TargetPositionModifier.TransformSource.position.z);
-            else
-                return transform.position + new Vector3(0, transform.localScale.y / 2, 0);
+            if (CombatTextSystem.Instance != null)
+                CombatTextSystem.Instance.CreateCombatText(DamageAmount, DamagePosition(), CriticalHit, false, false);
         }
 
         void DefaultDamage(int DamageAmount, Transform Target)
@@ -66,6 +57,12 @@ namespace EmeraldAI
 
             Health -= DamageAmount;
             OnTakeDamage.Invoke();
+            lastDamageTime = Time.time; // Reset damage timer
+
+            if (regenCoroutine != null)
+                StopCoroutine(regenCoroutine); // Stop regen if hit
+
+            regenCoroutine = StartCoroutine(RegenerateHealth());
 
             if (Health <= 0)
             {
@@ -79,47 +76,40 @@ namespace EmeraldAI
             }
         }
 
-        /// <summary>
-        /// Resets this Non-AI target to its default settings before it was killed. This includes health, layer, and tag.
-        /// </summary>
-        public void ResetTarget ()
+        IEnumerator RegenerateHealth()
+        {
+            yield return new WaitForSeconds(10); // Wait 10 seconds after last damage
+
+            while (Health < StartingHealth)
+            {
+                if (Time.time - lastDamageTime < 10) yield break; // Stop if damaged again
+                
+                Health = Mathf.Min(Health + Mathf.CeilToInt(healRate), StartingHealth); // Apply healing
+                yield return new WaitForSeconds(1); // Heal every second
+            }
+        }
+
+        public void ResetTarget()
         {
             Health = StartingHealth;
             if (m_Collider != null) m_Collider.enabled = true;
         }
 
-        public Transform TargetTransform()
+        public Vector3 DamagePosition()
         {
-            return transform;
+            if (m_TargetPositionModifier != null)
+                return new Vector3(m_TargetPositionModifier.TransformSource.position.x, 
+                                   m_TargetPositionModifier.TransformSource.position.y + m_TargetPositionModifier.PositionModifier, 
+                                   m_TargetPositionModifier.TransformSource.position.z);
+            else
+                return transform.position + new Vector3(0, transform.localScale.y / 2, 0);
         }
 
-        /// <summary>
-        /// Used for detecting when this target is attacking.
-        /// </summary>
-        public bool IsAttacking()
-        {
-            return false;
-        }
+        public Transform TargetTransform() => transform;
 
-        /// <summary>
-        /// Used for detecting when this target is blocking.
-        /// </summary>
-        public bool IsBlocking()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// Used for detecting when this target is dodging.
-        /// </summary>
-        public bool IsDodging()
-        {
-            return false;
-        }
-
-        public void TriggerStun(float StunLength)
-        {
-            //Custom trigger mechanics can go here, but are not required
-        }
+        public bool IsAttacking() => false;
+        public bool IsBlocking() => false;
+        public bool IsDodging() => false;
+        public void TriggerStun(float StunLength) { }
     }
 }
