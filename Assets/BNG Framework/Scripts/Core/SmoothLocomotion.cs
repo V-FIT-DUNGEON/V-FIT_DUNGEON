@@ -131,10 +131,12 @@ namespace BNG {
         #endregion
 
         private Character character;
+        private StaminaSystem staminaSystem;
 
         void Start() {
             // Get the Character component to access Agility
             character = GetComponent<Character>();
+            staminaSystem = GetComponent<StaminaSystem>();
         }
 
         // Calculate Agility-Based Speed Multiplier
@@ -449,42 +451,80 @@ namespace BNG {
         }
 
         public virtual bool CheckJump() {
+            if (staminaSystem == null) {
+                return false;
+            }
 
-            // Don't jump if not grounded
-            if (!IsGrounded()) {
+            // Don't jump if not grounded or if stamina is too low
+            if (!IsGrounded() || !staminaSystem.CanJump()) {
                 return false;
             }
 
             // Check for bound controller button
             for (int x = 0; x < JumpInput.Count; x++) {
                 if (InputBridge.Instance.GetControllerBindingValue(JumpInput[x])) {
+                    staminaSystem.Jump(); // Drain stamina on jump
                     return true;
                 }
             }
 
             // Check Unity Input Action value
             if (JumpAction != null && JumpAction.action.ReadValue<float>() > 0) {
+                staminaSystem.Jump(); // Drain stamina on jump
                 return true;
             }
 
             return false;
         }
 
-        public virtual bool CheckSprint() {
+        public virtual bool CheckSprint()
+        {
+            if (staminaSystem == null)
+            {
+                return false;
+            }
+
+            // **Prevent sprinting if stamina is too low to sustain at least one frame**
+            if (staminaSystem.CurrentStamina <= staminaSystem.SprintStaminaDrain * Time.deltaTime)
+            {
+                staminaSystem.StopSprint();
+                return false;
+            }
+
+            bool isSprinting = false;
 
             // Check for bound controller button
-            for (int x = 0; x < SprintInput.Count; x++) {
-                if (InputBridge.Instance.GetControllerBindingValue(SprintInput[x])) {
-                    return true;
+            for (int x = 0; x < SprintInput.Count; x++)
+            {
+                if (InputBridge.Instance.GetControllerBindingValue(SprintInput[x]))
+                {
+                    isSprinting = true;
+                    break;
                 }
             }
 
             // Check Unity Input Action
-            if (SprintAction != null) {
-                return SprintAction.action.ReadValue<float>() == 1f;
+            if (SprintAction != null && SprintAction.action.ReadValue<float>() == 1f)
+            {
+                isSprinting = true;
             }
 
-            return false;
+            // **Prevent re-enabling sprinting if it was forcefully stopped**
+            if (staminaSystem.CurrentStamina <= 0)
+            {
+                staminaSystem.StopSprint();
+                isSprinting = false;
+            }
+            else if (isSprinting && staminaSystem.CanSprint())
+            {
+                staminaSystem.StartSprint();
+            }
+            else
+            {
+                staminaSystem.StopSprint();
+            }
+
+            return isSprinting;
         }
 
         public virtual bool IsGrounded() { 

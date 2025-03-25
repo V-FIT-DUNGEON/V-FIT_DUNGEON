@@ -13,7 +13,7 @@ namespace Kryz.CharacterStats.Examples
 		[SerializeField] EquipmentPanel equipmentPanel;
 		[SerializeField] StatPanel statPanel;
 
-		private void Awake()
+		/*private void Awake()
 		{
 			statPanel.SetStats(Strength, Agility, Endurance, Vitality);
 			statPanel.UpdateStatValues();
@@ -69,6 +69,6 @@ namespace Kryz.CharacterStats.Examples
 				statPanel.UpdateStatValues();
 				inventory.AddItem(item);
 			}
-		}
+		}*/
 	}
 }
