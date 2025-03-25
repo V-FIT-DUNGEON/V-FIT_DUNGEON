@@ -49,7 +49,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: e0b6b532dbd6c3949bb8f7913cf3796f, type: 3}
     - {fileID: 8300000, guid: 862c184856981d04e803319ba5f48fa3, type: 3}
     - {fileID: 8300000, guid: 79a7ce2d52fab5343854f8bfeec3ecb0, type: 3}
-    MaxDamageDistance: 2.25
+    MaxDamageDistance: 2
     MaxAttackHeight: 5
     MaxDamageAngle: 90
   StunnedSettings:
