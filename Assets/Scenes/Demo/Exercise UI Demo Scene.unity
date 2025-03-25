@@ -6153,6 +6153,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2077332925}
+        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
+        m_MethodName: ChangeExerciseState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2077332921}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -6953,6 +6965,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2077332925}
+        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
+        m_MethodName: SelectSquat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2077332925}
+        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
+        m_MethodName: ChangeExerciseState
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18529,6 +18565,7 @@ GameObject:
   - component: {fileID: 2077332924}
   - component: {fileID: 2077332923}
   - component: {fileID: 2077332922}
+  - component: {fileID: 2077332925}
   m_Layer: 0
   m_Name: DetectionSystem
   m_TagString: Untagged
@@ -18543,7 +18580,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077332921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a74a2fa365d5074f9ab560eebc0b7f0, type: 3}
   m_Name: 
@@ -18571,7 +18608,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077332921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f5b6d3ed8bb1d3428a3a6b278cf654c, type: 3}
   m_Name: 
@@ -18586,7 +18623,7 @@ MonoBehaviour:
   JoyVibration_Duration: 0.1
   SelectedJoy: {fileID: 0}
   Grabbering: {fileID: 0}
-  Border: 10
+  Border: 20
   scailer: 1000
   StillnessFactor: 0.6
   PosUpdateDelay: 0.2
@@ -18627,6 +18664,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2077332925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077332921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe6e3ebf00c3724983f14647e855017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headset: {fileID: 2683195715964517682}
+  currentExercise: 0
+  isExerciseActive: 0
+  standingHeight: 0
+  lastPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2080956702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46357,8 +46411,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2683195715964517684}
   - {fileID: 2683195715964517682}
+  - {fileID: 2683195715964517684}
   - {fileID: 2683195715964517680}
   - {fileID: 2683195715964578634}
   - {fileID: 2683195715964592220}
