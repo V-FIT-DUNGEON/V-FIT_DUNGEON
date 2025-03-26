@@ -43132,7 +43132,7 @@ PrefabInstance:
     - target: {fileID: 1925337118478760839, guid: 14fee118b1921bc478f6afbf26237e87,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneEnemyTest
+      value: LoadSceneDungeonTest
       objectReference: {fileID: 0}
     - target: {fileID: 1925337118478760839, guid: 14fee118b1921bc478f6afbf26237e87,
         type: 3}
@@ -43217,7 +43217,7 @@ PrefabInstance:
     - target: {fileID: 7298671909544501698, guid: 14fee118b1921bc478f6afbf26237e87,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneEnemyTest
+      value: LoadSceneinteraction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
