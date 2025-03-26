@@ -22413,7 +22413,7 @@ MonoBehaviour:
   ControllerDetector: {fileID: 2077332923}
   SelectedJoy: {fileID: 0}
   Grabbering: {fileID: 0}
-  CalibrationThreshold: 0.7
+  CalibrationThreshold: 100
   CalibrationTime: 2
   MovingBorder: 10
   scailer: 1000

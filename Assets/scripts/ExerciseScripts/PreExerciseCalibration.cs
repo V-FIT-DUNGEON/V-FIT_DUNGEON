@@ -55,7 +55,7 @@ public class PreExerciseCalibration : MonoBehaviour
 
         while (countTime < CalibrationTime)
         {
-            Debug.Log("Move" + Vector3.Distance(calibPos, Headset.localPosition)* scailer);
+            //Debug.Log("Move" + Vector3.Distance(calibPos, Headset.localPosition)* scailer);
             if (Vector3.Distance(calibPos, Headset.localPosition) * scailer > PosChangeThreshold)
             {
                 Debug.Log("Movement detected! Restarting calibration...");
