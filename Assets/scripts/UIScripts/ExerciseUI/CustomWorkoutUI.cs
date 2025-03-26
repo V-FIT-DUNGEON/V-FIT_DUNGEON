@@ -13,6 +13,7 @@ public class CustomWorkoutUI : MonoBehaviour
     [SerializeField] Button decreaseButton;
     [SerializeField] Button StartWorkoutButton;
     [SerializeField] Button FinishWorkoutButton;
+    [SerializeField] TextMeshProUGUI repsText;
     [SerializeField] TextMeshProUGUI repsNumber;
 
     //make CustomWorkoutUI singleton
@@ -37,7 +38,7 @@ public class CustomWorkoutUI : MonoBehaviour
         increaseButton.onClick.AddListener(IncreaseReps);
         decreaseButton.onClick.AddListener(DecreaseReps);
         StartWorkoutButton.onClick.AddListener(StartWorkout);
-        FinishWorkoutButton.onClick.AddListener(FinishWorkout);
+        FinishWorkoutButton.onClick.AddListener(FinishWorkoutBtn);
     }
 
     // Update is called once per frame
@@ -78,7 +79,7 @@ public class CustomWorkoutUI : MonoBehaviour
         repsNumber.text = "0";
         _exerciseManager.StartExercise();
 
-        
+
     }
 
     public void SetCountReps(int reps)
@@ -86,11 +87,20 @@ public class CustomWorkoutUI : MonoBehaviour
         repsNumber.text = reps.ToString();
     }
 
-    public void FinishWorkout()
+    public void FinishWorkoutBtn()
     {
         _exerciseManager.SetReps(1);
         repsNumber.text = "1";
+        repsText.text = "reps";
         _exerciseManager.FinishExercise();
         //save workout data
+    }
+
+    public void FinishWorkout(bool isFinished)
+    {
+        if (isFinished)
+        {
+            repsText.text = "Finish Workout";
+        }
     }
 }

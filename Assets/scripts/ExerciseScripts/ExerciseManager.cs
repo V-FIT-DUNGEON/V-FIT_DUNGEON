@@ -28,6 +28,7 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private UnityEvent<int> OnEventSquatRepsCount; // Event to send reps count to UI
     [SerializeField] private UnityEvent<int> OnEventPushUpRepsCount; // Event to send reps count to UI
     [SerializeField] private UnityEvent<int> OnEventplankCount; // Event to send reps count to UI
+    [SerializeField] private UnityEvent<bool> OnEventFinishExercise; // Event to send finish exercise status to UI
 
     public static ExerciseManager Instance { get; private set; }
     private void Awake()
@@ -116,6 +117,7 @@ public class ExerciseManager : MonoBehaviour
             else{
                 Debug.Log("Exercise Finished");
                 OnEventSquatRepsCount.Invoke(repsCount);
+                OnEventFinishExercise.Invoke(true);
                 repsCount = 0;
                 isExerciseActive = false;
                 DetectionSystem.SetActive(false);
