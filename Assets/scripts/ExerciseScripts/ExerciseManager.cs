@@ -1,22 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ExerciseManager : MonoBehaviour
 {
-
-    [Header("Set up device")]  
-    [SerializeField] public Transform headset; // Assign the VR headset GameObject
+    [Header("Set up device")]
+    [SerializeField] private Transform headset; // Assign the VR headset GameObject
 
     private enum ExerciseSelected { None, Squat, PushUp, Plank }
-    private enum ExerciseState { idle, up, down, left, right }
+    private enum ExerciseState { Idle, Up, Down }
+
     [SerializeField] private ExerciseSelected currentExercise = ExerciseSelected.None;
-    [SerializeField] private ExerciseState currentExerciseState = ExerciseState.idle;
+    [SerializeField] private ExerciseState currentExerciseState = ExerciseState.Idle;
+    
     [SerializeField] private bool isExerciseActive = false;
     [SerializeField] private bool calibrated = false;
 
-    [SerializeField] private GameObject DetectionSystem; // Assign the DetectionSystem GameObject
+    [SerializeField] private GameObject detectionSystem; // Assign the DetectionSystem GameObject
 
     [SerializeField] private float standingHeight;
     [SerializeField] private Vector3 lastPosition;
@@ -24,13 +24,15 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private int repsLimit = 12;
     [SerializeField] private int repsCount = 0;
 
-    [SerializeField] private UnityEvent<bool> OnEventCalibration; // Event to send calibration status to UI
-    [SerializeField] private UnityEvent<int> OnEventSquatRepsCount; // Event to send reps count to UI
-    [SerializeField] private UnityEvent<int> OnEventPushUpRepsCount; // Event to send reps count to UI
-    [SerializeField] private UnityEvent<int> OnEventplankCount; // Event to send reps count to UI
-    [SerializeField] private UnityEvent<bool> OnEventFinishExercise; // Event to send finish exercise status to UI
+    [Header("Events")]
+    [SerializeField] private UnityEvent<bool> OnCalibrationEvent; // UI feedback for calibration
+    [SerializeField] private UnityEvent<int> OnSquatRepsCountEvent; // UI feedback for Squat reps
+    [SerializeField] private UnityEvent<int> OnPushUpRepsCountEvent; // UI feedback for Push-Up reps
+    [SerializeField] private UnityEvent<int> OnPlankCountEvent; // UI feedback for Plank
+    [SerializeField] private UnityEvent<bool> OnFinishExerciseEvent; // UI feedback for exercise completion
 
     public static ExerciseManager Instance { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,132 +45,157 @@ public class ExerciseManager : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        // Initialize player height and movement tracking
         standingHeight = headset.position.y;
         lastPosition = headset.position;
     }
 
-    void Update()
+    private void Update()
     {
-        CaseHandler();
-    }
-
-    public void CaseHandler()
-    {
-        float headY = headset.position.y;
-        float headX = headset.position.x;
-        float headZ = headset.position.z;
+        if (!calibrated) return; // Ensure exercise only runs if calibrated
 
         switch (currentExercise)
         {
             case ExerciseSelected.Squat:
-                DetectSquat(headY);
+                DetectSquat();
                 break;
             case ExerciseSelected.PushUp:
-                DetectPushUp(headY);
+                DetectPushUp();
                 break;
             case ExerciseSelected.Plank:
-                DetectPlank(headY);
+                DetectPlank();
                 break;
         }
     }
 
     // ---- Exercise Detection Methods ----
 
-    private void DetectSquat(float headY)
+    private void DetectSquat()
     {
-        Debug.Log("Calibrated: " + calibrated);
-        if (calibrated)
+        float headY = headset.position.y;
+
+        switch (currentExerciseState)
         {
-            Debug.Log("Calibrated");
-            if (isExerciseActive && repsCount < repsLimit)
-            {
-                switch (currentExerciseState)
+            case ExerciseState.Idle:
+                if (headY > standingHeight * 0.95f)
                 {
-                    case ExerciseState.idle:
-                        if (headY > standingHeight * 0.95f)
-                        {
-                            currentExerciseState = ExerciseState.down;
-                            Debug.Log("Start");
-                        }
-                        break;
-                    case ExerciseState.up:
-                        if (headY > standingHeight * 0.95f)
-                        {
-                            currentExerciseState = ExerciseState.down;
-                            Debug.Log("Squat up");
-                            repsCount++;
-                            OnEventSquatRepsCount.Invoke(repsCount);
-                        }
-                        break;
-                    case ExerciseState.down:
-                        if (headY < standingHeight * 0.7f)
-                        {
-                            currentExerciseState = ExerciseState.up;
-                            Debug.Log("Squat Down");
-                        }
-                        break;
-
+                    currentExerciseState = ExerciseState.Down;
+                    Debug.Log("Start Squat");
                 }
-
-            }
-            else{
-                Debug.Log("Exercise Finished");
-                OnEventSquatRepsCount.Invoke(repsCount);
-                OnEventFinishExercise.Invoke(true);
-                repsCount = 0;
-                isExerciseActive = false;
-                DetectionSystem.SetActive(false);
-            }
+                break;
+            case ExerciseState.Up:
+                if (headY > standingHeight * 0.95f)
+                {
+                    currentExerciseState = ExerciseState.Down;
+                    repsCount++;
+                    OnSquatRepsCountEvent.Invoke(repsCount);
+                    Debug.Log($"Squat Rep {repsCount}");
+                }
+                break;
+            case ExerciseState.Down:
+                if (headY < standingHeight * 0.7f)
+                {
+                    currentExerciseState = ExerciseState.Up;
+                    Debug.Log("Squat Down");
+                }
+                break;
         }
-        else
+
+        CheckExerciseCompletion();
+    }
+
+    private void DetectPushUp()
+    {
+        float headY = headset.position.y;
+        float pushUpThreshold = standingHeight * 0.5f;
+
+        switch (currentExerciseState)
         {
-            Debug.Log("Calibration Required");
-            OnEventCalibration.Invoke(calibrated);
+            case ExerciseState.Idle:
+                if (headY > standingHeight * 0.6f) // Ready position
+                {
+                    currentExerciseState = ExerciseState.Down;
+                }
+                break;
+            case ExerciseState.Up:
+                if (headY > standingHeight * 0.6f)
+                {
+                    currentExerciseState = ExerciseState.Down;
+                    repsCount++;
+                    OnPushUpRepsCountEvent.Invoke(repsCount);
+                    Debug.Log($"Push-Up Rep {repsCount}");
+                }
+                break;
+            case ExerciseState.Down:
+                if (headY < pushUpThreshold)
+                {
+                    currentExerciseState = ExerciseState.Up;
+                    Debug.Log("Push-Up Down");
+                }
+                break;
+        }
+
+        CheckExerciseCompletion();
+    }
+
+    private void DetectPlank()
+    {
+        float headY = headset.position.y;
+        float plankHeight = standingHeight * 0.4f;
+
+        if (headY < plankHeight)
+        {
+            OnPlankCountEvent.Invoke(repsCount);
+            Debug.Log("Plank Hold Started");
         }
     }
 
-    private void DetectPushUp(float headY)
+    private void CheckExerciseCompletion()
     {
-        if (isExerciseActive)
+        if (repsCount >= repsLimit)
         {
-            float pushUpThreshold = standingHeight * 0.5f; // Push-Up at 50% of standing height
-            if (headY < pushUpThreshold)
-                Debug.Log("Push-Up Detected");
+            Debug.Log("Exercise Completed!");
+            OnFinishExerciseEvent.Invoke(true);
+            ResetExercise();
         }
     }
 
-    private void DetectSideLunge(float headX, float headZ)
+    private void ResetExercise()
     {
-        if (isExerciseActive)
-        {
-            float lateralMovement = Vector3.Distance(new Vector3(headX, 0, headZ), new Vector3(lastPosition.x, 0, lastPosition.z));
-            if (lateralMovement > 0.3f) // Adjust based on lunge width
-                Debug.Log("Side Lunge Detected");
-
-            lastPosition = headset.position;
-        }
-    }
-
-    private void DetectPlank(float headY)
-    {
-        if (isExerciseActive)
-        {
-            float plankHeight = standingHeight * 0.4f; // Plank is around 40% of standing height
-            if (headY < plankHeight)
-                Debug.Log("Plank Hold Started");
-        }
+        repsCount = 0;
+        isExerciseActive = false;
+        calibrated = false;
+        detectionSystem.SetActive(false);
     }
 
     // ---- Exercise Selection Methods ----
-    public void SelectSquat() => currentExercise = ExerciseSelected.Squat;
-    public void SelectPushUp() => currentExercise = ExerciseSelected.PushUp;
-    public void SelectPlank() => currentExercise = ExerciseSelected.Plank;
-    public void DeselectExercise() => currentExercise = ExerciseSelected.None;
-    public void StartExercise() => isExerciseActive = true;
-    public void FinishExercise() => isExerciseActive = false;
+    public void SelectExercise(int exerciseIndex)
+    {
+        currentExercise = (ExerciseSelected)exerciseIndex;
+        Debug.Log($"Exercise Selected: {currentExercise}");
+    }
+
+    public void StartExercise()
+    {
+        if (calibrated)
+        {
+            isExerciseActive = true;
+            detectionSystem.SetActive(true);
+            Debug.Log("Exercise Started");
+        }
+        else
+        {
+            Debug.Log("Calibration Required Before Exercise!");
+            OnCalibrationEvent.Invoke(false);
+        }
+    }
+
+    public void FinishExercise()
+    {
+        ResetExercise();
+        Debug.Log("Exercise Stopped");
+    }
 
     // ---- Set reps ----
     public void SetReps(int reps)
@@ -180,6 +207,7 @@ public class ExerciseManager : MonoBehaviour
     public void SetCalibrated(bool isCalibrated)
     {
         calibrated = isCalibrated;
+        OnCalibrationEvent.Invoke(calibrated);
+        Debug.Log("Calibration Status Updated: " + calibrated);
     }
 }
-

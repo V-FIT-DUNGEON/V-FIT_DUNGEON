@@ -1,96 +1,87 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BNG;
 
 public class PreExerciseCalibration : MonoBehaviour
 {
     [Header("Set up device")]
-    [SerializeField] Transform Controller_R;
-    [SerializeField] Grabber Grabber_R;
+    [SerializeField] private Transform Controller_R;
+    [SerializeField] private Grabber Grabber_R;
 
-    [SerializeField] Transform Controller_L;
-    [SerializeField] Grabber Grabber_L;
+    [SerializeField] private Transform Controller_L;
+    [SerializeField] private Grabber Grabber_L;
 
-    [SerializeField] Transform Headset;
+    [SerializeField] private Transform Headset;
 
-    [SerializeField] ExerciseManager _ExerciseManager;
+    [SerializeField] private ExerciseManager _ExerciseManager;
 
-    public enum ExercisePose{Null, Squat, PushUp, Plank}
+    public enum ExercisePose { Null, Squat, PushUp, Plank }
     [SerializeField] private ExercisePose exercisePose = ExercisePose.Null;
-    [SerializeField] float PosChangeThreshold = 0.7f; // Threshold to trigger recalibration
-    [SerializeField] float CalibrationTime = 3f; // Time to hold still for recalibration
-    [SerializeField] bool isCalibrating = false;
-    [SerializeField] float countTime;
-    [SerializeField] Vector3 calibPos;
-    private Coroutine _onlyHeadCalibration;
 
-        void OnEnable()
-    {
-        calibPos = Headset.localPosition;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float scailer = 1000f;
+    [SerializeField] private float PosChangeThreshold = 0.4f; // Movement threshold to restart calibration
+    [SerializeField] private float CalibrationTime = 5f; // Required time to stay still
+    [SerializeField] private bool isCalibrating = false;
+    [SerializeField] private float countTime;
+    [SerializeField] private Vector3 calibPos;
+    private Coroutine calibrationCoroutine;
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-
+        calibPos = Headset.localPosition; // Store initial headset position
     }
 
     public void CaseHandler(bool Calibrated)
     {
         isCalibrating = !Calibrated;
-        if(isCalibrating)
+        if (isCalibrating)
         {
-            switch(exercisePose)
-                {
-                    case ExercisePose.Squat:
-                        OnlyHeadCalribration();
-                        Debug.Log("Squat Pose Detected");
-                        break;
-                    case ExercisePose.PushUp:
-                        Debug.Log("PushUp Pose Detected");
-                        break;
-                    case ExercisePose.Plank:
-                        Debug.Log("Plank Pose Detected");
-                        break;
-                }
+            if (calibrationCoroutine != null)
+            {
+                StopCoroutine(calibrationCoroutine); // Stop any existing calibration
+            }
+
+            calibrationCoroutine = StartCoroutine(CalibrateHeadset());
         }
     }
 
-    public void OnlyHeadCalribration()
+    private IEnumerator CalibrateHeadset()
     {
-        while(countTime < CalibrationTime)
+        isCalibrating = true;
+        countTime = 0;
+        calibPos = Headset.localPosition;
+
+        Debug.Log("Starting Calibration... Hold still!");
+
+        while (countTime < CalibrationTime)
         {
-            
-            if(Vector3.Distance(calibPos, Headset.localPosition) > PosChangeThreshold)
+            Debug.Log("Move" + Vector3.Distance(calibPos, Headset.localPosition)* scailer);
+            if (Vector3.Distance(calibPos, Headset.localPosition) * scailer > PosChangeThreshold)
             {
-                Debug.Log("Calibration reset.");
-                countTime = 0;
-                calibPos = Headset.localPosition;
+                Debug.Log("Movement detected! Restarting calibration...");
+                countTime = 0; // Reset time
+                calibPos = Headset.localPosition; // Update reference position
+                InputBridge.Instance.VibrateController(1f, 10f, 1f, Grabber_L.HandSide);
+                InputBridge.Instance.VibrateController(1f, 10f, 1f, Grabber_R.HandSide);
             }
             else
             {
-                Debug.Log("Calibrating...");
-                countTime += Time.deltaTime;
+                countTime += Time.deltaTime; // Increment time while staying still
             }
+
+            yield return null; // Wait for next frame
         }
 
-        InputBridge.Instance.VibrateController(1f, 10f, 1f, Grabber_L.HandSide);
-        InputBridge.Instance.VibrateController(1f, 10f, 1f, Grabber_R.HandSide);
+        // Calibration successful
+        InputBridge.Instance.VibrateController(1f, 1f, 1f, Grabber_L.HandSide);
+        InputBridge.Instance.VibrateController(1f, 1f, 1f, Grabber_R.HandSide);
         Debug.Log("Calibration complete.");
-        countTime = 0;
+
         isCalibrating = false;
         _ExerciseManager.SetCalibrated(true);
-
-
     }
 
+    // Methods to set exercise poses
     public void SetExercisePoseSquat() => exercisePose = ExercisePose.Squat;
     public void SetExercisePosePushUp() => exercisePose = ExercisePose.PushUp;
-
 }
