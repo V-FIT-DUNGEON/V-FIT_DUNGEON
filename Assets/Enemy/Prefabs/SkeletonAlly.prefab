@@ -471,14 +471,14 @@ MonoBehaviour:
     AttackListIndex: 0
     AttackPickType: 0
     AttackDataList:
-    - AbilityObject: {fileID: 11400000, guid: 933ead3544de5c04699e885c7ee2fa79, type: 2}
+    - AbilityObject: {fileID: 11400000, guid: 35fff2d9e25da9e429966f4da8dc9195, type: 2}
       AttackAnimation: 0
       AttackOdds: 90
       AttackDistance: 2
       TooCloseDistance: 0.5
       CooldownIgnored: 0
       CooldownTimeStamp: 0
-    - AbilityObject: {fileID: 11400000, guid: cf1f106c1794ae949a01004e175cbed9, type: 2}
+    - AbilityObject: {fileID: 11400000, guid: 03183e9245801f545b5abf567482e3ae, type: 2}
       AttackAnimation: 1
       AttackOdds: 10
       AttackDistance: 3
