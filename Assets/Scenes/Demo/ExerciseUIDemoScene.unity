@@ -15884,14 +15884,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2077332926}
-        m_TargetAssemblyTypeName: PreExerciseCalibration, Assembly-CSharp
-        m_MethodName: SetExercisePosePushUp
-        m_Mode: 1
+      - m_Target: {fileID: 2077332925}
+        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
+        m_MethodName: SelectExercise
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16464,7 +16464,7 @@ MonoBehaviour:
   decreaseButton: {fileID: 219602297}
   StartWorkoutButton: {fileID: 874837023}
   FinishWorkoutButton: {fileID: 747901196}
-  repsText: {fileID: 0}
+  repsText: {fileID: 2126686142}
   repsNumber: {fileID: 1929412502}
 --- !u!136 &1581983456
 CapsuleCollider:
@@ -18121,14 +18121,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2077332926}
-        m_TargetAssemblyTypeName: PreExerciseCalibration, Assembly-CSharp
-        m_MethodName: SetExercisePosePushUp
-        m_Mode: 1
+      - m_Target: {fileID: 2077332925}
+        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
+        m_MethodName: SelectExercise
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -22538,7 +22538,19 @@ MonoBehaviour:
         m_CallState: 2
   OnPushUpRepsCountEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1570547403}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: SetCountReps
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPlankCountEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -22546,6 +22558,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 552262951}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: FinishWorkout
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1570547403}
         m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
         m_MethodName: FinishWorkout
         m_Mode: 0

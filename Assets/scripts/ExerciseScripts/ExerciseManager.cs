@@ -113,13 +113,13 @@ public class ExerciseManager : MonoBehaviour
         switch (currentExerciseState)
         {
             case ExerciseState.Idle:
-                if (headY > standingHeight * 0.6f) // Ready position
+                if (headY > standingHeight * 0.7f) // Ready position
                 {
                     currentExerciseState = ExerciseState.Down;
                 }
                 break;
             case ExerciseState.Up:
-                if (headY > standingHeight * 0.6f)
+                if (headY > standingHeight * 0.7f)
                 {
                     currentExerciseState = ExerciseState.Down;
                     repsCount++;
