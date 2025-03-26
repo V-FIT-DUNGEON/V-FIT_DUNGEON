@@ -36,7 +36,7 @@ public class CustomWorkoutUI : MonoBehaviour
     {
         increaseButton.onClick.AddListener(IncreaseReps);
         decreaseButton.onClick.AddListener(DecreaseReps);
-        StartWorkoutButton.onClick.AddListener(SetReps);
+        StartWorkoutButton.onClick.AddListener(StartWorkout);
         FinishWorkoutButton.onClick.AddListener(FinishWorkout);
     }
 
@@ -56,15 +56,16 @@ public class CustomWorkoutUI : MonoBehaviour
     public void DecreaseReps()
     {
         int reps = int.Parse(repsNumber.text);
-        if (reps > 0)
+        if (reps > 1)
         {
             reps--;
         }
         repsNumber.text = reps.ToString();
     }
 
-    public void SetReps()
+    public void StartWorkout()
     {
+        //set reps limit
         if (int.TryParse(repsNumber.text, out int repsLimit))
         {
             Debug.Log("Reps limit set to: " + repsLimit);
@@ -76,6 +77,8 @@ public class CustomWorkoutUI : MonoBehaviour
         _exerciseManager.SetReps(repsLimit);
         repsNumber.text = "0";
         _exerciseManager.StartExercise();
+
+        
     }
 
     public void SetCountReps(int reps)
@@ -85,7 +88,8 @@ public class CustomWorkoutUI : MonoBehaviour
 
     public void FinishWorkout()
     {
-        _exerciseManager.SetReps(0);
+        _exerciseManager.SetReps(1);
+        repsNumber.text = "1";
         _exerciseManager.FinishExercise();
         //save workout data
     }

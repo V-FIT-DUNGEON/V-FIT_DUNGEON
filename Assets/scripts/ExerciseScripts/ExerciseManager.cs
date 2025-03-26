@@ -14,6 +14,9 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private ExerciseSelected currentExercise = ExerciseSelected.None;
     [SerializeField] private ExerciseState currentExerciseState = ExerciseState.idle;
     [SerializeField] private bool isExerciseActive = false;
+    [SerializeField] private bool calibrated = false;
+
+    [SerializeField] private GameObject DetectionSystem; // Assign the DetectionSystem GameObject
 
     [SerializeField] private float standingHeight;
     [SerializeField] private Vector3 lastPosition;
@@ -21,6 +24,7 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private int repsLimit = 12;
     [SerializeField] private int repsCount = 0;
 
+    [SerializeField] private UnityEvent<bool> OnEventCalibration; // Event to send calibration status to UI
     [SerializeField] private UnityEvent<int> OnEventSquatRepsCount; // Event to send reps count to UI
     [SerializeField] private UnityEvent<int> OnEventPushUpRepsCount; // Event to send reps count to UI
     [SerializeField] private UnityEvent<int> OnEventplankCount; // Event to send reps count to UI
@@ -47,6 +51,11 @@ public class ExerciseManager : MonoBehaviour
 
     void Update()
     {
+        CaseHandler();
+    }
+
+    public void CaseHandler()
+    {
         float headY = headset.position.y;
         float headX = headset.position.x;
         float headZ = headset.position.z;
@@ -69,42 +78,53 @@ public class ExerciseManager : MonoBehaviour
 
     private void DetectSquat(float headY)
     {
-        if (isExerciseActive && repsCount < repsLimit)
+        Debug.Log("Calibrated: " + calibrated);
+        if (calibrated)
         {
-            switch (currentExerciseState)
+            Debug.Log("Calibrated");
+            if (isExerciseActive && repsCount < repsLimit)
             {
-                case ExerciseState.idle:
-                    if (headY > standingHeight * 0.95f)
-                    {
-                        currentExerciseState = ExerciseState.down;
-                        Debug.Log("Start");
-                    }
-                    break;
-                case ExerciseState.up:
-                    if (headY > standingHeight * 0.95f)
-                    {
-                        currentExerciseState = ExerciseState.down;
-                        Debug.Log("Squat up");
-                        repsCount++;
-                        OnEventSquatRepsCount.Invoke(repsCount);
-                    }
-                    break;
-                case ExerciseState.down:
-                    if (headY < standingHeight * 0.7f)
-                    {
-                        currentExerciseState = ExerciseState.up;
-                        Debug.Log("Squat Down");
-                    }
-                    break;
+                switch (currentExerciseState)
+                {
+                    case ExerciseState.idle:
+                        if (headY > standingHeight * 0.95f)
+                        {
+                            currentExerciseState = ExerciseState.down;
+                            Debug.Log("Start");
+                        }
+                        break;
+                    case ExerciseState.up:
+                        if (headY > standingHeight * 0.95f)
+                        {
+                            currentExerciseState = ExerciseState.down;
+                            Debug.Log("Squat up");
+                            repsCount++;
+                            OnEventSquatRepsCount.Invoke(repsCount);
+                        }
+                        break;
+                    case ExerciseState.down:
+                        if (headY < standingHeight * 0.7f)
+                        {
+                            currentExerciseState = ExerciseState.up;
+                            Debug.Log("Squat Down");
+                        }
+                        break;
+
+                }
 
             }
-            
+            else{
+                Debug.Log("Exercise Finished");
+                OnEventSquatRepsCount.Invoke(repsCount);
+                repsCount = 0;
+                isExerciseActive = false;
+                DetectionSystem.SetActive(false);
+            }
         }
-        else{
-            Debug.Log("Exercise Finished");
-            repsCount = 0;
-            OnEventSquatRepsCount.Invoke(repsCount);
-            isExerciseActive = false;
+        else
+        {
+            Debug.Log("Calibration Required");
+            OnEventCalibration.Invoke(calibrated);
         }
     }
 
@@ -152,6 +172,12 @@ public class ExerciseManager : MonoBehaviour
     public void SetReps(int reps)
     {
         repsLimit = reps;
+    }
+
+    // ---- Calibration ----
+    public void SetCalibrated(bool isCalibrated)
+    {
+        calibrated = isCalibrated;
     }
 }
 
