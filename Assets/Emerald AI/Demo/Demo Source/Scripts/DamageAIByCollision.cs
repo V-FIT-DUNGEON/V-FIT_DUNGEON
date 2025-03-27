@@ -10,7 +10,7 @@ namespace EmeraldAI.Example
         public bool IsTrigger = false;
         public int BaseDamage = 10;
         public int RagdollForceAmount = 50;
-        public GameObject PlayerObject;
+        public WeaponStatRequirement WeaponRequirement; // Reference to the requirement script
 
         private Character playerCharacter;
         private HashSet<GameObject> damagedTargets = new HashSet<GameObject>(); // Store already damaged targets
@@ -19,17 +19,16 @@ namespace EmeraldAI.Example
 
         private void Start()
         {
-            if (PlayerObject != null)
+            if (WeaponRequirement == null)
             {
-                playerCharacter = PlayerObject.GetComponent<Character>();
-                if (playerCharacter == null)
-                {
-                    Debug.LogError("Character component missing on PlayerObject!");
-                }
+                Debug.LogError("WeaponStatRequirement script is not assigned!");
+                return;
             }
-            else
+
+            playerCharacter = WeaponRequirement.GetPlayerCharacter(); // Get player from WeaponStatRequirement
+            if (playerCharacter == null)
             {
-                Debug.LogError("PlayerObject is not assigned!");
+                Debug.LogError("Character component is missing in WeaponStatRequirement!");
             }
         }
 
@@ -47,7 +46,7 @@ namespace EmeraldAI.Example
 
         private void TryApplyDamage(GameObject target)
         {
-            if (playerCharacter == null) return; 
+            if (playerCharacter == null || WeaponRequirement == null) return;
 
             if (!damagedTargets.Contains(target)) // Check if this target was already damaged
             {
@@ -64,18 +63,28 @@ namespace EmeraldAI.Example
 
         private void ApplyDamage(GameObject target)
         {
-            int StrengthBonus = (int)playerCharacter.Strength.Value;
-            int TotalDamage = BaseDamage + StrengthBonus;
+            int totalDamage;
 
-            Debug.Log("Total Damage Dealt: " + TotalDamage);
+            if (WeaponRequirement.CanEquip())
+            {
+                // Player meets the stat requirement → Normal damage
+                totalDamage = BaseDamage + (int)playerCharacter.Strength.Value;
+            }
+            else
+            {
+                // Player does NOT meet the stat requirement → Half of BaseDamage, NO Strength bonus
+                totalDamage = Mathf.FloorToInt(BaseDamage / 2);
+            }
+
+            Debug.Log($"Total Damage Dealt: {totalDamage} (Stats Met: {WeaponRequirement.CanEquip()})");
 
             if (target.GetComponent<IDamageable>() != null)
             {
-                target.GetComponent<IDamageable>().Damage(TotalDamage, transform, RagdollForceAmount);
+                target.GetComponent<IDamageable>().Damage(totalDamage, transform, RagdollForceAmount);
             }
             else if (target.GetComponent<LocationBasedDamageArea>() != null)
             {
-                target.GetComponent<LocationBasedDamageArea>().DamageArea(TotalDamage, transform, RagdollForceAmount);
+                target.GetComponent<LocationBasedDamageArea>().DamageArea(totalDamage, transform, RagdollForceAmount);
             }
         }
 

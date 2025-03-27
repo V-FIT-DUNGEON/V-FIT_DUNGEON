@@ -476,6 +476,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9417abb654fb464394c7855179aa01f, type: 3}
+--- !u!114 &1683732314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6077902856040881290, guid: ba2ae6aa1ce55c345897237e6bca8256,
+    type: 3}
+  m_PrefabInstance: {fileID: 167192800207964166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e8b2b14378d924798b3fd21af9ca3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1726533911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1039,6 +1051,21 @@ PrefabInstance:
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 2093207350942282300}
+    - target: {fileID: 4368675775516787629, guid: ba2ae6aa1ce55c345897237e6bca8256,
+        type: 3}
+      propertyPath: WeaponRequirement
+      value: 
+      objectReference: {fileID: 1683732314}
+    - target: {fileID: 6077902856040881290, guid: ba2ae6aa1ce55c345897237e6bca8256,
+        type: 3}
+      propertyPath: PlayerObject
+      value: 
+      objectReference: {fileID: 2093207350942282300}
+    - target: {fileID: 6077902856040881290, guid: ba2ae6aa1ce55c345897237e6bca8256,
+        type: 3}
+      propertyPath: RequiredStrength
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6487,6 +6514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421481682711207519, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: Agility.BaseValue
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5421481682711207519, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
