@@ -8,6 +8,7 @@ namespace Kryz.CharacterStats.Examples
 		public CharacterStat Agility;
 		public CharacterStat Endurance;
 		public CharacterStat Vitality;
+		public float Currency;
 
 		[SerializeField] Inventory inventory;
 		[SerializeField] EquipmentPanel equipmentPanel;
