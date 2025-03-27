@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KatanaWithStrCalc
       objectReference: {fileID: 0}
+    - target: {fileID: 920710378339818143, guid: a7d6b8c7104034c459c257fce0277176,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -97,8 +102,7 @@ MonoBehaviour:
   IsTrigger: 0
   BaseDamage: 10
   RagdollForceAmount: 50
-  PlayerObject: {fileID: 0}
-  weaponStatRequirement: {fileID: 6077902856040881290}
+  WeaponRequirement: {fileID: 6077902856040881290}
 --- !u!114 &6077902856040881290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,3 +119,4 @@ MonoBehaviour:
   RequiredAgility: 0
   RequiredVitality: 0
   RequiredEndurance: 0
+  PlayerObject: {fileID: 0}

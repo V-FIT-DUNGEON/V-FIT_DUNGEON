@@ -272,6 +272,12 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &997200606 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1512300794735183621, guid: ba2ae6aa1ce55c345897237e6bca8256,
+    type: 3}
+  m_PrefabInstance: {fileID: 167192800207964166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1444534315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,12 +488,33 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 167192800207964166}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 997200606}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7e8b2b14378d924798b3fd21af9ca3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1683732322
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997200606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.026099205, y: 1.091151, z: 0.042354994}
+  m_Center: {x: -0.001921773, y: 0.3505566, z: -0.0007808469}
 --- !u!1001 &1726533911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -991,6 +1018,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1512300794735183617, guid: ba2ae6aa1ce55c345897237e6bca8256,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1512300794735183621, guid: ba2ae6aa1ce55c345897237e6bca8256,
         type: 3}
       propertyPath: m_Name
@@ -1064,12 +1096,16 @@ PrefabInstance:
     - target: {fileID: 6077902856040881290, guid: ba2ae6aa1ce55c345897237e6bca8256,
         type: 3}
       propertyPath: RequiredStrength
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1512300794735183621, guid: ba2ae6aa1ce55c345897237e6bca8256,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1683732322}
   m_SourcePrefab: {fileID: 100100000, guid: ba2ae6aa1ce55c345897237e6bca8256, type: 3}
 --- !u!1001 &1457995013790504909
 PrefabInstance:
@@ -1079,6 +1115,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: HideSettingsFoldout
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6522,6 +6563,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421481682711207519, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
+      propertyPath: Strength.BaseValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421481682711207519, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: Vitality.BaseValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421481682711207519, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
       propertyPath: Endurance.BaseValue
       value: 50
       objectReference: {fileID: 0}
@@ -10498,6 +10549,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonAlly
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520872286540856717, guid: 70c725cc67c789d4e9fe10c55a186b34,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5670744020295801894, guid: 70c725cc67c789d4e9fe10c55a186b34,
         type: 3}
