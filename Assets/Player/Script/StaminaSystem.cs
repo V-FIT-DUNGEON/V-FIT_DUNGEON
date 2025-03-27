@@ -5,7 +5,7 @@ using Kryz.CharacterStats.Examples;
 
 public class StaminaSystem : MonoBehaviour
 {
-    private Character character;
+    [SerializeField]private Character character;
 
     public float BaseStamina = 100;
     public float CurrentStamina;
@@ -31,6 +31,7 @@ public class StaminaSystem : MonoBehaviour
 
     void Update()
     {
+        MaxStamina = BaseStamina + character.Endurance.Value;
         HandleStamina();
     }
 

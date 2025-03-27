@@ -1,23 +1,33 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using Kryz.CharacterStats.Examples;
+using System.Collections.Generic;
 
 public class ExerciseManager : MonoBehaviour
 {
     [Header("Set up device")]
-    [SerializeField] private Transform headset; // Assign the VR headset GameObject
+    [SerializeField] private Transform Headset; // Assign the VR headset GameObject
 
     private enum ExerciseSelected { None, Squat, PushUp, Plank }
     private enum ExerciseState { Idle, Up, Down }
+
+    [Header("Player Settings")]
+    [SerializeField] private GameObject _PlayerObject; // Assign the Player GameObject
+    [SerializeField] private Character _PlayerCharacter; // Assign the Player Character
+    [SerializeField] private float _Strength = 0f; // Player Strength
+    [SerializeField] private float _Vitality = 0f; // Player Vitality
+    [SerializeField] private float _Agility = 0f; // Player Agility
+    [SerializeField] private float _Endurance = 0f; // Player Endurance
+
+    [Header("Exercise Settings")]
+    [SerializeField] private GameObject detectionSystem; // Assign the DetectionSystem GameObject
 
     [SerializeField] private ExerciseSelected currentExercise = ExerciseSelected.None;
     [SerializeField] private ExerciseState currentExerciseState = ExerciseState.Idle;
     
     [SerializeField] private bool isExerciseActive = false;
     [SerializeField] private bool calibrated = false;
-
-    [SerializeField] private GameObject detectionSystem; // Assign the DetectionSystem GameObject
-
     [SerializeField] private float standingHeight;
     [SerializeField] private Vector3 lastPosition;
 
@@ -43,12 +53,16 @@ public class ExerciseManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Reassign value
+        ReassignValue();
+
     }
 
     private void OnEnable()
     {
-        standingHeight = headset.position.y;
-        lastPosition = headset.position;
+        standingHeight = Headset.position.y;
+        lastPosition = Headset.position;
     }
 
     private void Update()
@@ -73,7 +87,7 @@ public class ExerciseManager : MonoBehaviour
 
     private void DetectSquat()
     {
-        float headY = headset.position.y;
+        float headY = Headset.position.y;
 
         switch (currentExerciseState)
         {
@@ -107,7 +121,7 @@ public class ExerciseManager : MonoBehaviour
 
     private void DetectPushUp()
     {
-        float headY = headset.position.y;
+        float headY = Headset.position.y;
         float pushUpThreshold = standingHeight * 0.5f;
 
         switch (currentExerciseState)
@@ -141,7 +155,7 @@ public class ExerciseManager : MonoBehaviour
 
     private void DetectPlank()
     {
-        float headY = headset.position.y;
+        float headY = Headset.position.y;
         float plankHeight = standingHeight * 0.4f;
 
         if (headY < plankHeight)
@@ -157,6 +171,27 @@ public class ExerciseManager : MonoBehaviour
         {
             Debug.Log("Exercise Completed!");
             OnFinishExerciseEvent.Invoke(true);
+            switch (currentExercise)
+            {
+                case ExerciseSelected.Squat:
+                    //add end agility
+                    _Agility += 0.1f * repsCount;
+                    _Endurance += 1f * repsCount;
+
+                    _PlayerCharacter.Agility.BaseValue = _Agility;
+                    _PlayerCharacter.Endurance.BaseValue = _Endurance;
+                    break;
+                case ExerciseSelected.PushUp:
+                    //add str vit
+                    _Strength += 1f * repsCount;
+                    _Vitality += 1f * repsCount;
+                    _PlayerCharacter.Strength.BaseValue = _Strength;
+                    _PlayerCharacter.Vitality.BaseValue = _Vitality;
+                    break;
+                case ExerciseSelected.Plank:
+                    
+                    break;
+            }
             ResetExercise();
         }
     }
@@ -191,10 +226,41 @@ public class ExerciseManager : MonoBehaviour
         }
     }
 
-    public void FinishExercise()
+    public void FinishExerciseEarly()
     {
-        ResetExercise();
-        Debug.Log("Exercise Stopped");
+        if (isExerciseActive == true)
+        {
+            Debug.Log("Exercise Finished Early!");
+            switch (currentExercise)
+            {
+                case ExerciseSelected.Squat:
+                    //add end agility
+                    _Agility += 0.1f * repsCount;
+                    _Endurance += 1f * repsCount;
+
+                    _PlayerCharacter.Agility.BaseValue = _Agility;
+                    _PlayerCharacter.Endurance.BaseValue = _Endurance;
+                    break;
+                case ExerciseSelected.PushUp:
+                    //add str vit
+                    _Strength += 1f * repsCount;
+                    _Vitality += 1f * repsCount;
+                    _PlayerCharacter.Strength.BaseValue = _Strength;
+                    _PlayerCharacter.Vitality.BaseValue = _Vitality;
+                    break;
+                case ExerciseSelected.Plank:
+                    
+                    break;
+            }
+            ResetExercise();
+            Debug.Log("Exercise already finished!");
+        }
+        else
+        {
+            ResetExercise();
+            Debug.Log("No exercise in progress to stop.");
+        }
+        
     }
 
     // ---- Set reps ----
@@ -208,6 +274,39 @@ public class ExerciseManager : MonoBehaviour
     {
         calibrated = isCalibrated;
         OnCalibrationEvent.Invoke(calibrated);
+        isExerciseActive = true; // Set exercise active when calibrated
         Debug.Log("Calibration Status Updated: " + calibrated);
     }
+
+    // ---- Reassign value func ----
+    public void ReassignValue()
+    {
+        // ----- Player Object ----
+        _PlayerObject = GameObject.Find("PlayerController");
+        if (_PlayerObject == null)
+        {
+            Debug.LogError("PlayerObject not found! Ensure it has the 'Player' tag.");
+        }
+        else
+        {     
+            _PlayerCharacter = _PlayerObject.GetComponent<Character>();
+            if (_PlayerCharacter == null)
+            {
+                Debug.LogError("PlayerCharacter not found! Ensure it has the Character component.");
+            }
+            else
+            {
+                _Strength = _PlayerCharacter.Strength.BaseValue;
+                _Vitality = _PlayerCharacter.Vitality.BaseValue;
+                _Agility = _PlayerCharacter.Agility.BaseValue;
+                _Endurance = _PlayerCharacter.Endurance.BaseValue;
+            }
+            
+        }
+
+        // ----- Device ----
+        Headset = GameObject.Find("CenterEyeAnchor").transform;
+    }
+
+
 }
