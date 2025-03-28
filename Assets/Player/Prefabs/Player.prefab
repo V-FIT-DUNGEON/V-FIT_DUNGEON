@@ -8325,14 +8325,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Strength:
-    BaseValue: 50
+    BaseValue: 0
   Agility:
-    BaseValue: 5
+    BaseValue: 0
   Endurance:
-    BaseValue: 50
+    BaseValue: 0
   Vitality:
-    BaseValue: 50
-  Currency: 0
+    BaseValue: 0
+  Currency: 100
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
@@ -57200,7 +57200,7 @@ GameObject:
   - component: {fileID: 6956489904250380590}
   - component: {fileID: 6549266575535000685}
   m_Layer: 0
-  m_Name: PlayerWithStats
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

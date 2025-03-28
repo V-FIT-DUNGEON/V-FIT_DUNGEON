@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 55
+  controlID: 81
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,8 +140,8 @@ MonoBehaviour:
     y: 0
     width: 312.66666
     height: 926
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 56
+  controlID: 82
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 456
     height: 926
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.47543943, y: 0.09957879, z: -0.05405967, w: 0.8727231}
     speed: 2
-    m_Value: {x: 0.47531426, y: 0.09955257, z: -0.05404544, w: 0.8724933}
+    m_Value: {x: -0.47543943, y: -0.09957878, z: 0.05405967, w: -0.87272304}
   m_Size:
     m_Target: 0.23844182
     speed: 2
@@ -869,9 +869,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 96e1ffff
-      m_LastClickedID: -7786
-      m_ExpandedIDs: cef5ffffd4f5ffffd8f5ffff18f6ffff1cf6ffff4ef6ffff24fbffff627e0000
+      m_SelectedIDs: 0a5c0500
+      m_LastClickedID: 351242
+      m_ExpandedIDs: 6671faff8c73faff9275faff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1040,7 +1040,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Player/Script
+    - Assets/Scenes/EnemyTest
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1048,16 +1048,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Player/Script
+  - Assets/Scenes/EnemyTest
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Acer\Desktop\V-FIT_DUNGEON\V-FIT_DUNGEON
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 197}
-    m_SelectedIDs: 3cca0000
-    m_LastClickedID: 51772
-    m_ExpandedIDs: 000000001cc900001ec9000020c9000022c9000024c9000026c9000028c900002ac900002cc900002ec9000030c9000000ca9a3b
+    scrollPos: {x: 0, y: 217}
+    m_SelectedIDs: 48440000
+    m_LastClickedID: 17480
+    m_ExpandedIDs: 000000000c4100008c4100009441000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1085,7 +1085,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001cc900001ec9000020c9000022c9000024c9000026c9000028c900002ac900002cc900002ec9000030c90000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1110,9 +1110,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 62caffff
-    m_LastClickedInstanceID: -13726
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: e05b0500
+    m_LastClickedInstanceID: 351200
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300003475000000000000d430010090ab0200da060100003f0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1218,7 +1218,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 1633.3333
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

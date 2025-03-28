@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 920710378339818143, guid: a7d6b8c7104034c459c257fce0277176,
         type: 3}
       propertyPath: m_Name
-      value: KatanaWithStrCalc
+      value: Katana
       objectReference: {fileID: 0}
     - target: {fileID: 920710378339818143, guid: a7d6b8c7104034c459c257fce0277176,
         type: 3}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsTrigger: 0
-  BaseDamage: 10
+  BaseDamage: 30
   RagdollForceAmount: 50
   WeaponRequirement: {fileID: 6077902856040881290}
 --- !u!114 &6077902856040881290
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e8b2b14378d924798b3fd21af9ca3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequiredStrength: 0
-  RequiredAgility: 0
+  RequiredStrength: 5
+  RequiredAgility: 5
   RequiredVitality: 0
   RequiredEndurance: 0
   PlayerObject: {fileID: 0}
