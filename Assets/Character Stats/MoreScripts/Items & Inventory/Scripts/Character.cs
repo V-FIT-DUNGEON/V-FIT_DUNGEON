@@ -2,17 +2,37 @@ using UnityEngine;
 
 namespace Kryz.CharacterStats.Examples
 {
-	public class Character : MonoBehaviour
-	{
-		public CharacterStat Strength;
-		public CharacterStat Agility;
-		public CharacterStat Endurance;
-		public CharacterStat Vitality;
-		public float Currency;
+    public class Character : MonoBehaviour
+    {
+        public CharacterStat Strength;
+        public CharacterStat Agility;
+        public CharacterStat Endurance;
+        public CharacterStat Vitality;
 
-		[SerializeField] Inventory inventory;
-		[SerializeField] EquipmentPanel equipmentPanel;
-		[SerializeField] StatPanel statPanel;
+        private float currency;
+        public float Currency
+        {
+            get => currency;
+            set
+            {
+                currency = value;
+                OnCurrencyChanged?.Invoke(currency);
+            }
+        }
+
+        public delegate void CurrencyChanged(float newAmount);
+        public event CurrencyChanged OnCurrencyChanged;
+
+        [SerializeField] private Inventory inventory;
+        [SerializeField] private EquipmentPanel equipmentPanel;
+        [SerializeField] private StatPanel statPanel;
+
+        private void Start()
+        {
+            Currency = SaveManager.instance.money; // Load saved money
+        }
+    }
+}
 
 		/*private void Awake()
 		{
@@ -71,5 +91,3 @@ namespace Kryz.CharacterStats.Examples
 				inventory.AddItem(item);
 			}
 		}*/
-	}
-}

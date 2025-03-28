@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.743
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.575
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.325
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 6406849537675090233, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_Name
-      value: Staff 2H Variant
+      value: GreatSageHeavensEqual
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsTrigger: 0
-  BaseDamage: 10
+  BaseDamage: 100
   RagdollForceAmount: 50
-  WeaponRequirement: {fileID: 0}
+  WeaponRequirement: {fileID: 4864803843987505031}
 --- !u!114 &4864803843987505031
 MonoBehaviour:
   m_ObjectHideFlags: 0
