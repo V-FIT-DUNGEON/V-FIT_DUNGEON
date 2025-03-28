@@ -1,0 +1,16 @@
+{
+    "ExerciseLog": [
+        {
+        "ExerciseName": "Push Up",
+        "Reps": 10,
+        "Date": "2023-10-01",
+        "time": "12:00:00"
+        },
+        {
+        "ExerciseName": "Squat",
+        "Reps": 15,
+        "Date": "2023-10-02",
+        "time": "12:00:00"
+        }
+    ]
+}

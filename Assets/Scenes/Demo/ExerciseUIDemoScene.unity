@@ -1488,6 +1488,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonPrefab: {fileID: 2028218520}
   ButtonParent: {fileID: 332522241}
+--- !u!4 &104076302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1507564964738988199, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &104111312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,6 +3114,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 231185927}
+--- !u!1 &234570575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 970058259963654216, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &234570578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5421481682711207519, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234570575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &250038835
 GameObject:
   m_ObjectHideFlags: 0
@@ -8010,6 +8034,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785339485}
   m_CullTransparentMesh: 1
+--- !u!114 &787899237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6241785177034564633, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c428201425bc44d8eb038a0fb424d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836862046
 GameObject:
   m_ObjectHideFlags: 0
@@ -8469,30 +8505,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2077332925}
-        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
-        m_MethodName: SelectPushUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2077332925}
-        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
-        m_MethodName: ChangeExerciseState
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12743,30 +12755,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2077332925}
-        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
-        m_MethodName: SelectSquat
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2077332925}
-        m_TargetAssemblyTypeName: ExerciseManager, Assembly-CSharp
-        m_MethodName: ChangeExerciseState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 145384283}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -15215,6 +15203,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585475922}
   m_CullTransparentMesh: 1
+--- !u!4 &1611940979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 662531709586237224, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1623540978
 GameObject:
   m_ObjectHideFlags: 0
@@ -17804,6 +17798,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841238164}
   m_CullTransparentMesh: 1
+--- !u!4 &1849217250 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8814982211847975986, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1893272396
 GameObject:
   m_ObjectHideFlags: 0
@@ -19978,6 +19978,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052719331}
   m_CullTransparentMesh: 1
+--- !u!114 &2056635917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9107547351678435151, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037798723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c428201425bc44d8eb038a0fb424d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2062407049
 GameObject:
   m_ObjectHideFlags: 0
@@ -20324,9 +20336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe6e3ebf00c3724983f14647e855017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Headset: {fileID: 0}
-  _PlayerObject: {fileID: 0}
-  _PlayerCharacter: {fileID: 0}
+  Headset: {fileID: 104076302}
+  _PlayerObject: {fileID: 234570575}
+  _PlayerCharacter: {fileID: 234570578}
   _Strength: 0
   _Vitality: 0
   _Agility: 0
@@ -20427,13 +20439,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424284e560509fa48afe481047e7f263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controller_R: {fileID: 0}
-  Grabber_R: {fileID: 0}
-  Controller_L: {fileID: 0}
-  Grabber_L: {fileID: 0}
-  Headset: {fileID: 0}
+  Controller_R: {fileID: 1611940979}
+  Grabber_R: {fileID: 787899237}
+  Controller_L: {fileID: 1849217250}
+  Grabber_L: {fileID: 2056635917}
+  Headset: {fileID: 104076302}
   _ExerciseManager: {fileID: 2077332925}
-  exercisePose: 0
   scailer: 1000
   PosChangeThreshold: 5
   CalibrationTime: 2

@@ -1,0 +1,18 @@
+[
+    {
+        "UserID_01":{
+            "UserStat":{
+                "strength":100,
+                "endurance":100,
+                "agility":100,
+                "vituality":100,
+                "currency":100
+            },
+            "OverallExercise":{
+                "Pushup(reps)":100,
+                "Squat":100
+            }
+        }
+
+    }
+]

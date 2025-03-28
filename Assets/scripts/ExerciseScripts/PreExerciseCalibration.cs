@@ -16,7 +16,7 @@ public class PreExerciseCalibration : MonoBehaviour
     [SerializeField] private ExerciseManager _ExerciseManager;
 
     public enum ExercisePose { Null, Squat, PushUp, Plank }
-    [SerializeField] private ExercisePose exercisePose = ExercisePose.Null;
+    //[SerializeField] private ExercisePose exercisePose = ExercisePose.Null;
 
     [SerializeField] private float scailer = 1000f;
     [SerializeField] private float PosChangeThreshold = 0.4f; // Movement threshold to restart calibration
@@ -83,8 +83,8 @@ public class PreExerciseCalibration : MonoBehaviour
     }
 
     // Methods to set exercise poses
-    public void SetExercisePoseSquat() => exercisePose = ExercisePose.Squat;
-    public void SetExercisePosePushUp() => exercisePose = ExercisePose.PushUp;
+    // public void SetExercisePoseSquat() => exercisePose = ExercisePose.Squat;
+    // public void SetExercisePosePushUp() => exercisePose = ExercisePose.PushUp;
 
     // Reassign value
     private void ReassignValue()
