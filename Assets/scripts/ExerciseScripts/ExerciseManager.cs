@@ -57,7 +57,8 @@ public class ExerciseManager : MonoBehaviour
     private FileHandler _fileHandler; // File handler for saving data
     string userFilePath; // File path for user data
     string exerciseLogFilePath;
-    [SerializeField] string jsonData; // JSON data for saving
+    [SerializeField] string playerStatJsonData; // JSON data for saving
+    [SerializeField] string exerciseLogJsonData; // JSON data for saving exercise log
 
     public static ExerciseManager Instance { get; private set; }
 
@@ -78,7 +79,7 @@ public class ExerciseManager : MonoBehaviour
         userFilePath = _fileHandler.GetFilePath("PlayerStats");
         exerciseLogFilePath = _fileHandler.GetFilePath("ExerciseLogs");
 
-        // Load user data
+        // Load userstat data
         if(!File.Exists(userFilePath))
         {
             Debug.Log("New User Created");
@@ -100,8 +101,8 @@ public class ExerciseManager : MonoBehaviour
             _user.UserDatas.Add("User", _userData); // Add user data to the dictionary
 
             // Serialize the data using Newtonsoft.Json
-            jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
-            _fileHandler.SaveData("PlayerStats", jsonData);
+            playerStatJsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
+            _fileHandler.SaveData("PlayerStats", playerStatJsonData);
 
             // set stats
             _userData = _user.UserDatas["User"];
@@ -118,8 +119,8 @@ public class ExerciseManager : MonoBehaviour
         else{
             Debug.Log("User List already exists");
             // Load existing user data
-            jsonData = _fileHandler.LoadData("PlayerStats");
-            _user = JsonConvert.DeserializeObject<User>(jsonData);
+            playerStatJsonData = _fileHandler.LoadData("PlayerStats");
+            _user = JsonConvert.DeserializeObject<User>(playerStatJsonData);
             _userData = _user.UserDatas["User"];
             _userStat = _userData.UserStat;
             _overallExercise = _userData.OverallExercise;
@@ -130,6 +131,24 @@ public class ExerciseManager : MonoBehaviour
             AllPushUp = _overallExercise.Pushup;
             AllSquat = _overallExercise.Squat;
             
+        }
+
+        // Load exercise log data
+        if (!File.Exists(exerciseLogFilePath))
+        {
+            Debug.Log("New Exercise Log Created");
+            // Create a new exercise log
+            _exerciseLog = new ExerciseLog();
+            _exerciseLog.ExerciseLogList = new List<ExerciseEntry>();
+            exerciseLogJsonData = JsonConvert.SerializeObject(_exerciseLog, Formatting.Indented);
+            _fileHandler.SaveData("ExerciseLogs", exerciseLogJsonData);
+        }
+        else
+        {
+            Debug.Log("Exercise Log already exists");
+            // Load existing exercise log data
+            exerciseLogJsonData = _fileHandler.LoadData("ExerciseLogs");
+            _exerciseLog = JsonConvert.DeserializeObject<ExerciseLog>(exerciseLogJsonData);
         }
 
         ReassignValue();
@@ -274,9 +293,50 @@ public class ExerciseManager : MonoBehaviour
                     break;
             }
 
+            SaveExerciseLog();
             SavePlayerStats();
             ResetExercise();
         }
+    }
+
+        public void FinishExerciseEarly()
+    {
+        if (isExerciseActive == true)
+        {
+            Debug.Log("Exercise Finished Early!");
+            switch (currentExercise)
+            {
+                case ExerciseSelected.Squat:
+                    //add end agility
+                    _Agility += 0.1f * repsCount;
+                    _Endurance += 1f * repsCount;
+
+                    _PlayerCharacter.Agility.BaseValue = _Agility;
+                    _PlayerCharacter.Endurance.BaseValue = _Endurance;
+                    break;
+                case ExerciseSelected.PushUp:
+                    //add str vit
+                    _Strength += 1f * repsCount;
+                    _Vitality += 1f * repsCount;
+                    _PlayerCharacter.Strength.BaseValue = _Strength;
+                    _PlayerCharacter.Vitality.BaseValue = _Vitality;
+                    break;
+                case ExerciseSelected.Plank:
+                    
+                    break;
+            }
+
+            SavePlayerStats();
+            SaveExerciseLog();
+            ResetExercise();
+            Debug.Log("Exercise already finished!");
+        }
+        else
+        {
+            ResetExercise();
+            Debug.Log("No exercise in progress to stop.");
+        }
+        
     }
 
     private void ResetExercise()
@@ -308,45 +368,6 @@ public class ExerciseManager : MonoBehaviour
             Debug.Log("Calibration Required Before Exercise!");
             OnCalibrationEvent.Invoke(false);
         }
-    }
-
-    public void FinishExerciseEarly()
-    {
-        if (isExerciseActive == true)
-        {
-            Debug.Log("Exercise Finished Early!");
-            switch (currentExercise)
-            {
-                case ExerciseSelected.Squat:
-                    //add end agility
-                    _Agility += 0.1f * repsCount;
-                    _Endurance += 1f * repsCount;
-
-                    _PlayerCharacter.Agility.BaseValue = _Agility;
-                    _PlayerCharacter.Endurance.BaseValue = _Endurance;
-                    break;
-                case ExerciseSelected.PushUp:
-                    //add str vit
-                    _Strength += 1f * repsCount;
-                    _Vitality += 1f * repsCount;
-                    _PlayerCharacter.Strength.BaseValue = _Strength;
-                    _PlayerCharacter.Vitality.BaseValue = _Vitality;
-                    break;
-                case ExerciseSelected.Plank:
-                    
-                    break;
-            }
-
-            SavePlayerStats();
-            ResetExercise();
-            Debug.Log("Exercise already finished!");
-        }
-        else
-        {
-            ResetExercise();
-            Debug.Log("No exercise in progress to stop.");
-        }
-        
     }
 
     // ---- Set reps ----
@@ -436,7 +457,22 @@ public class ExerciseManager : MonoBehaviour
         _overallExercise.Pushup = AllPushUp;
         _overallExercise.Squat = AllSquat;
 
-        jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
-        _fileHandler.SaveData("PlayerStats", jsonData);
+        playerStatJsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
+        _fileHandler.SaveData("PlayerStats", playerStatJsonData);
+    }
+
+    public void SaveExerciseLog()
+    {
+        _exerciseEntry = new ExerciseEntry
+        {
+            ExerciseName = currentExercise.ToString(),
+            Reps = repsCount,
+            Date = System.DateTime.Now.ToString("yyyy-MM-dd"),
+            Time = System.DateTime.Now.ToString("HH:mm:ss")
+        };
+
+        _exerciseLog.ExerciseLogList.Add(_exerciseEntry);
+        exerciseLogJsonData = JsonConvert.SerializeObject(_exerciseLog, Formatting.Indented);
+        _fileHandler.SaveData("ExerciseLogs", exerciseLogJsonData);
     }
 }
