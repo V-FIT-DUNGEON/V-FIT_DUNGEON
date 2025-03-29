@@ -9,17 +9,21 @@ public class WeaponSelection : MonoBehaviour
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
 
-    [Header("Play/Buy Buttons")]
-    [SerializeField] private Button play;
-    [SerializeField] private Button buy;
+    [Header("Equip/Buy Buttons")]
+    [SerializeField] private Button equipButton;
+    [SerializeField] private Button buyButton;
+    [SerializeField] private TMP_Text equipButtonText;
     [SerializeField] private TMP_Text priceText;
 
     [Header("Weapon Attributes")]
+    [SerializeField] private GameObject[] weaponPrefabs; // Array of weapon prefabs
+    [SerializeField] private float spawnDistance = 1.5f; // Distance in front of the object
     [SerializeField] private int[] weaponPrices;
     private int currentWeapon;
+    private GameObject equippedWeapon; // Currently equipped weapon
 
     [Header("Sound")]
-    [SerializeField] private AudioClip purchase;
+    [SerializeField] private AudioClip purchaseSound;
     private AudioSource source;
 
     private Character playerCharacter;
@@ -57,21 +61,26 @@ public class WeaponSelection : MonoBehaviour
     {
         if (InventoryManager.instance.weaponsUnlocked[currentWeapon])
         {
-            play.gameObject.SetActive(true);
-            buy.gameObject.SetActive(false);
+            equipButton.gameObject.SetActive(true);
+            buyButton.gameObject.SetActive(false);
+
+            // Update button text based on whether the weapon is equipped
+            equipButtonText.text = (equippedWeapon != null && equippedWeapon.name == weaponPrefabs[currentWeapon].name + "(Clone)") 
+                ? "Equipped" 
+                : "Equip";
         }
         else
         {
-            play.gameObject.SetActive(false);
-            buy.gameObject.SetActive(true);
+            equipButton.gameObject.SetActive(false);
+            buyButton.gameObject.SetActive(true);
             priceText.text = weaponPrices[currentWeapon] + " Coins";
         }
     }
 
     private void Update()
     {
-        if (buy.gameObject.activeInHierarchy)
-            buy.interactable = (playerCharacter != null && playerCharacter.Currency >= weaponPrices[currentWeapon]);
+        if (buyButton.gameObject.activeInHierarchy)
+            buyButton.interactable = (playerCharacter != null && playerCharacter.Currency >= weaponPrices[currentWeapon]);
     }
 
     public void ChangeWeapon(int _change)
@@ -82,8 +91,6 @@ public class WeaponSelection : MonoBehaviour
         else if (currentWeapon < 0)
             currentWeapon = transform.childCount - 1;
 
-        InventoryManager.instance.currentWeapon = currentWeapon;
-        InventoryManager.instance.Save();
         SelectWeapon(currentWeapon);
     }
 
@@ -96,9 +103,9 @@ public class WeaponSelection : MonoBehaviour
             InventoryManager.instance.Save();
 
             // Play sound only if AudioSource and Clip are valid
-            if (source != null && purchase != null)
+            if (source != null && purchaseSound != null)
             {
-                source.PlayOneShot(purchase);
+                source.PlayOneShot(purchaseSound);
             }
             else
             {
@@ -107,5 +114,37 @@ public class WeaponSelection : MonoBehaviour
 
             UpdateUI();
         }
+    }
+
+    public void EquipWeapon()
+    {
+        if (!InventoryManager.instance.weaponsUnlocked[currentWeapon])
+        {
+            Debug.Log("Weapon not unlocked. Equip failed.");
+            return;
+        }
+
+        Debug.Log("EquipWeapon function called!"); // Debugging step
+
+        // Destroy currently equipped weapon
+        if (equippedWeapon != null)
+        {
+            Debug.Log("Destroying previous weapon: " + equippedWeapon.name);
+            Destroy(equippedWeapon);
+        }
+
+        // Spawn the new weapon in front of this object
+        Vector3 spawnPosition = transform.position + transform.forward * spawnDistance;
+        equippedWeapon = Instantiate(weaponPrefabs[currentWeapon], spawnPosition, transform.rotation);
+        equippedWeapon.name = weaponPrefabs[currentWeapon].name; // Remove "(Clone)" from name
+
+        Debug.Log("New weapon spawned: " + equippedWeapon.name);
+
+        // Update UI to reflect the equipped status
+        equipButtonText.text = "Equipped"; 
+        Debug.Log("Equip button text changed to 'Equipped'");
+
+        InventoryManager.instance.currentWeapon = currentWeapon;
+        InventoryManager.instance.Save();
     }
 }
