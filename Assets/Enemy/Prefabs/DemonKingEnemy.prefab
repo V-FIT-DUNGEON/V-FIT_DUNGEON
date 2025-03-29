@@ -251,12 +251,12 @@ GameObject:
   - component: {fileID: 4107955367268523526}
   - component: {fileID: 7121465245273865440}
   - component: {fileID: 8855196295371622505}
-  - component: {fileID: 7484465228299286751}
   - component: {fileID: 7447979073560476995}
   - component: {fileID: 620953664441618333}
   - component: {fileID: 6671684264936086729}
   - component: {fileID: 5864422703224330550}
   - component: {fileID: 5636622152414458529}
+  - component: {fileID: -598571887942424275}
   m_Layer: 11
   m_Name: DemonKingEnemy
   m_TagString: Enemy
@@ -639,25 +639,6 @@ MonoBehaviour:
   HitEffectsList: []
   HideSettingsFoldout: 0
   HealthFoldout: 1
---- !u!114 &7484465228299286751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615412626619726482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47eaa6fcdf0a9a64a9cbfd56d640ab33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseDroppableWeapon: 0
-  Type1EquippableWeapons: []
-  Type2EquippableWeapons: []
-  ItemList: []
-  HideSettingsFoldout: 0
-  WeaponsFoldout: 0
-  ItemsFoldout: 0
 --- !u!114 &7447979073560476995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,6 +837,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-598571887942424275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615412626619726482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c01ae08069745469b6909752a018cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefab: {fileID: 2246421207609072698, guid: 16db59c115cc84847bd364677c1738a8,
+    type: 3}
 --- !u!1 &672305865739611619
 GameObject:
   m_ObjectHideFlags: 0
