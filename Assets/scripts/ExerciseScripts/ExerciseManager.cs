@@ -25,6 +25,8 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private UserData _userData; // user data
     [SerializeField] private UserStat _userStat; // user stat
     [SerializeField] private OverallExercise _overallExercise; // overall exercise
+    [SerializeField] private int AllSquat = 0; // Player currency
+    [SerializeField] private int AllPushUp = 0; // Player level
 
 
     [Header("Exercise Settings")]
@@ -101,6 +103,7 @@ public class ExerciseManager : MonoBehaviour
             jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
             _fileHandler.SaveData("PlayerStats", jsonData);
 
+            // set stats
             _userData = _user.UserDatas["User"];
             _userStat = _userData.UserStat;
             _overallExercise = _userData.OverallExercise;
@@ -124,6 +127,8 @@ public class ExerciseManager : MonoBehaviour
             _Vitality = _userStat.Vitality;
             _Agility = _userStat.Agility;
             _Endurance = _userStat.Endurance;
+            AllPushUp = _overallExercise.Pushup;
+            AllSquat = _overallExercise.Squat;
             
         }
 
@@ -176,6 +181,7 @@ public class ExerciseManager : MonoBehaviour
                 if (headY > standingHeight * 0.95f)
                 {
                     currentExerciseState = ExerciseState.Down;
+                    AllSquat++;
                     repsCount++;
                     OnSquatRepsCountEvent.Invoke(repsCount);
                     Debug.Log($"Squat Rep {repsCount}");
@@ -211,6 +217,7 @@ public class ExerciseManager : MonoBehaviour
                 {
                     currentExerciseState = ExerciseState.Down;
                     repsCount++;
+                    AllPushUp++;
                     OnPushUpRepsCountEvent.Invoke(repsCount);
                     Debug.Log($"Push-Up Rep {repsCount}");
                 }
@@ -268,7 +275,6 @@ public class ExerciseManager : MonoBehaviour
             }
 
             SavePlayerStats();
-
             ResetExercise();
         }
     }
@@ -426,6 +432,10 @@ public class ExerciseManager : MonoBehaviour
         _userStat.Vitality = _Vitality;
         _userStat.Agility = _Agility;
         _userStat.Endurance = _Endurance;
+        
+        _overallExercise.Pushup = AllPushUp;
+        _overallExercise.Squat = AllSquat;
+
         jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
         _fileHandler.SaveData("PlayerStats", jsonData);
     }
