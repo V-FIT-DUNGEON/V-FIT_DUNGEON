@@ -15,8 +15,6 @@ public class Exercise_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string pose_df = _fileHandler.LoadExercisePoseData("Exercises_info", FileHandler.FileFormat.Json);
-        //exerciseLst = JsonConverter.DeserializeObject<ExerciseLst>(pose_df);
         GereratePoseList();
     }
 

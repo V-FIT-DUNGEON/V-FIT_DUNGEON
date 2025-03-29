@@ -16,7 +16,7 @@ public class PreExerciseCalibration : MonoBehaviour
     [SerializeField] private ExerciseManager _ExerciseManager;
 
     public enum ExercisePose { Null, Squat, PushUp, Plank }
-    [SerializeField] private ExercisePose exercisePose = ExercisePose.Null;
+    //[SerializeField] private ExercisePose exercisePose = ExercisePose.Null;
 
     [SerializeField] private float scailer = 1000f;
     [SerializeField] private float PosChangeThreshold = 0.4f; // Movement threshold to restart calibration
@@ -28,6 +28,7 @@ public class PreExerciseCalibration : MonoBehaviour
 
     private void OnEnable()
     {
+        ReassignValue();
         calibPos = Headset.localPosition; // Store initial headset position
     }
 
@@ -55,7 +56,7 @@ public class PreExerciseCalibration : MonoBehaviour
 
         while (countTime < CalibrationTime)
         {
-            Debug.Log("Move" + Vector3.Distance(calibPos, Headset.localPosition)* scailer);
+            //Debug.Log("Move" + Vector3.Distance(calibPos, Headset.localPosition)* scailer);
             if (Vector3.Distance(calibPos, Headset.localPosition) * scailer > PosChangeThreshold)
             {
                 Debug.Log("Movement detected! Restarting calibration...");
@@ -82,6 +83,23 @@ public class PreExerciseCalibration : MonoBehaviour
     }
 
     // Methods to set exercise poses
-    public void SetExercisePoseSquat() => exercisePose = ExercisePose.Squat;
-    public void SetExercisePosePushUp() => exercisePose = ExercisePose.PushUp;
+    // public void SetExercisePoseSquat() => exercisePose = ExercisePose.Squat;
+    // public void SetExercisePosePushUp() => exercisePose = ExercisePose.PushUp;
+
+    // Reassign value
+    private void ReassignValue()
+    {
+        if (Controller_R == null)
+            Controller_R = GameObject.Find("RightControllerAnchor").transform;
+        if (Grabber_R == null)
+            Grabber_R = GameObject.Find("LeftMainGrabber").GetComponent<Grabber>();
+        if (Controller_L == null)
+            Controller_L = GameObject.Find("LeftControllerAnchor").transform;
+        if (Grabber_L == null)
+            Grabber_L = GameObject.Find("RightMainGrabber").GetComponent<Grabber>();
+        if (Headset == null)
+            Headset = GameObject.Find("CenterEyeAnchor").transform;
+        if (_ExerciseManager == null)
+            _ExerciseManager = FindObjectOfType<ExerciseManager>();
+    }
 }

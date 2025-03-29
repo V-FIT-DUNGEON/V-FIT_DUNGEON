@@ -89,10 +89,10 @@ public class CustomWorkoutUI : MonoBehaviour
 
     public void FinishWorkoutBtn()
     {
+        _exerciseManager.FinishExerciseEarly();
         _exerciseManager.SetReps(1);
         repsNumber.text = "1";
         repsText.text = "reps";
-        _exerciseManager.FinishExercise();
         //save workout data
     }
 
