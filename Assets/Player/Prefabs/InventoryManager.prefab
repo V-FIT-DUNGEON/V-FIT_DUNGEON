@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2651311638582308602}
   - component: {fileID: 6822528053606848483}
   m_Layer: 0
-  m_Name: SaveManager
+  m_Name: InventoryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,3 +47,7 @@ MonoBehaviour:
   currentWeapon: 0
   money: 0
   weaponsUnlocked: 010000
+  strength: 0
+  agility: 0
+  endurance: 0
+  vitality: 0

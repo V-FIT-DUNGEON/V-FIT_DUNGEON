@@ -1266,7 +1266,7 @@ PrefabInstance:
     - target: {fileID: 1883156949923657703, guid: 4ee9ed5d021a65b40aa23679ff2d3b70,
         type: 3}
       propertyPath: m_Name
-      value: SaveManager
+      value: InventoryManager
       objectReference: {fileID: 0}
     - target: {fileID: 2651311638582308602, guid: 4ee9ed5d021a65b40aa23679ff2d3b70,
         type: 3}

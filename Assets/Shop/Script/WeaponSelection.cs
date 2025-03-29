@@ -31,7 +31,7 @@ public class WeaponSelection : MonoBehaviour
         {
             Debug.LogError("AudioSource component is missing on WeaponSelection GameObject!");
         }
-        currentWeapon = SaveManager.instance.currentWeapon;
+        currentWeapon = InventoryManager.instance.currentWeapon;
         FindPlayerCharacter();
         SelectWeapon(currentWeapon);
     }
@@ -55,7 +55,7 @@ public class WeaponSelection : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (SaveManager.instance.weaponsUnlocked[currentWeapon])
+        if (InventoryManager.instance.weaponsUnlocked[currentWeapon])
         {
             play.gameObject.SetActive(true);
             buy.gameObject.SetActive(false);
@@ -82,8 +82,8 @@ public class WeaponSelection : MonoBehaviour
         else if (currentWeapon < 0)
             currentWeapon = transform.childCount - 1;
 
-        SaveManager.instance.currentWeapon = currentWeapon;
-        SaveManager.instance.Save();
+        InventoryManager.instance.currentWeapon = currentWeapon;
+        InventoryManager.instance.Save();
         SelectWeapon(currentWeapon);
     }
 
@@ -92,8 +92,8 @@ public class WeaponSelection : MonoBehaviour
         if (playerCharacter != null && playerCharacter.Currency >= weaponPrices[currentWeapon])
         {
             playerCharacter.Currency -= weaponPrices[currentWeapon];
-            SaveManager.instance.weaponsUnlocked[currentWeapon] = true;
-            SaveManager.instance.Save();
+            InventoryManager.instance.weaponsUnlocked[currentWeapon] = true;
+            InventoryManager.instance.Save();
 
             // Play sound only if AudioSource and Clip are valid
             if (source != null && purchase != null)
