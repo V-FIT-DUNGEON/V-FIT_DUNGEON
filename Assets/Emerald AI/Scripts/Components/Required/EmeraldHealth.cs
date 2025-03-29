@@ -164,10 +164,34 @@ namespace EmeraldAI
         /// </summary>
         void Death()
         {
-            OnDeath?.Invoke(); //Invoke the AI death event.
+            OnDeath?.Invoke(); // Invoke the AI death event.
             EmeraldComponent.AnimationComponent.IsDead = true;
             EmeraldCombatManager.DisableComponents(EmeraldComponent);
             EmeraldCombatManager.EnableRagdoll(EmeraldComponent);
+
+            StartCoroutine(MoveCorpseDown());
+        }
+
+        /// <summary>
+        /// Moves the enemy corpse downward after 3 seconds and destroys the object.
+        /// </summary>
+        IEnumerator MoveCorpseDown()
+        {
+            yield return new WaitForSeconds(3f); // Wait for 3 seconds after death
+            
+            float duration = 5f; // Time to move down
+            float elapsedTime = 0f;
+            Vector3 startPos = transform.position;
+            Vector3 endPos = startPos + Vector3.down * 5f; // Move down 5 units
+
+            while (elapsedTime < duration)
+            {
+                transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            Destroy(gameObject, 3f); // Destroy after moving down
         }
 
         /// <summary>

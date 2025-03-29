@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerRespawnHandler : MonoBehaviour
 {
     public EmeraldAI.EmeraldGeneralTargetBridge playerHealth;
-    public float respawnDelay = 2f; // Time before respawning
+    public float respawnDelay = 5f; // Time before respawning
 
     void Update()
     {
