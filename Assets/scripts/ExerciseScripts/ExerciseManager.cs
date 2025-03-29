@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using Kryz.CharacterStats.Examples;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 
 public class ExerciseManager : MonoBehaviour
 {
@@ -19,6 +21,11 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private float _Vitality = 0f; // Player Vitality
     [SerializeField] private float _Agility = 0f; // Player Agility
     [SerializeField] private float _Endurance = 0f; // Player Endurance
+    private User _user; // user
+    private UserData _userData; // user data
+    private UserStat _userStat; // user stat
+    private OverallExercise _overallExercise; // overall exercise
+
 
     [Header("Exercise Settings")]
     [SerializeField] private GameObject detectionSystem; // Assign the DetectionSystem GameObject
@@ -34,12 +41,21 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private int repsLimit = 12;
     [SerializeField] private int repsCount = 0;
 
+    private ExerciseLog _exerciseLog; // Exercise log for saving data
+    private ExerciseEntry _exerciseEntry; // Exercise entry for saving data
+
+
     [Header("Events")]
     [SerializeField] private UnityEvent<bool> OnCalibrationEvent; // UI feedback for calibration
     [SerializeField] private UnityEvent<int> OnSquatRepsCountEvent; // UI feedback for Squat reps
     [SerializeField] private UnityEvent<int> OnPushUpRepsCountEvent; // UI feedback for Push-Up reps
     [SerializeField] private UnityEvent<int> OnPlankCountEvent; // UI feedback for Plank
     [SerializeField] private UnityEvent<bool> OnFinishExerciseEvent; // UI feedback for exercise completion
+
+    private FileHandler _fileHandler; // File handler for saving data
+    string userFilePath; // File path for user data
+    string exerciseLogFilePath;
+    string jsonData; // JSON data for saving
 
     public static ExerciseManager Instance { get; private set; }
 
@@ -61,8 +77,44 @@ public class ExerciseManager : MonoBehaviour
 
     private void OnEnable()
     {
-        standingHeight = Headset.position.y;
-        lastPosition = Headset.position;
+        _fileHandler = new FileHandler();
+        userFilePath = _fileHandler.GetFilePath("PlayerStats");
+        exerciseLogFilePath = _fileHandler.GetFilePath("ExerciseLogs");
+
+        // Load user data
+        if(!File.Exists(userFilePath))
+        {
+            Debug.Log("New User Created");
+            // Create a new user and initialize data
+            _user = new User();
+            _user.UserDatas = new Dictionary<string, UserData>();
+            _userData = new UserData();
+            _userStat = new UserStat();
+            _overallExercise = new OverallExercise();
+            _userStat.Strength = 0;
+            _userStat.Endurance = 0;
+            _userStat.Agility = 0;
+            _userStat.Vitality = 0;
+            _userStat.Currency = 0;
+            _overallExercise.Pushup = 0;
+            _overallExercise.Squat = 0;
+            _userData.UserStat = _userStat;
+            _userData.OverallExercise = _overallExercise;
+            _user.UserDatas.Add("User1", _userData); // Add user data to the dictionary
+
+            // Serialize the data using Newtonsoft.Json
+            jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
+            _fileHandler.SaveData("PlayerStats", jsonData);
+            
+        }
+        else{
+            Debug.Log("User List already exists");
+            // Load existing user data
+            jsonData = _fileHandler.LoadData("PlayerStats");
+            _user = JsonConvert.DeserializeObject<User>(jsonData);
+            
+        }
+
     }
 
     private void Update()
@@ -309,5 +361,26 @@ public class ExerciseManager : MonoBehaviour
     }
 
     // ---- Save and Load ----
+    public void SaveExerciseData()
+    {
+        _fileHandler = new FileHandler();
+        string fileName = "ExerciseData.json";
+        string filePath = _fileHandler.GetFilePath(fileName);
 
+        // Create a dictionary to hold the exercise data
+        Dictionary<string, object> exerciseData = new Dictionary<string, object>
+        {
+            { "Strength", _Strength },
+            { "Vitality", _Vitality },
+            { "Agility", _Agility },
+            { "Endurance", _Endurance },
+            { "RepsCount", repsCount }
+        };
+
+        // Convert the dictionary to JSON format
+        string jsonData = JsonUtility.ToJson(exerciseData);
+
+        // Save the JSON data to a file
+        _fileHandler.SaveData(fileName, jsonData);
+    }
 }

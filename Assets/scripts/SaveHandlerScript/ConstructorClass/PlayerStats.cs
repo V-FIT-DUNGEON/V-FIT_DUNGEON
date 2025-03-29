@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class User
 {
-    public Dictionary<string, UserData> userData;
+    public Dictionary<string, UserData> UserDatas;
 }
 
 [Serializable]
@@ -18,11 +18,11 @@ public class UserData
 [Serializable]
 public class UserStat
 {
-    public int strength;
-    public int endurance;
-    public int agility;
-    public int vituality;
-    public int currency;
+    public int Strength;
+    public int Endurance;
+    public int Agility;
+    public int Vitality;
+    public int Currency;
 }
 
 [Serializable]
