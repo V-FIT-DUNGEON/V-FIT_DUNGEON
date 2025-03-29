@@ -18,11 +18,11 @@ public class UserData
 [Serializable]
 public class UserStat
 {
-    public int Strength;
-    public int Endurance;
-    public int Agility;
-    public int Vitality;
-    public int Currency;
+    public float Strength;
+    public float Endurance;
+    public float Agility;
+    public float Vitality;
+    public float Currency;
 }
 
 [Serializable]

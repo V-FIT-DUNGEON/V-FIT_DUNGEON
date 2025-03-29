@@ -20343,6 +20343,25 @@ MonoBehaviour:
   _Vitality: 0
   _Agility: 0
   _Endurance: 0
+  _userData:
+    UserStat:
+      Strength: 0
+      Endurance: 0
+      Agility: 0
+      Vitality: 0
+      Currency: 0
+    OverallExercise:
+      Pushup: 0
+      Squat: 0
+  _userStat:
+    Strength: 0
+    Endurance: 0
+    Agility: 0
+    Vitality: 0
+    Currency: 0
+  _overallExercise:
+    Pushup: 0
+    Squat: 0
   detectionSystem: {fileID: 2077332921}
   currentExercise: 0
   currentExerciseState: 0
@@ -20427,6 +20446,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  jsonData: 
 --- !u!114 &2077332926
 MonoBehaviour:
   m_ObjectHideFlags: 0

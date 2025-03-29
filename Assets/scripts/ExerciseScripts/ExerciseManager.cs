@@ -21,10 +21,10 @@ public class ExerciseManager : MonoBehaviour
     [SerializeField] private float _Vitality = 0f; // Player Vitality
     [SerializeField] private float _Agility = 0f; // Player Agility
     [SerializeField] private float _Endurance = 0f; // Player Endurance
-    private User _user; // user
-    private UserData _userData; // user data
-    private UserStat _userStat; // user stat
-    private OverallExercise _overallExercise; // overall exercise
+    [SerializeField] private User _user; // user
+    [SerializeField] private UserData _userData; // user data
+    [SerializeField] private UserStat _userStat; // user stat
+    [SerializeField] private OverallExercise _overallExercise; // overall exercise
 
 
     [Header("Exercise Settings")]
@@ -55,7 +55,7 @@ public class ExerciseManager : MonoBehaviour
     private FileHandler _fileHandler; // File handler for saving data
     string userFilePath; // File path for user data
     string exerciseLogFilePath;
-    string jsonData; // JSON data for saving
+    [SerializeField] string jsonData; // JSON data for saving
 
     public static ExerciseManager Instance { get; private set; }
 
@@ -71,12 +71,7 @@ public class ExerciseManager : MonoBehaviour
         }
 
         // Reassign value
-        ReassignValue();
 
-    }
-
-    private void OnEnable()
-    {
         _fileHandler = new FileHandler();
         userFilePath = _fileHandler.GetFilePath("PlayerStats");
         exerciseLogFilePath = _fileHandler.GetFilePath("ExerciseLogs");
@@ -100,11 +95,21 @@ public class ExerciseManager : MonoBehaviour
             _overallExercise.Squat = 0;
             _userData.UserStat = _userStat;
             _userData.OverallExercise = _overallExercise;
-            _user.UserDatas.Add("User1", _userData); // Add user data to the dictionary
+            _user.UserDatas.Add("User", _userData); // Add user data to the dictionary
 
             // Serialize the data using Newtonsoft.Json
             jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
             _fileHandler.SaveData("PlayerStats", jsonData);
+
+            _userData = _user.UserDatas["User"];
+            _userStat = _userData.UserStat;
+            _overallExercise = _userData.OverallExercise;
+            _Strength = _userStat.Strength;
+            _Vitality = _userStat.Vitality;
+            _Agility = _userStat.Agility;
+            _Endurance = _userStat.Endurance;
+
+            
             
         }
         else{
@@ -112,8 +117,24 @@ public class ExerciseManager : MonoBehaviour
             // Load existing user data
             jsonData = _fileHandler.LoadData("PlayerStats");
             _user = JsonConvert.DeserializeObject<User>(jsonData);
+            _userData = _user.UserDatas["User"];
+            _userStat = _userData.UserStat;
+            _overallExercise = _userData.OverallExercise;
+            _Strength = _userStat.Strength;
+            _Vitality = _userStat.Vitality;
+            _Agility = _userStat.Agility;
+            _Endurance = _userStat.Endurance;
             
         }
+
+        ReassignValue();
+
+    }
+
+    private void OnEnable()
+    {
+        standingHeight = Headset.position.y;
+        lastPosition = Headset.position;
 
     }
 
@@ -140,9 +161,10 @@ public class ExerciseManager : MonoBehaviour
     private void DetectSquat()
     {
         float headY = Headset.position.y;
-
+        //Debug.Log($"Head Y: {headY}");
         switch (currentExerciseState)
         {
+            
             case ExerciseState.Idle:
                 if (headY > standingHeight * 0.95f)
                 {
@@ -244,6 +266,9 @@ public class ExerciseManager : MonoBehaviour
                     
                     break;
             }
+
+            SavePlayerStats();
+
             ResetExercise();
         }
     }
@@ -267,6 +292,7 @@ public class ExerciseManager : MonoBehaviour
     {
         if (calibrated)
         {
+            standingHeight = Headset.position.y;
             isExerciseActive = true;
             detectionSystem.SetActive(true);
             Debug.Log("Exercise Started");
@@ -304,6 +330,8 @@ public class ExerciseManager : MonoBehaviour
                     
                     break;
             }
+
+            SavePlayerStats();
             ResetExercise();
             Debug.Log("Exercise already finished!");
         }
@@ -348,6 +376,11 @@ public class ExerciseManager : MonoBehaviour
             }
             else
             {
+                _PlayerCharacter.Strength.BaseValue = _Strength;
+                _PlayerCharacter.Vitality.BaseValue = _Vitality;
+                _PlayerCharacter.Agility.BaseValue = _Agility;
+                _PlayerCharacter.Endurance.BaseValue = _Endurance;
+
                 _Strength = _PlayerCharacter.Strength.BaseValue;
                 _Vitality = _PlayerCharacter.Vitality.BaseValue;
                 _Agility = _PlayerCharacter.Agility.BaseValue;
@@ -382,5 +415,18 @@ public class ExerciseManager : MonoBehaviour
 
         // Save the JSON data to a file
         _fileHandler.SaveData(fileName, jsonData);
+    }
+
+    public void SavePlayerStats()
+    {
+        _userData = _user.UserDatas["User"];
+        _userStat = _userData.UserStat;
+        _overallExercise = _userData.OverallExercise;
+        _userStat.Strength = _Strength;
+        _userStat.Vitality = _Vitality;
+        _userStat.Agility = _Agility;
+        _userStat.Endurance = _Endurance;
+        jsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
+        _fileHandler.SaveData("PlayerStats", jsonData);
     }
 }

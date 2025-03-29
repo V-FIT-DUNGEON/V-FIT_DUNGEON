@@ -59,14 +59,16 @@ public class FileHandler
                 Directory.CreateDirectory(directoryPath);
             }
 
-            string fileData = JsonUtility.ToJson(data, true); // Pretty print for better readability
+            Debug.Log(data);
+            //string fileData = JsonUtility.ToJson(data, true); // Pretty print for better readability
 
             using FileStream stream = new(filePath, FileMode.Create);
             using StreamWriter writer = new(stream);
     
             try
             {
-                writer.Write(fileData);
+                Debug.Log(data);
+                writer.Write(data);
                 Debug.Log($"<b><color=#00E69C>[Save]</color></b> Saved file data at: {filePath}");
             }
             catch (Exception e)
