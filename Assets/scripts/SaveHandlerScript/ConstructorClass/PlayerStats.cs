@@ -13,6 +13,19 @@ public class UserData
 {
     public UserStat UserStat;
     public OverallExercise OverallExercise;
+
+    public float GetStat(string statName)
+    {
+        return statName switch
+        {
+            "Strength" => UserStat.Strength,
+            "Endurance" => UserStat.Endurance,
+            "Agility" => UserStat.Agility,
+            "Vitality" => UserStat.Vitality,
+            "Currency" => UserStat.Currency,
+            _ => 0f
+        };
+    }
 }
 
 [Serializable]

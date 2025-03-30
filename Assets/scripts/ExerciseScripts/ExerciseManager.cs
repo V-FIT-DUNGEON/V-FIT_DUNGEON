@@ -76,7 +76,7 @@ public class ExerciseManager : MonoBehaviour
         // Reassign value
 
         _fileHandler = new FileHandler();
-        userFilePath = _fileHandler.GetFilePath("PlayerStats");
+        userFilePath = _fileHandler.GetFilePath("PlayerAttributeStats");
         exerciseLogFilePath = _fileHandler.GetFilePath("ExerciseLogs");
 
         // Load userstat data
@@ -102,7 +102,7 @@ public class ExerciseManager : MonoBehaviour
 
             // Serialize the data using Newtonsoft.Json
             playerStatJsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
-            _fileHandler.SaveData("PlayerStats", playerStatJsonData);
+            _fileHandler.SaveData("PlayerAttributeStats", playerStatJsonData);
 
             // set stats
             _userData = _user.UserDatas["User"];
@@ -119,7 +119,7 @@ public class ExerciseManager : MonoBehaviour
         else{
             Debug.Log("User List already exists");
             // Load existing user data
-            playerStatJsonData = _fileHandler.LoadData("PlayerStats");
+            playerStatJsonData = _fileHandler.LoadData("PlayerAttributeStats");
             _user = JsonConvert.DeserializeObject<User>(playerStatJsonData);
             _userData = _user.UserDatas["User"];
             _userStat = _userData.UserStat;
@@ -301,7 +301,7 @@ public class ExerciseManager : MonoBehaviour
 
         public void FinishExerciseEarly()
     {
-        if (isExerciseActive == true)
+        if (isExerciseActive == true && repsCount > 0)
         {
             Debug.Log("Exercise Finished Early!");
             switch (currentExercise)
@@ -458,7 +458,7 @@ public class ExerciseManager : MonoBehaviour
         _overallExercise.Squat = AllSquat;
 
         playerStatJsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
-        _fileHandler.SaveData("PlayerStats", playerStatJsonData);
+        _fileHandler.SaveData("PlayerAttributeStats", playerStatJsonData);
     }
 
     public void SaveExerciseLog()

@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2108654815275178614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2547428946783273676}
+  - component: {fileID: 5856405910254384401}
+  - component: {fileID: 7266476461886987619}
+  - component: {fileID: 6320123390259784742}
+  - component: {fileID: 3797103339619659630}
+  m_Layer: 0
+  m_Name: DetectionSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2547428946783273676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108654815275178614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6390966, y: 2.3736658, z: -1.685279}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5856405910254384401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108654815275178614}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5b6d3ed8bb1d3428a3a6b278cf654c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller_R: {fileID: 0}
+  Grabber_R: {fileID: 0}
+  Controller_L: {fileID: 0}
+  Grabber_L: {fileID: 0}
+  Headset: {fileID: 0}
+  JoyVibration_Amplitude: 0.5
+  JoyVibration_Frequency: 0.1
+  JoyVibration_Duration: 0.1
+  SelectedJoy: {fileID: 0}
+  Grabbering: {fileID: 0}
+  Border: 20
+  scailer: 1000
+  StillnessFactor: 0.6
+  PosUpdateDelay: 0.2
+  CState: 2
+  previousJoyPos: {x: 0, y: 0, z: 0}
+  CurrentJoyPos: {x: 0, y: 0, z: 0}
+  CurrentHeadsetPos: {x: 0, y: 0, z: 0}
+  DistantMeterPos: {fileID: 0}
+  M_MaxDist: 0
+  M_MinDist: 0
+  MaxDistPoint: {x: 0, y: 0, z: 0}
+  C_Max_JoyDist: 0
+  P_Max_JoyDist: 0
+  MinDistPoint: {x: 0, y: 0, z: 0}
+  C_Min_JoyDist: 0
+  P_Min_JoyDist: 0
+  count_threshold: 3
+  count_Away: 0
+  count_Closer: 0
+  count_Still: 0
+  OnEventInt_InOut:
+    m_PersistentCalls:
+      m_Calls: []
+  diff: 0
+  countTime: 0
+--- !u!114 &7266476461886987619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108654815275178614}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a74a2fa365d5074f9ab560eebc0b7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller_R: {fileID: 0}
+  Grabber_R: {fileID: 0}
+  Controller_L: {fileID: 0}
+  Grabber_L: {fileID: 0}
+  Headset: {fileID: 0}
+  ControllerDetector: {fileID: 5856405910254384401}
+  SelectedJoy: {fileID: 0}
+  Grabbering: {fileID: 0}
+  CalibrationThreshold: 0.7
+  CalibrationTime: 2
+  MovingBorder: 10
+  scailer: 1000
+  calibPos: {x: 0, y: 0, z: 0}
+  changedDist: 0
+  countTime: 0
+  currentState: 1
+--- !u!114 &6320123390259784742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108654815275178614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe6e3ebf00c3724983f14647e855017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Headset: {fileID: 0}
+  _PlayerObject: {fileID: 0}
+  _PlayerCharacter: {fileID: 0}
+  _Strength: 0
+  _Vitality: 0
+  _Agility: 0
+  _Endurance: 0
+  _userData:
+    UserStat:
+      Strength: 0
+      Endurance: 0
+      Agility: 0
+      Vitality: 0
+      Currency: 0
+    OverallExercise:
+      Pushup: 0
+      Squat: 0
+  _userStat:
+    Strength: 0
+    Endurance: 0
+    Agility: 0
+    Vitality: 0
+    Currency: 0
+  _overallExercise:
+    Pushup: 0
+    Squat: 0
+  AllSquat: 0
+  AllPushUp: 0
+  detectionSystem: {fileID: 2108654815275178614}
+  currentExercise: 0
+  currentExerciseState: 0
+  isExerciseActive: 0
+  calibrated: 0
+  standingHeight: 0
+  lastPosition: {x: 0, y: 0, z: 0}
+  repsLimit: 12
+  repsCount: 0
+  OnCalibrationEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3797103339619659630}
+        m_TargetAssemblyTypeName: PreExerciseCalibration, Assembly-CSharp
+        m_MethodName: CaseHandler
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnSquatRepsCountEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: SetCountReps
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPushUpRepsCountEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: SetCountReps
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlankCountEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFinishExerciseEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: FinishWorkout
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: FinishWorkout
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerStatJsonData: 
+  exerciseLogJsonData: 
+--- !u!114 &3797103339619659630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108654815275178614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424284e560509fa48afe481047e7f263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller_R: {fileID: 0}
+  Grabber_R: {fileID: 0}
+  Controller_L: {fileID: 0}
+  Grabber_L: {fileID: 0}
+  Headset: {fileID: 0}
+  _ExerciseManager: {fileID: 6320123390259784742}
+  scailer: 1000
+  PosChangeThreshold: 5
+  CalibrationTime: 2
+  isCalibrating: 0
+  countTime: 0
+  calibPos: {x: 0, y: 0, z: 0}
