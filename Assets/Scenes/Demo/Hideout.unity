@@ -399,7 +399,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1823637333}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2134523317}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
@@ -1192,6 +1192,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2086909993549146809, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1107633189}
+    - target: {fileID: 2086909993549146809, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: SelectExercise
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172233043235754261, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2838343679233321691, guid: fcbb3f559570b3841876b7003596bb32,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1255,7 +1270,7 @@ PrefabInstance:
     - target: {fileID: 3064192860734392221, guid: fcbb3f559570b3841876b7003596bb32,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0012423412
+      value: 0.00073798257
       objectReference: {fileID: 0}
     - target: {fileID: 3064192860734392221, guid: fcbb3f559570b3841876b7003596bb32,
         type: 3}
@@ -1296,6 +1311,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026324482497348251, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1107633189}
+    - target: {fileID: 5026324482497348251, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SelectExercise
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445435872374049183, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1107633189}
+    - target: {fileID: 5445435872374049183, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SelectExercise
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784425103492418629, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1107633189}
+    - target: {fileID: 6784425103492418629, guid: fcbb3f559570b3841876b7003596bb32,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SelectExercise
       objectReference: {fileID: 0}
     - target: {fileID: 6890550253987921257, guid: fcbb3f559570b3841876b7003596bb32,
         type: 3}
@@ -3975,12 +4020,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1698868401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7652958012238516145, guid: a19d2ed69aa8e3148878b84d4be5cdac,
-    type: 3}
-  m_PrefabInstance: {fileID: 1823637333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1754260074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6539515668218565133, guid: a19d2ed69aa8e3148878b84d4be5cdac,
@@ -5012,7 +5051,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _PlayerObject
       value: 
-      objectReference: {fileID: 1698868401}
+      objectReference: {fileID: 2134523317}
     - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
         type: 3}
       propertyPath: _PlayerCharacter
@@ -5541,6 +5580,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105513139}
   m_CullTransparentMesh: 1
+--- !u!1 &2134523317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 970058259963654216, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823637333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &203419705773666733
 RectTransform:
   m_ObjectHideFlags: 0
