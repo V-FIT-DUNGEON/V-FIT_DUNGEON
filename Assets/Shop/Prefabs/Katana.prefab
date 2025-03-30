@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5952782716470965823, guid: a7d6b8c7104034c459c257fce0277176,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -143,5 +148,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.026099205, y: 1.091151, z: 0.042354994}
-  m_Center: {x: -0.001921773, y: 0.3505566, z: -0.0007808469}
+  m_Size: {x: 0.03, y: 0.275, z: 0.05}
+  m_Center: {x: -0.001921773, y: -0.0505566, z: -0.0007808469}

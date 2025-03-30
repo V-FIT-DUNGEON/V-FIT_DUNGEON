@@ -15,6 +15,10 @@ public class WeaponStatRequirement : MonoBehaviour
     private bool isHoldingWeapon = false;
     private StatModifier agilityPenaltyModifier;
 
+    [Header("Hand Tracking")]
+    public Transform grabberTransform; // Assign the hand/grabber transform here
+    public float maxGrabDistance = 1f; // Max distance before it counts as released
+
     private void Awake()
     {
         ReassignPlayerObject();
@@ -36,60 +40,57 @@ public class WeaponStatRequirement : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (isHoldingWeapon && grabberTransform != null)
+        {
+            float distance = Vector3.Distance(grabberTransform.position, transform.position);
+            if (distance > maxGrabDistance)
+            {
+                Debug.Log($"Weapon too far from hand ({distance}m). Releasing.");
+                OnReleaseWeapon();
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collided object is named "Grabber"
         if (other.gameObject.name == "Grabber")
         {
-            // Move up six levels in the hierarchy
-            Transform playerTransform = other.transform;
-            for (int i = 0; i < 6; i++)
+            Transform playerTransform = GetParentPlayerObject(other.transform);
+            if (playerTransform != null && playerTransform.gameObject == PlayerObject)
             {
-                if (playerTransform.parent != null)
-                    playerTransform = playerTransform.parent;
-                else
-                    break; // Stop if there's no more parent
-            }
-
-            // Check if we reached the correct PlayerObject
-            if (playerTransform.gameObject == PlayerObject)
-            {
+                grabberTransform = other.transform; // Store grabber reference
                 Debug.Log("Correct Player detected, grabbing weapon.");
                 OnGrabWeapon();
-            }
-            else
-            {
-                Debug.Log("PlayerController not found after moving up.");
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Check if the collided object is named "Grabber"
         if (other.gameObject.name == "Grabber")
         {
-            // Move up six levels in the hierarchy
-            Transform playerTransform = other.transform;
-            for (int i = 0; i < 6; i++)
+            Transform playerTransform = GetParentPlayerObject(other.transform);
+            if (playerTransform != null && playerTransform.gameObject == PlayerObject)
             {
-                if (playerTransform.parent != null)
-                    playerTransform = playerTransform.parent;
-                else
-                    break; // Stop if there's no more parent
-            }
-
-            // Check if we reached the correct PlayerObject
-            if (playerTransform.gameObject == PlayerObject)
-            {
-                Debug.Log("Correct Player detected, releasing weapon.");
-                OnReleaseWeapon();
-            }
-            else
-            {
-                Debug.Log("PlayerController not found after moving up.");
+                Debug.Log("Hand exited trigger, but checking distance first...");
+                // We don't release immediately; we wait for Update() to verify distance.
             }
         }
+    }
+
+    private Transform GetParentPlayerObject(Transform child)
+    {
+        Transform parent = child;
+        for (int i = 0; i < 6; i++)
+        {
+            if (parent.parent != null)
+                parent = parent.parent;
+            else
+                break;
+        }
+        return parent;
     }
 
     public bool CanEquip()
@@ -111,10 +112,7 @@ public class WeaponStatRequirement : MonoBehaviour
 
         if (!CanEquip())
         {
-            // Remove any previous penalty to prevent stacking
             playerCharacter.Agility.RemoveAllModifiersFromSource(this);
-
-            // Apply a flat penalty so Agility is reduced to -9
             float penaltyValue = -9 - playerCharacter.Agility.BaseValue;
             agilityPenaltyModifier = new StatModifier(penaltyValue, StatModType.Flat, this);
             playerCharacter.Agility.AddModifier(agilityPenaltyModifier);
@@ -129,13 +127,12 @@ public class WeaponStatRequirement : MonoBehaviour
     {
         if (playerCharacter == null || !isHoldingWeapon) return;
 
-        // Remove the agility penalty when releasing the weapon
         playerCharacter.Agility.RemoveAllModifiersFromSource(this);
         agilityPenaltyModifier = null;
+        isHoldingWeapon = false;
+        grabberTransform = null;
 
         Debug.Log($"Agility restored to {playerCharacter.Agility.Value}");
-
-        isHoldingWeapon = false;
     }
 
     public void ReassignPlayerObject()
@@ -146,7 +143,7 @@ public class WeaponStatRequirement : MonoBehaviour
             Debug.LogError("PlayerObject not found! Ensure it has the 'Player' tag.");
         }
         else
-        {     
+        {
             playerCharacter = PlayerObject.GetComponent<Character>();
             if (playerCharacter == null)
             {

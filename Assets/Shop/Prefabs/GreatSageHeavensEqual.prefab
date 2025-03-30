@@ -11,32 +11,32 @@ PrefabInstance:
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.9694905
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.47
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -65.02972
       objectReference: {fileID: 0}
     - target: {fileID: 6406849537675090227, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
         type: 3}
@@ -82,6 +82,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GreatSageHeavensEqual
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406849537675090236, guid: 4dd82e4ae4f6ade4da9e04a300848ed1,
+        type: 3}
+      propertyPath: GrabPhysics
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -139,6 +144,8 @@ MonoBehaviour:
   RequiredVitality: 20
   RequiredEndurance: 30
   PlayerObject: {fileID: 0}
+  grabberTransform: {fileID: 0}
+  maxGrabDistance: 0.5
 --- !u!136 &565289038989139849
 CapsuleCollider:
   m_ObjectHideFlags: 0
