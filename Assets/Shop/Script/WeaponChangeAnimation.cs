@@ -3,8 +3,8 @@ using UnityEngine;
 public class WeaponChangeAnimation : MonoBehaviour
 {
     [SerializeField] private Transform rootObject; // Assign the root object in the Inspector
-    private Vector3 initialPosition;
-    private Vector3 finalPosition;
+    [SerializeField] private Vector3 initialPosition;
+    [SerializeField] private Vector3 finalPosition;
 
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class WeaponChangeAnimation : MonoBehaviour
         // Auto-assign finalPosition based on the root object's position
         if (rootObject != null)
         {
-            finalPosition = rootObject.position + new Vector3(0, 0, 0.65f);
+            finalPosition = rootObject.position + new Vector3(0f, 0f, -0.325f);
         }
         else
         {
