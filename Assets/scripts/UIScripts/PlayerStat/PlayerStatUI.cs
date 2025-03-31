@@ -19,21 +19,34 @@ public class PlayerStatUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI agilityText;
     [SerializeField] private TextMeshProUGUI currencyText;
 
+    [Header("Player Overall UI")]
+    [SerializeField] private TextMeshProUGUI pushupText;
+    [SerializeField] private TextMeshProUGUI squatText;
+
     [SerializeField] string playerStatJsonData;
     [SerializeField] string userFilePath;
+    [SerializeField] UserData userDatas;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         userFilePath = _fileHandler.GetFilePath("PlayerAttributeStats");
         if(File.Exists(userFilePath))
         {
-            playerStatJsonData = _fileHandler.LoadData(userFilePath);
+            playerStatJsonData = _fileHandler.LoadData("PlayerAttributeStats");
             userData = JsonConvert.DeserializeObject<User>(playerStatJsonData);
-            strengthText.text = userData.UserDatas["UserStat"].GetStat("Strength").ToString();
-            enduranceText.text = userData.UserDatas["UserStat"].GetStat("Endurance").ToString();
-            agilityText.text = userData.UserDatas["UserStat"].GetStat("Agility").ToString();
-            vitalityText.text = userData.UserDatas["UserStat"].GetStat("Vitality").ToString();
-            currencyText.text = userData.UserDatas["UserStat"].GetStat("Currency").ToString();
+            userDatas = userData.UserDatas["User"];
+
+            //set player stat UI
+            strengthText.text = userDatas.GetStat("Strength").ToString();
+            enduranceText.text = userDatas.GetStat("Endurance").ToString();
+            agilityText.text = userDatas.GetStat("Agility").ToString();
+            vitalityText.text = userDatas.GetStat("Vitality").ToString();
+            currencyText.text = userDatas.GetStat("Currency").ToString();
+
+            //set player overall UI
+            pushupText.text = userDatas.GetOverallExercise("Pushup").ToString();
+            squatText.text = userDatas.GetOverallExercise("Squat").ToString();
+
         }
         
     }
@@ -48,16 +61,16 @@ public class PlayerStatUI : MonoBehaviour
     {
         if (isActive)
         {
-            strengthText.text = userData.UserDatas["UserStat"].GetStat("Strength").ToString();
-            enduranceText.text = userData.UserDatas["UserStat"].GetStat("Endurance").ToString();
-            agilityText.text = userData.UserDatas["UserStat"].GetStat("Agility").ToString();
-            vitalityText.text = userData.UserDatas["UserStat"].GetStat("Vitality").ToString();
-            currencyText.text = userData.UserDatas["UserStat"].GetStat("Currency").ToString();
+            strengthText.text = userDatas.GetStat("Strength").ToString();
+            enduranceText.text = userDatas.GetStat("Endurance").ToString();
+            agilityText.text = userDatas.GetStat("Agility").ToString();
+            vitalityText.text = userDatas.GetStat("Vitality").ToString();
+            currencyText.text = userDatas.GetStat("Currency").ToString();
             
         }
         else
         {
-            playerStatUI.SetActive(false);
+            //playerStatUI.SetActive(false);
         }
     }
 

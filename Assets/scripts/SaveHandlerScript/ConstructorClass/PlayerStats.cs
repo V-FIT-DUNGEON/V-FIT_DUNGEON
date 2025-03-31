@@ -26,6 +26,16 @@ public class UserData
             _ => 0f
         };
     }
+
+    public float GetOverallExercise(string exerciseName)
+    {
+        return exerciseName switch
+        {
+            "Pushup" => OverallExercise.Pushup,
+            "Squat" => OverallExercise.Squat,
+            _ => 0f
+        };
+    }
 }
 
 [Serializable]
