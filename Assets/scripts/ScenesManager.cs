@@ -22,19 +22,14 @@ public class ScenesManager : MonoBehaviour
         //Debug.Log("Scene Loaded: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void LoadSceneinteraction()
+    public void LoadSceneHideout()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
-    public void LoadSceneUITesting()
+    public void LoadSceneDungeon()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-    }
-
-    public void LoadSceneDungeonTest()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
     }
 
     public IEnumerator FadeThenLoadScene() {

@@ -9,7 +9,7 @@ namespace Kryz.CharacterStats.Examples
         public CharacterStat Endurance;
         public CharacterStat Vitality;
 
-        private float currency;
+        [SerializeField] private float currency;
         public float Currency
         {
             get => currency;
