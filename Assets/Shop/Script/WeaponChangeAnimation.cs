@@ -13,7 +13,7 @@ public class WeaponChangeAnimation : MonoBehaviour
         // Auto-assign finalPosition based on the root object's position
         if (rootObject != null)
         {
-            finalPosition = rootObject.position + new Vector3(0, 0, 0.65f);
+            finalPosition = rootObject.position + new Vector3(0f, 0f, -0.325f);
         }
         else
         {
