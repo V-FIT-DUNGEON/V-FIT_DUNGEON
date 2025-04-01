@@ -9252,6 +9252,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
+    - target: {fileID: -5496471929336761017, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: scatterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16961,6 +16966,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
+    - target: {fileID: -5496471929336761017, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: scatterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -74643,6 +74653,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -598571887942424275, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
+      propertyPath: scatterRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -598571887942424275, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
       propertyPath: dropItemPrefabs.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -74806,12 +74821,12 @@ PrefabInstance:
     - target: {fileID: 2661810854395520724, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
       propertyPath: DamageSettingsFoldout
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2661810854395520724, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
       propertyPath: WeaponType1SettingsFoldout
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2661810854395520724, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
@@ -80816,6 +80831,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
+    - target: {fileID: -5496471929336761017, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: scatterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -85951,6 +85971,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
+    - target: {fileID: -5496471929336761017, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: scatterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -89991,6 +90016,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
+    - target: {fileID: -5496471929336761017, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: scatterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -103326,6 +103356,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 970058259963654216, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1398256521908648034, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
       propertyPath: m_LocalPosition.x

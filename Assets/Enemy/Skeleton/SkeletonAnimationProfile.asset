@@ -177,7 +177,7 @@ MonoBehaviour:
   Type1Animations:
     IdleList: []
     IdleStationary:
-      AnimationSpeed: 3
+      AnimationSpeed: 1
       AnimationClip: {fileID: 7400000, guid: 9c1839e7dbc24d0881f0b8d884049da5, type: 3}
       Mirror: 0
     IdleWarning:
@@ -261,7 +261,7 @@ MonoBehaviour:
       AnimationClip: {fileID: 7400000, guid: e348d1a483014ea29fef7b7a95cb79bf, type: 3}
       Mirror: 0
     Stunned:
-      AnimationSpeed: 1
+      AnimationSpeed: 1.5
       AnimationClip: {fileID: 7400000, guid: 412009a7ec524daba472eb6a75ccb0f4, type: 3}
       Mirror: 0
     CoverIdle:

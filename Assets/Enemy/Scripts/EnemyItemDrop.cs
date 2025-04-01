@@ -5,7 +5,7 @@ public class EnemyItemDrop : MonoBehaviour
 {
     [Header("Item Drops")]
     public GameObject[] dropItemPrefabs; // Array of item prefabs
-    public float scatterRadius = 2f; // How far items can scatter from the enemy's position
+    public float scatterRadius = 1f; // How far items can scatter from the enemy's position
 
     private EmeraldHealth enemyHealth;
 
