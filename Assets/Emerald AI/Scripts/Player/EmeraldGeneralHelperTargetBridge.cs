@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,10 +9,9 @@ namespace EmeraldAI
 {
     [RequireComponent(typeof(TargetPositionModifier))]
     [RequireComponent(typeof(FactionExtension))]
-    [HelpURL("https://black-horizon-studios.gitbook.io/emerald-ai-wiki/getting-started/setting-up-a-player-with-emerald-ai")]
-    public class EmeraldGeneralTargetBridge : MonoBehaviour, IDamageable, ICombat
+    public class EmeraldGeneralHelperTargetBridge : MonoBehaviour, IDamageable, ICombat
     {
-        public int StartingHealth = 500;
+        public int StartingHealth = 0;
         public bool Immortal = false;
         public UnityEvent OnTakeDamage;
         public UnityEvent OnDeath;
@@ -37,24 +36,9 @@ namespace EmeraldAI
         void Start()
         {
             character = GetComponent<Character>();
-            previousvitality = (int)character.Vitality.Value;
-            StartingHealth += previousvitality;
-            Health = StartingHealth; // Initialize health with vitality bonus
-            healRate = 1 + (0.01f * character.Vitality.Value); // Heal rate formula
-
+            StartingHealth = 0;
             m_TargetPositionModifier = GetComponent<TargetPositionModifier>();
             m_Collider = GetComponent<Collider>();
-        }
-
-        void Update()
-        {
-            if (previousvitality != (int)character.Vitality.Value && character.Vitality.Value >= 0)
-            {
-                StartingHealth = 500; // Reset base health
-                previousvitality = (int)character.Vitality.Value;
-                StartingHealth += previousvitality; // Update health with new vitality
-                Health = StartingHealth; // Reset health to max
-            }
         }
 
         public void Damage(int DamageAmount, Transform AttackerTransform = null, int RagdollForce = 100, bool CriticalHit = false)

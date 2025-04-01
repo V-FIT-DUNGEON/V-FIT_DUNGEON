@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4710858044147923488}
   - component: {fileID: 1962183843546145251}
   - component: {fileID: 77914672182386563}
-  - component: {fileID: 386775069577620369}
+  - component: {fileID: 6431978777966504553}
+  - component: {fileID: 1647842197464639743}
   m_Layer: 9
   m_Name: PlayerHelper
   m_TagString: Player
@@ -141,7 +142,7 @@ MonoBehaviour:
   HideSettingsFoldout: 0
   FactionFoldout: 1
   CurrentFaction: 2
---- !u!114 &386775069577620369
+--- !u!114 &6431978777966504553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8601896015820892276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
+  m_Script: {fileID: 11500000, guid: 995e76f0a86551f489a6945c853e02c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 0
@@ -165,4 +166,29 @@ MonoBehaviour:
   HideSettingsFoldout: 0
   HealthSettingsFoldout: 1
   <Health>k__BackingField: 0
+  <ActiveEffects>k__BackingField: []
+--- !u!114 &1647842197464639743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601896015820892276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealth: 500
+  Immortal: 0
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  DebugLogDeath: 1
+  HideSettingsFoldout: 0
+  HealthSettingsFoldout: 1
+  <Health>k__BackingField: 500
   <ActiveEffects>k__BackingField: []

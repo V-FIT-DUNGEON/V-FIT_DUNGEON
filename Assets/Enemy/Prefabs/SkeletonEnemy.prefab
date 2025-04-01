@@ -1506,8 +1506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c01ae08069745469b6909752a018cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropItemPrefab: {fileID: 7004075612973416732, guid: b8a1820c88b439346a1e9779ba7a170d,
-    type: 3}
+  dropItemPrefabs:
+  - {fileID: 131656093673733343, guid: 0db7b268604e8574fad815367318a4fa, type: 3}
+  scatterRadius: 2
 --- !u!1 &4459786970562640936
 GameObject:
   m_ObjectHideFlags: 0
