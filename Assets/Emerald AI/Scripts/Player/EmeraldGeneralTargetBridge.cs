@@ -26,10 +26,11 @@ namespace EmeraldAI
         [field: SerializeField] public List<string> ActiveEffects { get; set; }
 
         private Character character;
+        private PlayerTargetHelperChar playerTargetHelperChar;
         private float healRate;
         private Coroutine regenCoroutine;
         private float lastDamageTime;
-        private int previousvitality;
+        [SerializeField] private float previousvitality;
 
         TargetPositionModifier m_TargetPositionModifier;
         Collider m_Collider;
@@ -37,8 +38,10 @@ namespace EmeraldAI
         void Start()
         {
             character = GetComponent<Character>();
-            // previousvitality = (int)character.Vitality.Value;
-            // StartingHealth += previousvitality;
+            playerTargetHelperChar = GetComponent<PlayerTargetHelperChar>();
+            previousvitality = character.Vitality.Value;
+            Debug.Log(previousvitality);
+            StartingHealth += (int)previousvitality;
             Health = StartingHealth; // Initialize health with vitality bonus
             healRate = 1 + (0.01f * character.Vitality.Value); // Heal rate formula
 
@@ -48,13 +51,16 @@ namespace EmeraldAI
 
         void Update()
         {
-            // if (previousvitality != (int)character.Vitality.Value && character.Vitality.Value >= 0)
-            // {
-            //     StartingHealth = 500; // Reset base health
-            //     previousvitality = (int)character.Vitality.Value;
-            //     StartingHealth += previousvitality; // Update health with new vitality
-            //     Health = StartingHealth; // Reset health to max
-            // }
+            if (character == null) return; // Ensure character is not null
+            {
+                if (previousvitality != (int)character.Vitality.Value && character.Vitality.Value >= 0)
+                {
+                    StartingHealth = 500; // Reset base health
+                    previousvitality = (int)character.Vitality.Value;
+                    StartingHealth += (int)previousvitality; // Update health with new vitality
+                    Health = StartingHealth; // Reset health to max
+                }
+            }
         }
 
         public void Damage(int DamageAmount, Transform AttackerTransform = null, int RagdollForce = 100, bool CriticalHit = false)
