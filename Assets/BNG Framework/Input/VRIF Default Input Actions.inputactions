@@ -421,34 +421,12 @@
                 },
                 {
                     "name": "",
-                    "id": "e870334b-3dcf-4446-80da-692913c748ee",
+                    "id": "73a6d359-40f8-4581-9827-91d1d6b66a4e",
                     "path": "<XRController>{LeftHand}/thumbstickClicked",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Locomotion Mode Toggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "73a6d359-40f8-4581-9827-91d1d6b66a4e",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fa1e2100-b0e0-4e5c-822e-3df406ac00fd",
-                    "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Slow Time",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -458,7 +436,7 @@
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Generic XR Controller",
                     "action": "Slow Time",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -470,6 +448,17 @@
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d92325f2-e0a7-4742-9af8-7ded455544b2",
+                    "path": "<XRController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
