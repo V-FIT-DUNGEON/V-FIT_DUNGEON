@@ -139,7 +139,7 @@ public class ExerciseManager : MonoBehaviour
             Debug.Log("New Exercise Log Created");
             // Create a new exercise log
             _exerciseLog = new ExerciseLog();
-            _exerciseLog.ExerciseLogList = new List<ExerciseEntry>();
+            _exerciseLog.ExerciseLogList = new Dictionary<string, List<ExerciseEntry>>();
             exerciseLogJsonData = JsonConvert.SerializeObject(_exerciseLog, Formatting.Indented);
             _fileHandler.SaveData("ExerciseLogs", exerciseLogJsonData);
         }
@@ -463,15 +463,25 @@ public class ExerciseManager : MonoBehaviour
 
     public void SaveExerciseLog()
     {
+        string currentDate = System.DateTime.Now.ToString("yyyy-MM-dd"); // or your preferred format
+
         _exerciseEntry = new ExerciseEntry
         {
             ExerciseName = currentExercise.ToString(),
             Reps = repsCount,
-            Date = System.DateTime.Now.ToString("yyyy-MM-dd"),
             Time = System.DateTime.Now.ToString("HH:mm:ss")
         };
 
-        _exerciseLog.ExerciseLogList.Add(_exerciseEntry);
+        // Ensure the list for today's date exists
+        if (!_exerciseLog.ExerciseLogList.ContainsKey(currentDate))
+        {
+            _exerciseLog.ExerciseLogList[currentDate] = new List<ExerciseEntry>();
+        }
+
+        // Add the new entry to the top of today's log list
+        _exerciseLog.ExerciseLogList[currentDate].Insert(0, _exerciseEntry);
+
+        // Serialize and save
         exerciseLogJsonData = JsonConvert.SerializeObject(_exerciseLog, Formatting.Indented);
         _fileHandler.SaveData("ExerciseLogs", exerciseLogJsonData);
     }

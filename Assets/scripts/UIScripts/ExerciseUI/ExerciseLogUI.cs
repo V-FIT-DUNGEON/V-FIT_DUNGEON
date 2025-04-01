@@ -29,24 +29,38 @@ public class ExerciseLogUI : MonoBehaviour
         
     }
 
-        void OnEnable()
+    void OnEnable()
     {
         exerciseLogFilePath = _fileHandler.GetFilePath("ExerciseLogs");
-        if(File.Exists(exerciseLogFilePath))
+        if (File.Exists(exerciseLogFilePath))
         {
             exerciseLogJsonData = _fileHandler.LoadData("ExerciseLogs");
             exerciseLog = JsonConvert.DeserializeObject<ExerciseLog>(exerciseLogJsonData);
 
-            foreach (var entry in exerciseLog.ExerciseLogList)
+            foreach (var dateGroup in exerciseLog.ExerciseLogList)
             {
-                GameObject item = Instantiate(entryPrefab, contentParent);
-                item.transform.Find("ExerciseNameText").GetComponent<TMP_Text>().text = entry.ExerciseName;
-                item.transform.Find("RepsText").GetComponent<TMP_Text>().text = "Reps: " + entry.Reps.ToString();
-                item.transform.Find("DateText").GetComponent<TMP_Text>().text = entry.Date;
-                item.transform.Find("TimeText").GetComponent<TMP_Text>().text = entry.Time;
-            }
+                string date = dateGroup.Key;
+                List<ExerciseEntry> entries = dateGroup.Value;
 
+                foreach (var entry in entries)
+                {
+                    GameObject item = Instantiate(entryPrefab, contentParent);
+                    item.transform.Find("ExerciseNameText").GetComponent<TMP_Text>().text = entry.ExerciseName;
+                    item.transform.Find("RepsText").GetComponent<TMP_Text>().text = "Reps: " + entry.Reps.ToString();
+                    item.transform.Find("DateText").GetComponent<TMP_Text>().text = date; // Use key as date
+                    item.transform.Find("TimeText").GetComponent<TMP_Text>().text = entry.Time;
+                }
+            }
         }
-        
     }
+
+    public void OnDisable()
+    {
+        foreach (Transform child in contentParent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+
 }
