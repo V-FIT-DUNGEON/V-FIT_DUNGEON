@@ -7954,7 +7954,7 @@ MonoBehaviour:
     type: 3}
   StrafeSpeed: 2.5
   StrafeSprintSpeed: 5
-  JumpForce: 3
+  JumpForce: 4
   JumpInput: 00000000
   JumpAction: {fileID: 3598031526004978682, guid: e39f4b35a6db18348b41eb0262520e69,
     type: 3}
@@ -58247,7 +58247,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7652958012238516145}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b00acd070e37747b9e19b276d11877, type: 3}
   m_Name: 
@@ -71112,6 +71112,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: -17
       objectReference: {fileID: 0}
+    - target: {fileID: 2320029457236896578, guid: 13e5f724e3b5f6d4baa6a0d90a4a6e7a,
+        type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2745557699553384678, guid: 13e5f724e3b5f6d4baa6a0d90a4a6e7a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -71186,6 +71191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530371571894931492, guid: 13e5f724e3b5f6d4baa6a0d90a4a6e7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8803241746397601326, guid: 13e5f724e3b5f6d4baa6a0d90a4a6e7a,
         type: 3}
