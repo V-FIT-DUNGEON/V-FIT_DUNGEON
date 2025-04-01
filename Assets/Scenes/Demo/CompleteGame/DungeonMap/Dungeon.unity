@@ -9252,26 +9252,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: PlayerTag
-      value: VRPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: HideSettingsFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 2560
-      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9326,31 +9306,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015716065315505772, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: CautiousSeconds
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: StayNearStartingArea
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: BehaviorSettingsFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: MaxDistanceFromStartingArea
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17006,16 +16961,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: HideSettingsFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 2560
-      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17070,26 +17015,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015716065315505772, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: StayNearStartingArea
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: BehaviorSettingsFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: MaxDistanceFromStartingArea
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74878,6 +74803,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 63.604362
       objectReference: {fileID: 0}
+    - target: {fileID: 2661810854395520724, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      propertyPath: DamageSettingsFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661810854395520724, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      propertyPath: WeaponType1SettingsFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661810854395520724, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      propertyPath: CombatActionSettingsFoldout
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3223068407818236133, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -80876,31 +80816,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionRadius
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionFrequency
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: HideSettingsFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 2560
-      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80955,51 +80870,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: TurnFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: WanderFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: MovementFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: AlignmentFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7572595992070103925, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: WeaponType1SettingsFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015716065315505772, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: StayNearStartingArea
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: BehaviorSettingsFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: MaxDistanceFromStartingArea
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86081,16 +85951,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: HideSettingsFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 2560
-      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -86145,26 +86005,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015716065315505772, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: StayNearStartingArea
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: BehaviorSettingsFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: MaxDistanceFromStartingArea
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -90151,16 +89991,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2125461928}
     m_Modifications:
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: HideSettingsFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 2560
-      objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -90215,26 +90045,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015716065315505772, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: StayNearStartingArea
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: BehaviorSettingsFoldout
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8213079882993996585, guid: eb666d8405823f047a1f5bfb60801676,
-        type: 3}
-      propertyPath: MaxDistanceFromStartingArea
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -103566,6 +103376,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7125740057586702123, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152467599512166041, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7652958012238516145, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
       propertyPath: m_Name
@@ -103578,8 +103398,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9186500036865748954, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
+      propertyPath: StartingHealth
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186500036865748954, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
       propertyPath: HealthSettingsFoldout
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186500036865748954, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: <Health>k__BackingField
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3195327617502328214, guid: a19d2ed69aa8e3148878b84d4be5cdac, type: 3}

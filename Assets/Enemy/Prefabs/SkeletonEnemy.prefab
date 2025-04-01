@@ -1158,7 +1158,7 @@ MonoBehaviour:
   DamageSettingsFoldout: 0
   CombatActionSettingsFoldout: 0
   SwitchWeaponSettingsFoldout: 0
-  WeaponType1SettingsFoldout: 1
+  WeaponType1SettingsFoldout: 0
   WeaponType2SettingsFoldout: 0
 --- !u!114 &8213079882993996585
 MonoBehaviour:

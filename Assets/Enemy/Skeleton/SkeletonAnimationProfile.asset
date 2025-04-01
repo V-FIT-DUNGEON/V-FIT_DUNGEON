@@ -30,7 +30,7 @@ MonoBehaviour:
   EmotesFoldout: 0
   Type1IdleFoldout: 1
   Type2IdleFoldout: 0
-  Type1AttacksFoldout: 0
+  Type1AttacksFoldout: 1
   Type2AttacksFoldout: 0
   Type1EquipsFoldout: 1
   Type2EquipsFoldout: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   Type2CombatAnimationsFoldout: 0
   Type1DeathFoldout: 0
   Type2DeathFoldout: 0
-  Type1HitFoldout: 0
+  Type1HitFoldout: 1
   Type2HitFoldout: 0
   Type1BlockFoldout: 0
   Type2BlockFoldout: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
   Type1CoverFoldout: 0
   Type2CoverFoldout: 0
   AnimationProfileFoldout: 0
-  AnimatorSettingsFoldout: 0
-  Type1HitConditions: -1
+  AnimatorSettingsFoldout: 1
+  Type1HitConditions: 131006
   Type2HitConditions: -1
   Type1HitAnimationCooldown: 0.1
   Type2HitAnimationCooldown: 0.1
@@ -177,7 +177,7 @@ MonoBehaviour:
   Type1Animations:
     IdleList: []
     IdleStationary:
-      AnimationSpeed: 1
+      AnimationSpeed: 3
       AnimationClip: {fileID: 7400000, guid: 9c1839e7dbc24d0881f0b8d884049da5, type: 3}
       Mirror: 0
     IdleWarning:
@@ -221,7 +221,7 @@ MonoBehaviour:
       AnimationClip: {fileID: 7400000, guid: f02c9d6457664fc18a1a3823545f7191, type: 3}
       Mirror: 0
     HitList:
-    - AnimationSpeed: 1
+    - AnimationSpeed: 1.5
       AnimationClip: {fileID: 7400000, guid: 21195ad07bb64b76a313eb13abef6c54, type: 3}
       Mirror: 0
     DeathList:
