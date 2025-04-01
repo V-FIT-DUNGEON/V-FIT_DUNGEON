@@ -9270,7 +9270,7 @@ PrefabInstance:
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.6879997
+      value: 8.527999
       objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
@@ -17009,7 +17009,7 @@ PrefabInstance:
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.09
+      value: -1.250001
       objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
@@ -18331,6 +18331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18366,6 +18371,7 @@ MonoBehaviour:
     BaseValue: 0
   Vitality:
     BaseValue: 0
+  currency: 0
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
@@ -31165,6 +31171,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31200,6 +31211,7 @@ MonoBehaviour:
     BaseValue: 0
   Vitality:
     BaseValue: 0
+  currency: 0
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
@@ -42308,6 +42320,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KatanaWithStrCalc
       objectReference: {fileID: 0}
+    - target: {fileID: 1512300794735183621, guid: ba2ae6aa1ce55c345897237e6bca8256,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1512300794735183631, guid: ba2ae6aa1ce55c345897237e6bca8256,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45148,6 +45165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45183,6 +45205,7 @@ MonoBehaviour:
     BaseValue: 0
   Vitality:
     BaseValue: 0
+  currency: 0
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
@@ -63997,6 +64020,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64032,6 +64060,7 @@ MonoBehaviour:
     BaseValue: 0
   Vitality:
     BaseValue: 0
+  currency: 0
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
@@ -75113,7 +75142,7 @@ PrefabInstance:
     - target: {fileID: 4988525628417194900, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.74
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4988525628417194900, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
@@ -80626,7 +80655,7 @@ PrefabInstance:
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 3.79
       objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
@@ -80676,11 +80705,16 @@ PrefabInstance:
     - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: TurnFoldout
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: WanderFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
+        type: 3}
+      propertyPath: MovementFoldout
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6492143151782969585, guid: eb666d8405823f047a1f5bfb60801676,
@@ -85806,7 +85840,7 @@ PrefabInstance:
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2299998
+      value: -1.3900003
       objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
@@ -89871,7 +89905,7 @@ PrefabInstance:
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.2300005
+      value: 9.069999
       objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
@@ -103147,8 +103181,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 617098897954729110, guid: f36f23d9eb361b84c8e3ec3a25b28bd9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -115469,6 +115502,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -115504,6 +115542,7 @@ MonoBehaviour:
     BaseValue: 0
   Vitality:
     BaseValue: 0
+  currency: 0
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
@@ -119278,12 +119317,12 @@ Transform:
   - {fileID: 611113614}
   - {fileID: 1994230827}
   - {fileID: 543913441}
+  - {fileID: 1345802954}
   - {fileID: 1445321003}
   - {fileID: 1624644231}
   - {fileID: 169717783}
   - {fileID: 1544812026}
   - {fileID: 294976045}
-  - {fileID: 1345802954}
   - {fileID: 749686524}
   - {fileID: 1889036139633294779}
   - {fileID: 317985478}
@@ -120171,19 +120210,34 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6431978777966504553, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
         type: 3}
       propertyPath: m_Name
       value: PlayerHelper
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1647842197464639743, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1889036139633294778}
+      addedObject: {fileID: 1889036139633294787}
+    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1889036139633294788}
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
 --- !u!1 &1889036139633294777 stripped
 GameObject:
@@ -120191,7 +120245,38 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1889036139633294776}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1889036139633294778
+--- !u!4 &1889036139633294779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889036139633294776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1889036139633294787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889036139633294777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealth: 0
+  Immortal: 0
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  DebugLogDeath: 1
+  HideSettingsFoldout: 0
+  HealthSettingsFoldout: 1
+  <Health>k__BackingField: 0
+  <ActiveEffects>k__BackingField: []
+--- !u!114 &1889036139633294788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120211,15 +120296,10 @@ MonoBehaviour:
     BaseValue: 0
   Vitality:
     BaseValue: 0
+  currency: 0
   inventory: {fileID: 0}
   equipmentPanel: {fileID: 0}
   statPanel: {fileID: 0}
---- !u!4 &1889036139633294779 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1889036139633294776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -37,8 +37,8 @@ namespace EmeraldAI
         void Start()
         {
             character = GetComponent<Character>();
-            previousvitality = (int)character.Vitality.Value;
-            StartingHealth += previousvitality;
+            // previousvitality = (int)character.Vitality.Value;
+            // StartingHealth += previousvitality;
             Health = StartingHealth; // Initialize health with vitality bonus
             healRate = 1 + (0.01f * character.Vitality.Value); // Heal rate formula
 
@@ -48,13 +48,13 @@ namespace EmeraldAI
 
         void Update()
         {
-            if (previousvitality != (int)character.Vitality.Value && character.Vitality.Value >= 0)
-            {
-                StartingHealth = 500; // Reset base health
-                previousvitality = (int)character.Vitality.Value;
-                StartingHealth += previousvitality; // Update health with new vitality
-                Health = StartingHealth; // Reset health to max
-            }
+            // if (previousvitality != (int)character.Vitality.Value && character.Vitality.Value >= 0)
+            // {
+            //     StartingHealth = 500; // Reset base health
+            //     previousvitality = (int)character.Vitality.Value;
+            //     StartingHealth += previousvitality; // Update health with new vitality
+            //     Health = StartingHealth; // Reset health to max
+            // }
         }
 
         public void Damage(int DamageAmount, Transform AttackerTransform = null, int RagdollForce = 100, bool CriticalHit = false)
