@@ -29,6 +29,7 @@ namespace EmeraldAI
         private float healRate;
         private Coroutine regenCoroutine;
         private float lastDamageTime;
+        private int previousvitality;
 
         TargetPositionModifier m_TargetPositionModifier;
         Collider m_Collider;
@@ -36,11 +37,24 @@ namespace EmeraldAI
         void Start()
         {
             character = GetComponent<Character>();
-            Health = StartingHealth + (int)character.Vitality.Value;
+            previousvitality = (int)character.Vitality.Value;
+            StartingHealth += previousvitality;
+            Health = StartingHealth; // Initialize health with vitality bonus
             healRate = 1 + (0.01f * character.Vitality.Value); // Heal rate formula
 
             m_TargetPositionModifier = GetComponent<TargetPositionModifier>();
             m_Collider = GetComponent<Collider>();
+        }
+
+        void Update()
+        {
+            if (previousvitality != (int)character.Vitality.Value && character.Vitality.Value >= 0)
+            {
+                StartingHealth = 200; // Reset base health
+                previousvitality = (int)character.Vitality.Value;
+                StartingHealth += previousvitality; // Update health with new vitality
+                Health = StartingHealth; // Reset health to max
+            }
         }
 
         public void Damage(int DamageAmount, Transform AttackerTransform = null, int RagdollForce = 100, bool CriticalHit = false)
