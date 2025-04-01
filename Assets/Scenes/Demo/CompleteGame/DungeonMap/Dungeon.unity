@@ -18331,50 +18331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 317985477}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
---- !u!1 &317985476 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 317985475}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &317985477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317985476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength:
-    BaseValue: 0
-  Agility:
-    BaseValue: 0
-  Endurance:
-    BaseValue: 0
-  Vitality:
-    BaseValue: 0
-  currency: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
 --- !u!4 &317985478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
@@ -31171,50 +31132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 551070589}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
---- !u!1 &551070588 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 551070587}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &551070589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551070588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength:
-    BaseValue: 0
-  Agility:
-    BaseValue: 0
-  Endurance:
-    BaseValue: 0
-  Vitality:
-    BaseValue: 0
-  currency: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
 --- !u!4 &551070590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
@@ -45165,50 +45087,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 808555185}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
---- !u!1 &808555184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 808555183}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &808555185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808555184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength:
-    BaseValue: 0
-  Agility:
-    BaseValue: 0
-  Endurance:
-    BaseValue: 0
-  Vitality:
-    BaseValue: 0
-  currency: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
 --- !u!4 &808555186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
@@ -64020,50 +63903,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1134826420}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
---- !u!1 &1134826419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1134826418}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1134826420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134826419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength:
-    BaseValue: 0
-  Agility:
-    BaseValue: 0
-  Endurance:
-    BaseValue: 0
-  Vitality:
-    BaseValue: 0
-  currency: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
 --- !u!4 &1134826421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
@@ -115502,50 +115346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHelper (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2066426269}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
---- !u!1 &2066426268 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066426267}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2066426269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066426268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength:
-    BaseValue: 0
-  Agility:
-    BaseValue: 0
-  Endurance:
-    BaseValue: 0
-  Vitality:
-    BaseValue: 0
-  currency: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
 --- !u!4 &2066426270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
@@ -120142,23 +119947,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5989017
+      value: -3.943
       objectReference: {fileID: 0}
     - target: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
         type: 3}
@@ -120205,101 +119995,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6431978777966504553, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
         type: 3}
       propertyPath: m_Name
       value: PlayerHelper
       objectReference: {fileID: 0}
-    - target: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1647842197464639743, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1889036139633294787}
-    - targetCorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1889036139633294788}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48aab3be11d9be242a97e31f969ac84b, type: 3}
---- !u!1 &1889036139633294777 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601896015820892276, guid: 48aab3be11d9be242a97e31f969ac84b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1889036139633294776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1889036139633294779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2480473801847818831, guid: 48aab3be11d9be242a97e31f969ac84b,
     type: 3}
   m_PrefabInstance: {fileID: 1889036139633294776}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1889036139633294787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889036139633294777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingHealth: 0
-  Immortal: 0
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  DebugLogDeath: 1
-  HideSettingsFoldout: 0
-  HealthSettingsFoldout: 1
-  <Health>k__BackingField: 0
-  <ActiveEffects>k__BackingField: []
---- !u!114 &1889036139633294788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889036139633294777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength:
-    BaseValue: 0
-  Agility:
-    BaseValue: 0
-  Endurance:
-    BaseValue: 0
-  Vitality:
-    BaseValue: 0
-  currency: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
