@@ -76,7 +76,7 @@ public class ExerciseManager : MonoBehaviour
         // Reassign value
 
         _fileHandler = new FileHandler();
-        userFilePath = _fileHandler.GetFilePath("PlayerStats");
+        userFilePath = _fileHandler.GetFilePath("PlayerAttributeStats");
         exerciseLogFilePath = _fileHandler.GetFilePath("ExerciseLogs");
 
         // Load userstat data
@@ -102,7 +102,7 @@ public class ExerciseManager : MonoBehaviour
 
             // Serialize the data using Newtonsoft.Json
             playerStatJsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
-            _fileHandler.SaveData("PlayerStats", playerStatJsonData);
+            _fileHandler.SaveData("PlayerAttributeStats", playerStatJsonData);
 
             // set stats
             _userData = _user.UserDatas["User"];
@@ -119,7 +119,7 @@ public class ExerciseManager : MonoBehaviour
         else{
             Debug.Log("User List already exists");
             // Load existing user data
-            playerStatJsonData = _fileHandler.LoadData("PlayerStats");
+            playerStatJsonData = _fileHandler.LoadData("PlayerAttributeStats");
             _user = JsonConvert.DeserializeObject<User>(playerStatJsonData);
             _userData = _user.UserDatas["User"];
             _userStat = _userData.UserStat;
@@ -139,7 +139,7 @@ public class ExerciseManager : MonoBehaviour
             Debug.Log("New Exercise Log Created");
             // Create a new exercise log
             _exerciseLog = new ExerciseLog();
-            _exerciseLog.ExerciseLogList = new List<ExerciseEntry>();
+            _exerciseLog.ExerciseLogList = new Dictionary<string, List<ExerciseEntry>>();
             exerciseLogJsonData = JsonConvert.SerializeObject(_exerciseLog, Formatting.Indented);
             _fileHandler.SaveData("ExerciseLogs", exerciseLogJsonData);
         }
@@ -301,7 +301,7 @@ public class ExerciseManager : MonoBehaviour
 
         public void FinishExerciseEarly()
     {
-        if (isExerciseActive == true)
+        if (isExerciseActive == true && repsCount > 0)
         {
             Debug.Log("Exercise Finished Early!");
             switch (currentExercise)
@@ -458,20 +458,30 @@ public class ExerciseManager : MonoBehaviour
         _overallExercise.Squat = AllSquat;
 
         playerStatJsonData = JsonConvert.SerializeObject(_user, Formatting.Indented);
-        _fileHandler.SaveData("PlayerStats", playerStatJsonData);
+        _fileHandler.SaveData("PlayerAttributeStats", playerStatJsonData);
     }
 
     public void SaveExerciseLog()
     {
+        string currentDate = System.DateTime.Now.ToString("yyyy-MM-dd"); // or your preferred format
+
         _exerciseEntry = new ExerciseEntry
         {
             ExerciseName = currentExercise.ToString(),
             Reps = repsCount,
-            Date = System.DateTime.Now.ToString("yyyy-MM-dd"),
             Time = System.DateTime.Now.ToString("HH:mm:ss")
         };
 
-        _exerciseLog.ExerciseLogList.Add(_exerciseEntry);
+        // Ensure the list for today's date exists
+        if (!_exerciseLog.ExerciseLogList.ContainsKey(currentDate))
+        {
+            _exerciseLog.ExerciseLogList[currentDate] = new List<ExerciseEntry>();
+        }
+
+        // Add the new entry to the top of today's log list
+        _exerciseLog.ExerciseLogList[currentDate].Insert(0, _exerciseEntry);
+
+        // Serialize and save
         exerciseLogJsonData = JsonConvert.SerializeObject(_exerciseLog, Formatting.Indented);
         _fileHandler.SaveData("ExerciseLogs", exerciseLogJsonData);
     }

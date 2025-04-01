@@ -476,6 +476,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9417abb654fb464394c7855179aa01f, type: 3}
+--- !u!1 &1683871463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 615412626619726482, guid: a0c60990e95645142a25b7211239477c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9104471502363178701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1683871478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683871463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad554582c3102645807bc20652b7fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableDebuggingTools: 1
+  DrawLineOfSightLines: 1
+  DrawNavMeshPath: 1
+  NavMeshPathColor: {r: 0, g: 0, b: 1, a: 1}
+  DrawNavMeshDestination: 1
+  NavMeshDestinationColor: {r: 1, g: 0, b: 0, a: 1}
+  DrawLookAtPoints: 1
+  DrawUndetectedTargetsLine: 1
+  DebugLogTargets: 1
+  DebugLogObstructions: 1
+  DrawFootstepPositions: 1
+  DebugLogFootsteps: 1
+  DrawDetectedCoverNodes: 1
+  HideSettingsFoldout: 0
+  SettingsFoldout: 1
 --- !u!1001 &1726533911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1172,7 +1205,7 @@ PrefabInstance:
     - target: {fileID: 177080702831130430, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
       propertyPath: HideSettingsFoldout
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 197926632335784668, guid: eb666d8405823f047a1f5bfb60801676,
         type: 3}
@@ -2307,6 +2340,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 970058259963654216, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 973038985904230347, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
@@ -10747,6 +10785,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1520872286540856717, guid: 70c725cc67c789d4e9fe10c55a186b34,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520872286540856717, guid: 70c725cc67c789d4e9fe10c55a186b34,
+        type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -11185,6 +11228,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7368359130336808273, guid: a0c60990e95645142a25b7211239477c,
         type: 3}
+      propertyPath: PlayerTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368359130336808273, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      propertyPath: TagFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368359130336808273, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      propertyPath: FactionFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368359130336808273, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
       propertyPath: DetectionRadius
       value: 15
       objectReference: {fileID: 0}
@@ -11198,10 +11256,19 @@ PrefabInstance:
       propertyPath: FieldOfViewAngle
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 7368359130336808273, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      propertyPath: DetectionLayerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 615412626619726482, guid: a0c60990e95645142a25b7211239477c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1683871478}
   m_SourcePrefab: {fileID: 100100000, guid: a0c60990e95645142a25b7211239477c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

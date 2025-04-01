@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4710858044147923488}
   - component: {fileID: 1962183843546145251}
   - component: {fileID: 77914672182386563}
-  - component: {fileID: 386775069577620369}
+  - component: {fileID: 9157389143305330793}
   m_Layer: 9
   m_Name: PlayerHelper
   m_TagString: Player
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8601896015820892276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.612, y: 6.59, z: -35.92}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -124,7 +124,7 @@ MonoBehaviour:
   TPMSettingsFoldout: 1
   TransformSource: {fileID: 2480473801847818831}
   PositionModifier: 0
-  GizmoRadius: 0.15
+  GizmoRadius: 0.3
   GizmoColor: {r: 1, g: 0, b: 0, a: 0.8}
 --- !u!114 &77914672182386563
 MonoBehaviour:
@@ -141,7 +141,7 @@ MonoBehaviour:
   HideSettingsFoldout: 0
   FactionFoldout: 1
   CurrentFaction: 2
---- !u!114 &386775069577620369
+--- !u!114 &9157389143305330793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,19 +150,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8601896015820892276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37b1db7cc7c630488b168e4a6f9888a, type: 3}
+  m_Script: {fileID: 11500000, guid: f0cf0a29fc9ddc14188ad334b0eef3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 0
-  Immortal: 0
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  DebugLogDeath: 1
-  HideSettingsFoldout: 0
-  HealthSettingsFoldout: 1
-  <Health>k__BackingField: 0
-  <ActiveEffects>k__BackingField: []
+  Strength:
+    BaseValue: 0
+  Agility:
+    BaseValue: 0
+  Endurance:
+    BaseValue: 0
+  Vitality:
+    BaseValue: 0
+  currency: 0
+  inventory: {fileID: 0}
+  equipmentPanel: {fileID: 0}
+  statPanel: {fileID: 0}

@@ -9,14 +9,14 @@ using Unity.VisualScripting;
 public class FileHandler
 {
     public enum FileFormat {None, csv, Save, Profile, Json}
-    public enum FileType {None, ExerciseLog, PlayerStats}
+    public enum FileType {None, ExerciseLog, PlayerAttributeStats}
     //This script is used to save the data of Breathing into a CSV file
     // Start is called before the first frame update
 
 #if UNITY_EDITOR
     private readonly string directoryPath = $"{Application.dataPath}/SavedData/Save";
     private readonly string exerciseLogsDirectoryPath = $"{Application.dataPath}/SavedData/ExercisesLogs";
-    private readonly string PlayerStatsDirectoryPath = $"{Application.dataPath}/SavedData/PlayerStats";
+    private readonly string PlayerStatsDirectoryPath = $"{Application.dataPath}/SavedData/PlayerAttributeStats";
 #else
     private readonly string directoryPath = $"{Application.persistentDataPath}/SavedData/Save";
     private readonly string exerciseLogsDirectoryPath = $"{Application.dataPath}/SavedData/ExercisesLogs";
@@ -36,7 +36,7 @@ public class FileHandler
         {
             case "ExerciseLogs":
                 return Path.Combine(exerciseLogsDirectoryPath, fileName + FILE_EXTENSION[4]);
-            case "PlayerStats":
+            case "PlayerAttributeStats":
                 return Path.Combine(PlayerStatsDirectoryPath, fileName + FILE_EXTENSION[4]);
             case "ExercisePose":
                 return Path.Combine(directoryPath, fileName + FILE_EXTENSION[4]);

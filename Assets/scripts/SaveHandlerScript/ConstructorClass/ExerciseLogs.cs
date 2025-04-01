@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class ExerciseLog
 {
-    public List<ExerciseEntry> ExerciseLogList;
+    public Dictionary<string, List<ExerciseEntry>> ExerciseLogList = new Dictionary<string, List<ExerciseEntry>>();
 
     public void AddExerciseLog(string exerciseName, int reps, string date, string time)
     {
@@ -14,10 +14,17 @@ public class ExerciseLog
         {
             ExerciseName = exerciseName,
             Reps = reps,
-            Date = date,
             Time = time
         };
-        ExerciseLogList.Add(newEntry);
+
+        // If this date doesn't exist in the dictionary, add it
+        if (!ExerciseLogList.ContainsKey(date))
+        {
+            ExerciseLogList[date] = new List<ExerciseEntry>();
+        }
+
+        // Insert at the top of the list for that date
+        ExerciseLogList[date].Insert(0, newEntry);
     }
 }
 
@@ -26,8 +33,7 @@ public class ExerciseEntry
 {
     public string ExerciseName;
     public int Reps;
-    public string Date;
-    public string Time; // Keep as string for simplicity; use DateTime if needed
+    public string Time;
 }
 
 

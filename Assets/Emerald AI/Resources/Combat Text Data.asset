@@ -27,4 +27,4 @@ MonoBehaviour:
   OutlineEffect: 0
   UseAnimateFontSize: 0
   DefaultHeight: 1.75
-  VRSupport: 0
+  VRSupport: 1

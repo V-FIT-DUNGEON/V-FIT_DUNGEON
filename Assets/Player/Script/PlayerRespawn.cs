@@ -11,7 +11,8 @@ public class PlayerRespawnHandler : MonoBehaviour
     {
         if (playerHealth != null && playerHealth.Health <= 0)
         {
-            HandleRespawn();
+            SceneManager.LoadScene(0); // Load the main menu scene (index 0)
+            // HandleRespawn();
         }
     }
 

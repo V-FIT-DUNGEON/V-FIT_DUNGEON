@@ -3,7 +3,9 @@ using EmeraldAI;
 
 public class EnemyItemDrop : MonoBehaviour
 {
-    public GameObject dropItemPrefab; // Assign this in the Inspector
+    [Header("Item Drops")]
+    public GameObject[] dropItemPrefabs; // Array of item prefabs
+    public float scatterRadius = 1f; // How far items can scatter from the enemy's position
 
     private EmeraldHealth enemyHealth;
 
@@ -12,15 +14,29 @@ public class EnemyItemDrop : MonoBehaviour
         enemyHealth = GetComponent<EmeraldHealth>(); // Get EmeraldHealth component
         if (enemyHealth != null)
         {
-            enemyHealth.OnDeath += DropItem; // Subscribe to the OnDeath event
+            enemyHealth.OnDeath += DropItems; // Subscribe to the OnDeath event
         }
     }
 
-    void DropItem()
+    void DropItems()
     {
-        if (dropItemPrefab != null)
+        if (dropItemPrefabs.Length > 0)
         {
-            Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
+            foreach (GameObject itemPrefab in dropItemPrefabs)
+            {
+                if (itemPrefab != null)
+                {
+                    // Random offset for scattering
+                    Vector3 randomOffset = new Vector3(
+                        Random.Range(-scatterRadius, scatterRadius), 
+                        0, 
+                        Random.Range(-scatterRadius, scatterRadius)
+                    );
+
+                    Vector3 dropPosition = transform.position + randomOffset;
+                    Instantiate(itemPrefab, dropPosition, Quaternion.identity);
+                }
+            }
         }
     }
 
@@ -28,7 +44,7 @@ public class EnemyItemDrop : MonoBehaviour
     {
         if (enemyHealth != null)
         {
-            enemyHealth.OnDeath -= DropItem; // Unsubscribe from the event to prevent memory leaks
+            enemyHealth.OnDeath -= DropItems; // Unsubscribe to prevent memory leaks
         }
     }
 }

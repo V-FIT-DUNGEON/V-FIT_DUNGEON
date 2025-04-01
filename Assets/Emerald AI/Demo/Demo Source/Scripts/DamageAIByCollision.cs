@@ -14,7 +14,7 @@ namespace EmeraldAI.Example
 
         private Character playerCharacter;
         private HashSet<GameObject> damagedTargets = new HashSet<GameObject>(); // Store already damaged targets
-        private float damageCooldown = 1.5f; // Cooldown time in seconds
+        private float damageCooldown = 1f; // Cooldown time in seconds
         private Coroutine resetCooldownCoroutine;
 
         private void Start()
