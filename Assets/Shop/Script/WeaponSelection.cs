@@ -33,7 +33,7 @@ public class WeaponSelection : MonoBehaviour
         source = GetComponent<AudioSource>();
         if (source == null)
         {
-            Debug.LogError("AudioSource component is missing on WeaponSelection GameObject!");
+            Debug.Log("AudioSource component is missing on WeaponSelection GameObject!");
         }
         currentWeapon = InventoryManager.instance.currentWeapon;
         FindPlayerCharacter();

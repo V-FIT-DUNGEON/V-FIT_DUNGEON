@@ -93,7 +93,6 @@ public class ExerciseManager : MonoBehaviour
             _userStat.Endurance = 0;
             _userStat.Agility = 0;
             _userStat.Vitality = 0;
-            _userStat.Currency = 0;
             _overallExercise.Pushup = 0;
             _overallExercise.Squat = 0;
             _userData.UserStat = _userStat;

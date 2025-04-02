@@ -1254,6 +1254,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5041754316904346054, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_text
+      value: 'Squat
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549266575535000685, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7652958012238516145, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
       propertyPath: m_Name

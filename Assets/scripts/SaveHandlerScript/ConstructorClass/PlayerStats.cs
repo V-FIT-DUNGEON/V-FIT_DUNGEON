@@ -22,7 +22,6 @@ public class UserData
             "Endurance" => UserStat.Endurance,
             "Agility" => UserStat.Agility,
             "Vitality" => UserStat.Vitality,
-            "Currency" => UserStat.Currency,
             _ => 0f
         };
     }
@@ -45,7 +44,6 @@ public class UserStat
     public float Endurance;
     public float Agility;
     public float Vitality;
-    public float Currency;
 }
 
 [Serializable]
