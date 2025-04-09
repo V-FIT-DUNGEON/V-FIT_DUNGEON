@@ -40,7 +40,7 @@ namespace EmeraldAI
             character = GetComponent<Character>();
             playerTargetHelperChar = GetComponent<PlayerTargetHelperChar>();
             previousvitality = character.Vitality.Value;
-            Debug.Log(previousvitality);
+            //Debug.Log(previousvitality);
             StartingHealth += (int)previousvitality;
             Health = StartingHealth; // Initialize health with vitality bonus
             healRate = 1 + (0.01f * character.Vitality.Value); // Heal rate formula

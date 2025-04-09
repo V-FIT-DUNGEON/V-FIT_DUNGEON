@@ -1254,11 +1254,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7334175784053446292, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7652958012238516145, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8724510455374114098, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724510455374114098, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+        type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 2134523338}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1288,11 +1303,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DetectionSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108654815275178614, guid: 251383972875bd449b4b7f1c21091d63,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2547428946783273676, guid: 251383972875bd449b4b7f1c21091d63,
         type: 3}
@@ -1369,6 +1379,16 @@ PrefabInstance:
       propertyPath: Controller_R
       value: 
       objectReference: {fileID: 1754260074}
+    - target: {fileID: 3797103339619659630, guid: 251383972875bd449b4b7f1c21091d63,
+        type: 3}
+      propertyPath: OnCalibrating.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1841743937}
+    - target: {fileID: 3797103339619659630, guid: 251383972875bd449b4b7f1c21091d63,
+        type: 3}
+      propertyPath: OnCalibrating.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1599946278}
     - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
         type: 3}
       propertyPath: Headset
@@ -1384,16 +1404,6 @@ PrefabInstance:
       propertyPath: _PlayerCharacter
       value: 
       objectReference: {fileID: 200578816}
-    - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
-        type: 3}
-      propertyPath: OnSquatRepsCountEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
-        type: 3}
-      propertyPath: OnPushUpRepsCountEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
         type: 3}
       propertyPath: OnFinishExerciseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1414,16 +1424,6 @@ PrefabInstance:
       propertyPath: OnPushUpRepsCountEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1841743937}
-    - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
-        type: 3}
-      propertyPath: OnSquatRepsCountEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCountReps
-      objectReference: {fileID: 0}
-    - target: {fileID: 6320123390259784742, guid: 251383972875bd449b4b7f1c21091d63,
-        type: 3}
-      propertyPath: OnPushUpRepsCountEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCountReps
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1516,6 +1516,12 @@ PrefabInstance:
 --- !u!1 &2134523317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 970058259963654216, guid: a19d2ed69aa8e3148878b84d4be5cdac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823637333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &2134523338 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 3447386481274981261, guid: a19d2ed69aa8e3148878b84d4be5cdac,
     type: 3}
   m_PrefabInstance: {fileID: 1823637333}
   m_PrefabAsset: {fileID: 0}
