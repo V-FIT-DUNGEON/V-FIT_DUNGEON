@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using BNG;
+using TMPro;
+using UnityEngine.Events;
 
 public class PreExerciseCalibration : MonoBehaviour
 {
@@ -19,12 +21,15 @@ public class PreExerciseCalibration : MonoBehaviour
     //[SerializeField] private ExercisePose exercisePose = ExercisePose.Null;
 
     [SerializeField] private float scailer = 1000f;
-    [SerializeField] private float PosChangeThreshold = 0.4f; // Movement threshold to restart calibration
+    [SerializeField] private float PosChangeThreshold = 0.6f; // Movement threshold to restart calibration
     [SerializeField] private float CalibrationTime = 5f; // Required time to stay still
     [SerializeField] private bool isCalibrating = false;
     [SerializeField] private float countTime;
     [SerializeField] private Vector3 calibPos;
+    [SerializeField] private TextMeshProUGUI RepText;
     private Coroutine calibrationCoroutine;
+
+    [SerializeField] private UnityEvent<float, float> OnCalibrating; // UI feedback for calibration
 
     private void OnEnable()
     {
@@ -54,7 +59,7 @@ public class PreExerciseCalibration : MonoBehaviour
 
         Debug.Log("Starting Calibration... Hold still!");
 
-        while (countTime < CalibrationTime)
+        while (countTime <= CalibrationTime)
         {
             //Debug.Log("Move" + Vector3.Distance(calibPos, Headset.localPosition)* scailer);
             if (Vector3.Distance(calibPos, Headset.localPosition) * scailer > PosChangeThreshold)
@@ -68,16 +73,21 @@ public class PreExerciseCalibration : MonoBehaviour
             else
             {
                 countTime += Time.deltaTime; // Increment time while staying still
+                OnCalibrating.Invoke(countTime, CalibrationTime); // Update UI feedback
             }
 
             yield return null; // Wait for next frame
         }
 
         // Calibration successful
+        OnCalibrating.Invoke(0,CalibrationTime); // Update UI feedback
         InputBridge.Instance.VibrateController(1f, 1f, 1f, Grabber_L.HandSide);
         InputBridge.Instance.VibrateController(1f, 1f, 1f, Grabber_R.HandSide);
         Debug.Log("Calibration complete.");
+        // wait for 1 second before setting the calibrated state
+        yield return new WaitForSeconds(1f);
 
+        OnCalibrating.Invoke(-1,CalibrationTime);
         isCalibrating = false;
         _ExerciseManager.SetCalibrated(true);
     }

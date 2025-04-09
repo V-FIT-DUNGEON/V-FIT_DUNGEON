@@ -65,8 +65,9 @@ public class CustomWorkoutUI : MonoBehaviour
             Debug.LogError("Invalid input: " + repsNumber.text);
         }
         _exerciseManager.SetReps(repsLimit);
-        repsNumber.text = "0";
         _exerciseManager.StartExercise();
+        
+        repsNumber.text = "0";
 
 
     }
@@ -91,5 +92,27 @@ public class CustomWorkoutUI : MonoBehaviour
         {
             repsText.text = "Finish Workout";
         }
+    }
+
+    public void CalibratingUI(float countTime, float calibrationTime)
+    {
+        if (countTime == 0)//calibration Complete
+        {
+            Debug.Log("Calibraton complete!");
+            repsText.text = "Calibration Complete!";
+        }
+        else if (countTime == -1) //reset UI to start workout
+        {
+            Debug.Log("workout started!");
+            repsText.text = "Reps";
+            repsNumber.text = "0";
+        }
+        else
+        {
+            Debug.Log("Calibrating UI: " + countTime);
+            repsText.text = "Calibration in progress please stand still  ";
+            repsNumber.text = Mathf.CeilToInt(calibrationTime - countTime).ToString() + "s";
+        }
+        
     }
 }

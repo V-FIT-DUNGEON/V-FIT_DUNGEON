@@ -256,8 +256,36 @@ MonoBehaviour:
   Headset: {fileID: 0}
   _ExerciseManager: {fileID: 6320123390259784742}
   scailer: 1000
-  PosChangeThreshold: 5
-  CalibrationTime: 2
+  PosChangeThreshold: 11.8
+  CalibrationTime: 3
   isCalibrating: 0
   countTime: 0
   calibPos: {x: 0, y: 0, z: 0}
+  RepText: {fileID: 0}
+  OnCalibrating:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: CalibratingUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CustomWorkoutUI, Assembly-CSharp
+        m_MethodName: CalibratingUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
