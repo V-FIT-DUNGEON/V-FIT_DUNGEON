@@ -1254,26 +1254,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7334175784053446292, guid: a19d2ed69aa8e3148878b84d4be5cdac,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7652958012238516145, guid: a19d2ed69aa8e3148878b84d4be5cdac,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8724510455374114098, guid: a19d2ed69aa8e3148878b84d4be5cdac,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8724510455374114098, guid: a19d2ed69aa8e3148878b84d4be5cdac,
-        type: 3}
-      propertyPath: characterController
-      value: 
-      objectReference: {fileID: 2134523338}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1516,12 +1501,6 @@ PrefabInstance:
 --- !u!1 &2134523317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 970058259963654216, guid: a19d2ed69aa8e3148878b84d4be5cdac,
-    type: 3}
-  m_PrefabInstance: {fileID: 1823637333}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &2134523338 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 3447386481274981261, guid: a19d2ed69aa8e3148878b84d4be5cdac,
     type: 3}
   m_PrefabInstance: {fileID: 1823637333}
   m_PrefabAsset: {fileID: 0}

@@ -16,8 +16,12 @@ public class FootstepManager : MonoBehaviour {
     }
 
     void Update() {
-        Debug.Log(characterController.isGrounded + " " + characterController.velocity.magnitude);
-        if (characterController != null && characterController.isGrounded && characterController.velocity.magnitude > 0.1f) {
+        // Only consider horizontal (XZ) velocity
+        Vector3 horizontalVelocity = new Vector3(characterController.velocity.x, 0f, characterController.velocity.z);
+        float horizontalSpeed = horizontalVelocity.magnitude;
+
+        Debug.Log(characterController.isGrounded + " " + horizontalSpeed);
+        if (characterController != null && characterController.isGrounded && horizontalSpeed > 0.1f) {
             if (Time.time >= nextStepTime) {
                 PlayFootstep();
                 nextStepTime = Time.time + stepDelay;
@@ -26,7 +30,9 @@ public class FootstepManager : MonoBehaviour {
     }
 
     void PlayFootstep() {
-        audioSource.clip = footstepClips[0];
-        audioSource.Play();
+        if (footstepClips.Length > 0) {
+            audioSource.clip = footstepClips[0]; // You can randomize this later
+            audioSource.Play();
+        }
     }
 }
